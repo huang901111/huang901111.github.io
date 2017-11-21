@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Git Command"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Git Command &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/10/gituse/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-10T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="linux" />
+    
+    
+
+    <title>Git Command &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Git 一款分布式版本控制工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/10/gituse/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Git Command",
+    "name": "Git Command",
+    "wordCount":  429 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/10/gituse/",
+    "datePublished": "2017-07-10T00:00Z",
+    "dateModified": "2017-07-10T00:00Z",
+    
+    "keywords": "linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/10/gituse/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Git Command</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-10T00:00:00Z">
+            Jul 10, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Git 一款分布式版本控制工具</font></left> </p>
+
+<blockquote>
+<p>配置身份信息</p>
+</blockquote>
+
+<pre><code class="language-shell">git config --global user.email &quot;you@example.com&quot;
+git config --global user.name &quot;your name&quot;
+</code></pre>
+
+<blockquote>
+<p>将Git服务器代码克隆到本地仓库</p>
+</blockquote>
+
+<pre><code class="language-shell">git clone https://github.com/johcon/one.git
+</code></pre>
+
+<blockquote>
+<p>添加到本地缓存</p>
+</blockquote>
+
+<pre><code class="language-shell">git add .
+</code></pre>
+
+<blockquote>
+<p>查询缓存状态</p>
+</blockquote>
+
+<pre><code class="language-shell">git status
+</code></pre>
+
+<blockquote>
+<p>提交到缓存</p>
+</blockquote>
+
+<pre><code class="language-shell">git commit -m 'add xxxx'
+</code></pre>
+
+<blockquote>
+<p>推送到git分支</p>
+</blockquote>
+
+<pre><code class="language-shell"># 推送到master分支
+git push origin master
+# 推送到testing分支
+git push origin testing
+</code></pre>
+
+<blockquote>
+<p>添加git标签一个1.0版本</p>
+</blockquote>
+
+<pre><code class="language-shell">git tag -a v1.0
+</code></pre>
+
+<blockquote>
+<p>删除本地文件与git文件</p>
+</blockquote>
+
+<pre><code class="language-shell">git rm -rf ok.txt
+</code></pre>
+
+<blockquote>
+<p>删除最近1次提交历史记录</p>
+</blockquote>
+
+<pre><code class="language-shell">git reset --hard HEAD^1
+# HEAD 指向的版本就是当前版本，git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id
+# 穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本
+# 要重返未来，用git reflog 查看命令历史，以便确定要回到未来的哪个版本
+</code></pre>
+
+<blockquote>
+<p>将缓存区中的修改移除</p>
+</blockquote>
+
+<pre><code class="language-shell">git reset --mixed HEAD
+# 将缓存区中的修改移除，但改动还保留在工作目录中
+git reset --hard HEAD
+# 完全舍弃没有提交的改动，包含工作目录、缓存区
+</code></pre>
+
+<blockquote>
+<p>丢弃工作区的修改</p>
+</blockquote>
+
+<pre><code class="language-shell">git checkout -- filename.txt
+# 当修改了工作区file文件内容，可执行git checkout -- filename.txt将修改操作回滚
+# 当删除了工作区file文件，可执行git checkout -- filename.txt 将文件恢复
+</code></pre>
+
+<blockquote>
+<p>查看分支历史</p>
+</blockquote>
+
+<pre><code class="language-shell">git log --graph --pretty=oneline --abbrev-commit
+# 合并分支时，加上--no-ff参数就可以使用普通模式合并，合并后的历史有分支，能看出来曾经做过合并
+# fast forward合并就看不出来曾经做过合并
+</code></pre>
+
+<blockquote>
+<p>记录当前分支下每一次命令</p>
+</blockquote>
+
+<pre><code class="language-shell">git reflog
+3bec418 HEAD@{0}: commit: 修改Dockfile-dev
+f5031b4 HEAD@{1}: commit: 修改Dockerfile
+1fe32a7 HEAD@{2}: commit: 修改Dockerfile
+0b192c4 HEAD@{3}: commit: 修改Dockerfile-dev
+ed481b0 HEAD@{4}: commit: 修改Dockerfile-dev
+</code></pre>
+
+<blockquote>
+<p>更新本地仓库最新改动</p>
+</blockquote>
+
+<pre><code class="language-shell">git pull origin master
+</code></pre>
+
+<blockquote>
+<p>分支操作</p>
+</blockquote>
+
+<pre><code class="language-shell"># 创建分支test并切换
+git checkout -b test
+# 列出分支
+git branch
+# 列出远程分支
+git branch -r
+# 将test分支推送到远端仓库
+git push origin test
+# 切换回主分支
+git checkout master
+# 比较分支的差异
+git diff --stat master testing
+# 将新建的分支删除
+git branch -d testing
+</code></pre>
+
+<blockquote>
+<p>合并分支</p>
+</blockquote>
+
+<pre><code class="language-shell"># 将master分支合并到你的当前分支
+git merge master
+</code></pre>
+
+<blockquote>
+<p>比较同一个文件在不同分支下区别</p>
+</blockquote>
+
+<pre><code class="language-shell">git diff master testing filename.txt
+</code></pre>
+
+<blockquote>
+<p>比较缓存区与工作目录文件差异</p>
+</blockquote>
+
+<pre><code class="language-shell">git diff --staged filename.txt
+</code></pre>
+
+<blockquote>
+<p>远程仓库操作</p>
+</blockquote>
+
+<pre><code class="language-shell"># 查看当前的远程库
+git remote -v
+origin	https://git.coding.net/SeacmeHuang/blogscript.git (fetch)
+origin	https://git.coding.net/SeacmeHuang/blogscript.git (push)
+# 指定分支，添加远程仓库
+git remote add -t testing(分支名) gitlab(仓库名) git@gitlab.com:huangregistry/huangregistry.gitlab.io.git（url）
+# 更新远程仓库有，本地仓库没有的数据
+git fetch gitlab
+# 查看远程仓库信息
+git remote show origin
+* remote origin
+  Fetch URL: https://git.coding.net/SeacmeHuang/blogscript.git
+  Push  URL: https://git.coding.net/SeacmeHuang/blogscript.git
+  HEAD branch: master
+  Remote branches:
+    dev_blue tracked
+    master   tracked
+    testing  tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local refs configured for 'git push':
+    dev_blue pushes to dev_blue (up to date)
+    master   pushes to master   (up to date)
+    testing  pushes to testing  (up to date)
+# 远程仓库删除操作
+git remote rm origin
+# 远程仓库改名操作
+git remote rename old_name new_name
+</code></pre>
+
+<blockquote>
+<p>追加commit提交</p>
+</blockquote>
+
+<pre><code class="language-shell"># 情景：先修改执行commit操作
+# 第一次commit操作
+git commit -m 'add test操作'
+# 添加文件
+git add addfile.txt
+# 追加到上一次commit操作中
+git commit --amend
+# 修改commit message描述内容
+git commit --amend
+</code></pre>
+
+<blockquote>
+<p>查看git配置信息</p>
+</blockquote>
+
+<pre><code class="language-shell">git config --list
+credential.helper=osxkeychain
+core.excludesfile=/Users/huanghaihua/.gitignore_global
+difftool.sourcetree.cmd=opendiff &quot;$LOCAL&quot; &quot;$REMOTE&quot;
+difftool.sourcetree.path=
+mergetool.sourcetree.cmd=/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh &quot;$LOCAL&quot; &quot;$REMOTE&quot; -ancestor &quot;$BASE&quot; -merge &quot;$MERGED&quot;
+mergetool.sourcetree.trustexitcode=true
+user.name=Seacme Huang
+user.email=huanghh901111@gmail.com
+</code></pre>
+
+<blockquote>
+<p>删除远程分支和tag</p>
+</blockquote>
+
+<pre><code class="language-shell"># 删除远程分支
+git push origin --delete {branch name}
+# 删除tag
+git push origin --delete tag {tag name}
+</code></pre>
+
+<blockquote>
+<p>远程主机更新，拉回本地</p>
+</blockquote>
+
+<pre><code class="language-shell"># 拉回远程仓库所有分支
+git fetch
+# 拉回远程仓库的master分支
+git fetch origin master
+# 查看远程分支
+git branch -r 
+# 查看所有分支
+git branch -a 
+# 拉回本地后与本地分支执行合并操作
+git merge origin/master
+# git pull 操作
+git pull origin master:master 
+## 效果等于
+git fetch origin master
+git merge origin/master
+</code></pre>
+
+<blockquote>
+<p>重命名远程分支</p>
+</blockquote>
+
+<pre><code class="language-shell"># 删除远程分支
+git branch --delete origin {old_branch_name}
+# 重命名本地分支
+git branch -m {old_branch_name} {new_branch_name}
+# 推送本地分支到远程
+git push origin {new_branch_name}
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Git%20Command&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f10%2fgituse%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f10%2fgituse%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f10%2fgituse%2f&amp;description=Git%20Command"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f10%2fgituse%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/11/requests/">
+          <section class="post">
+              <h2>Python Requests模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/07/tcpport/">
+          <section class="post">
+              <h2>TCP端口分配</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

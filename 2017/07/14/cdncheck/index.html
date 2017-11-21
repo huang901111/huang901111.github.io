@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="判断CDN文件与源文件是否一致"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="判断CDN文件与源文件是否一致 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/14/cdncheck/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-14T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="network" />
+    
+    
+
+    <title>判断CDN文件与源文件是否一致 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;curl请求确认资源推送CDN是否成功&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/14/cdncheck/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "判断CDN文件与源文件是否一致",
+    "name": "判断CDN文件与源文件是否一致",
+    "wordCount":  100 ,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/14/cdncheck/",
+    "datePublished": "2017-07-14T00:00Z",
+    "dateModified": "2017-07-14T00:00Z",
+    
+    "keywords": "network",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/14/cdncheck/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">判断CDN文件与源文件是否一致</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-14T00:00:00Z">
+            Jul 14, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/network/">#network</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>curl请求确认资源推送CDN是否成功</font></left> </p>
+
+<ul>
+<li>通常我们将网站放在CDN上进行加速，但是有时候CDN缓存刷新不及时，我们在源站更新了文件，但在CDN上似乎没有刷新成功，这个时候我们可以依据什么来判断文件是否在CDN被缓存住未更新呢？</li>
+</ul>
+
+<blockquote>
+<p>判断依据</p>
+</blockquote>
+
+<p>通常我们会根据响应头中的几个字段来进行分析：</p>
+
+<ul>
+<li><code>Last-Modified</code>：这个字段如果和源则一致则说明该文件的最后修改时间是一样的。可以判断文件是否有更新。</li>
+<li><code>Content-Length</code>：该字段如果不一致则说明文件在CDN上被缓存住了。</li>
+</ul>
+
+<blockquote>
+<p>实际分析</p>
+</blockquote>
+
+<ul>
+<li>在实际操作中，我们可以直接通过curl来发送http请求</li>
+</ul>
+
+<pre><code class="language-shell">~ curl -I http://www.ssmiao.net/tpl/simplebootx/Home/assets/js/app.js -v
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to 127.0.0.1 (127.0.0.1) port 1087 (#0)
+&gt; HEAD http://www.ssmiao.net/tpl/simplebootx/Home/assets/js/app.js HTTP/1.1
+&gt; Host: www.ssmiao.net
+&gt; User-Agent: curl/7.51.0
+&gt; Accept: */*
+&gt; Proxy-Connection: Keep-Alive
+.....
+&lt; Content-Length: 5512
+Content-Length: 5512
+.....
+&lt; Last-Modified: Wed, 24 May 2017 06:45:32 GMT
+Last-Modified: Wed, 24 May 2017 06:45:32 GMT
+.....
+&lt; Proxy-Connection: keep-alive
+Proxy-Connection: keep-alive
+
+&lt;
+* Curl_http_done: called premature == 0
+* Connection #0 to host 127.0.0.1 left intact
+</code></pre>
+
+<blockquote>
+<p>请求源站资源</p>
+</blockquote>
+
+<ol>
+<li><p>绑定hosts，这个做法不太建议，因为太死板。测试完还要改hosts内容</p>
+
+<pre><code class="language-shell">echo xxx.xxx.xxx.xxx awen.me &gt;&gt; /etc/hosts
+</code></pre></li>
+
+<li><p>使用curl方式，使用-x参数指定源站IP和端口进行测试</p>
+
+<pre><code class="language-shell">curl -I http://www.ssmiao.net/tpl/simplebootx/Home/assets/js/app.js -x 120.24.71.116:80 -v
+</code></pre></li>
+</ol>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e5%88%a4%e6%96%adCDN%e6%96%87%e4%bb%b6%e4%b8%8e%e6%ba%90%e6%96%87%e4%bb%b6%e6%98%af%e5%90%a6%e4%b8%80%e8%87%b4&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f14%2fcdncheck%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f14%2fcdncheck%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f14%2fcdncheck%2f&amp;description=%e5%88%a4%e6%96%adCDN%e6%96%87%e4%bb%b6%e4%b8%8e%e6%ba%90%e6%96%87%e4%bb%b6%e6%98%af%e5%90%a6%e4%b8%80%e8%87%b4"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f14%2fcdncheck%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/15/nethogs/">
+          <section class="post">
+              <h2>NetHogs Trickle Command</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/12/urllib2/">
+          <section class="post">
+              <h2>Python Urllib模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interest on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/interest/</link>
+    <description>Recent content in Interest on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Tue, 04 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/interest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Leanote开源笔记</title>
+      <link>http://huang901111.github.io/2017/07/04/leanote/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/leanote/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;蚂蚁笔记，有极客范的云笔记！&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

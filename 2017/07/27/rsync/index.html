@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Rsync Service"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Rsync Service &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/27/rsync/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-27T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Linux" />
+    
+    
+
+    <title>Rsync Service &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个用于远程数据同步，替代rcp、支持断点续传的传输工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/27/rsync/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Rsync Service",
+    "name": "Rsync Service",
+    "wordCount":  731 ,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/27/rsync/",
+    "datePublished": "2017-07-27T00:00Z",
+    "dateModified": "2017-07-27T00:00Z",
+    
+    "keywords": "Linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/27/rsync/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Rsync Service</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-27T00:00:00Z">
+            Jul 27, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#Linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一个用于远程数据同步，替代rcp、支持断点续传的传输工具</font></left> </p>
+
+<blockquote>
+<p>一、Rsync 服务简介</p>
+</blockquote>
+
+<ul>
+<li><code>Rsync</code> 是一个远程数据同步工具，可通过lan/wan快速同步到多台主机间的主机；</li>
+<li><code>Rsync</code> 本来可以用来取代 <code>rcp</code> 的一个工具，使用 <code>Rsync</code> 算法来使本地和远程两个主机间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，传输速度相当快；</li>
+<li><code>Rsync</code> 搭配rsh或ssh甚至使用daemon模式。<code>Rsync</code> daemon 模式默认打开873服务端口，通过密令审核，实现文件传输；</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、Rsync 基本特点</p>
+</blockquote>
+
+<ul>
+<li>镜像保存整个目录树和文件系统；</li>
+<li>容易保持原来文件的权限、时间、软链接等；</li>
+<li>容易安装，无须特殊权限</li>
+<li>文件传输效率高</li>
+<li>可使用rcp、ssh等方式传输文件</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>三、Rsync 不同的工作模式</p>
+</blockquote>
+
+<ul>
+<li><strong>拷贝本地文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">/usr/bin/rsync -avP --progress /data/backup/src /data/backup/dest 
+### 实现本地文件间的同步
+</code></pre>
+
+<ul>
+<li><strong>推送本地资源到远程机器（基于ssh或rcp协议）</strong></li>
+</ul>
+
+<pre><code class="language-shell">/usr/bin/rsync -avP --progress /data/backup/src/ 192.168.50.164:/data/backup/dest/
+### 基于ssh协议传输，可利用-e&quot;ssh -p61618&quot;指定ssh端口
+</code></pre>
+
+<ul>
+<li><strong>拉取远程机器的资源到本地机器（基于ssh或rcp协议）</strong></li>
+</ul>
+
+<pre><code class="language-shell">/usr/bin/rsync -avP --progress 192.168.50.164:/data/backup/dest/ /data/backup/src/
+### 基于ssh协议传输，可利用-e&quot;ssh -p61618&quot;指定ssh端口
+</code></pre>
+
+<ul>
+<li><strong>推送本地资源到远程服务器仓库</strong></li>
+</ul>
+
+<pre><code class="language-shell">RSYNC_PASSWORD=xxxxx /usr/bin/rsync -avP --progress --port=62874  /data/backup/src/ rsy_user@192.168.50.164::rsync_test/
+</code></pre>
+
+<ul>
+<li><strong>拉取远程服务器仓库到本本地机器</strong></li>
+</ul>
+
+<pre><code class="language-shell">RSYNC_PASSWORD=xxxxxx /usr/bin/rsync -avP --progress --port=xxxxx rsy_user@192.168.50.164::rsync_test/* /data/backup/src/
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、Rsync 服务部署</p>
+</blockquote>
+
+<ul>
+<li><strong>利用yum方式安装部署</strong></li>
+</ul>
+
+<pre><code class="language-shell">yum -y install rsync
+</code></pre>
+
+<ul>
+<li><strong>利用源码方式安装部署</strong></li>
+</ul>
+
+<pre><code class="language-shell">yum -y install make gcc gcc-c++
+cd /data/backup/tmp/
+wget https://download.samba.org/pub/rsync/src/rsync-3.1.2.tar.gz --no-check-certificate
+./configure &amp;&amp; make &amp;&amp; make install 
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>五、 Rsync 日常使用参数</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th><font color=red>参数</font></th>
+<th><font color=red>作用</font></th>
+<th><font color=red>参数</font></th>
+<th><font color=red>作用</font></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-a</td>
+<td>相当于rlptgoD，以递归方式传输文件</td>
+<td>-v</td>
+<td>详细模式输出</td>
+</tr>
+
+<tr>
+<td>-l</td>
+<td>保留软链接</td>
+<td>-H</td>
+<td>保留硬链接</td>
+</tr>
+
+<tr>
+<td>-e</td>
+<td>指定传输的协议方式，如ssh -p61618</td>
+<td>&ndash;rsync-path</td>
+<td>指定远程服务器rsync命令所在位置</td>
+</tr>
+
+<tr>
+<td>&ndash;delete</td>
+<td>删除目标端中源没有的文件</td>
+<td>-timeout</td>
+<td>设置超时的时间</td>
+</tr>
+
+<tr>
+<td>-z</td>
+<td>对备份文件进行压缩传输</td>
+<td>&ndash;exclude=PATTERN</td>
+<td>指定排除不需要传输的文件模式</td>
+</tr>
+
+<tr>
+<td>&ndash;exclude-from=FILE</td>
+<td>排除FILE中指定模式的文件</td>
+<td>&ndash;port</td>
+<td>指定rsync服务其他端口</td>
+</tr>
+
+<tr>
+<td>&ndash;progress</td>
+<td>传输时现时传输过程</td>
+<td>&ndash;password-file</td>
+<td>指定密码文件</td>
+</tr>
+
+<tr>
+<td>&ndash;bwlimit=KBPS</td>
+<td>限制传输速率（默认单位为kb/s）</td>
+<td>-help</td>
+<td>帮助模式</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>六、Rsync 服务启动</p>
+</blockquote>
+
+<h4 id="6-1-超级守护方式启动服务">6.1 超级守护方式启动服务</h4>
+
+<ul>
+<li><strong>安装 xinetd 守护服务</strong></li>
+</ul>
+
+<pre><code class="language-shell">yum -y install xinetd
+/etc/init.d/xinetd start  
+### 启动xinetd超级守护进程
+</code></pre>
+
+<ul>
+<li><strong>修改 Rsync 配置文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">vim /etc/xinetd.d/rsync
+disable = yes
+/etc/init.d/xinetd restart
+### 重启服务，加载配置文件
+</code></pre>
+
+<ul>
+<li><strong>检查 Rsync 服务是否启动</strong></li>
+</ul>
+
+<pre><code class="language-shell">netstat -tunlp | grep &quot;873&quot;
+lsof -n -i:873
+### 检查873端口是否开启
+</code></pre>
+
+<h4 id="6-2-以daemon仓库方式启动服务">6.2 以daemon仓库方式启动服务</h4>
+
+<ul>
+<li><strong>创建 Rsync 相关文件</strong></li>
+</ul>
+
+<pre><code>mkdir -p /data/conf/rsync
+cd /data/conf/rsync
+touch rsyncd.conf rsyncd.motd  rsyncd.secrets
+chmod 600 /data/conf/rsync/*
+ln -s /data/conf/rsync/rsyncd.conf /etc/rsyncd.conf
+ln -s /data/conf/rsync/rsyncd.motd /etc/rsyncd.motd
+ln -s /data/conf/rsync/rsyncd.secrets /etc/rsyncd.secrets
+</code></pre>
+
+<ul>
+<li><strong>修改 Rsync 主配置文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">### 修改rsync主配置文件
+cat &gt;/data/conf/rsync/rsyncd.conf&lt;&lt;EOF
+secrets file = /etc/rsyncd.secrets
+### 指定加密文件
+motd file = /etc/rsyncd.motd 
+### 指定服务器信息文件
+list = no 
+uid = root
+gid = wheel 
+max connections = 20 
+### 指定最大连接数
+port = 62874 
+### 指定rsync服务端口
+log file = /var/log/rsyncd.log 
+### 指定日志文件
+pid file = /var/run/rsyncd.pid 
+### 指定服务pid
+ock file = /var/run/rsync.lock 
+
+#######################################
+[rsync_test]
+path = /data/backup/dest/ 
+### 指定同步文件夹
+read only = no
+list = yes 
+host allow = 192.168.50.164 
+### 指定可连接IP
+auth users = rsy_user  
+### 指定可连接用户
+#######################################
+EOF
+</code></pre>
+
+<ul>
+<li><strong>修改 Rsync 密码文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">cat &gt;/data/conf/rsync/rsyncd.secrets&lt;&lt;EOF
+rsy_user:xxxxxxxx
+EOF
+</code></pre>
+
+<ul>
+<li><strong>修改 Rsync 服务器信息文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">cat &gt;/data/conf/rsync/rsyncd.motd&lt;&lt;EOF
+Welcome to use the rsync services!
+Current Server IP: 192.168.50.164
+EOF
+</code></pre>
+
+<ul>
+<li><strong>编辑 Rsync 服务启动脚本</strong></li>
+</ul>
+
+<pre><code class="language-shell">vim /etc/init.d/rsync
+
+#!/bin/bash
+#
+# chkconfig:   2345 50 50
+# description: The rsync daemon
+#pidfile: /var/run/rsyncd.pid
+
+# source function library
+ . /etc/rc.d/init.d/functions
+
+PROG='/usr/bin/rsync'
+BASE=${0##*/}
+CONF=${2-/etc/rsyncd.conf}
+OPTIONS=&quot;--ipv4 --daemon --config ${CONF}&quot;
+PIDFILE=$(awk -F'= ' '/pid/ {print $2}' ${CONF})
+pidfile=${PIDFILE-/var/run/rsyncd.$(sed 's/\//_/g' &lt;&lt;&lt; ${CONF})}
+case &quot;$1&quot; in
+  start)
+    echo -n $&quot;Starting $BASE ${CONF}: &quot;
+    daemon --pidfile=${pidfile} $PROG $OPTIONS
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] &amp;&amp; touch /var/lock/subsys/$BASE
+    echo
+     ;;
+  stop)
+    echo -n $&quot;Shutting down $BASE ${CONF}: &quot;
+    killproc -p ${pidfile} $PROG
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] &amp;&amp; rm -f /var/lock/subsys/$BASE
+    echo
+    ;;
+  restart|force-reload)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  status)
+    status $PROG
+    ;;
+  *)
+    echo &quot;Usage: $0 {start|stop|restart|status|force-reload}&quot; &gt;&amp;2
+    exit 1
+    ;;
+esac
+chmod +x /etc/init.d/rsync
+chkconfig --add rsync
+chkconfig rsync on
+</code></pre>
+
+<ul>
+<li><strong>启动 Rsync 服务</strong></li>
+</ul>
+
+<pre><code class="language-shell">/etc/init.d/rsync start /data/conf/rsync/rsyncd.conf
+### 检查rsync服务是否启动
+netstat -tunlp | grep &quot;62874&quot;
+lsof -n -i:62874
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>七、Rysnc + Inotify 实现实时同步</p>
+</blockquote>
+
+<ul>
+<li><strong>Inotify 服务部署在客户端</strong></li>
+</ul>
+
+<h4 id="7-1-检查内核-是否支持-inotify-服务">7.1 检查内核 是否支持 Inotify 服务</h4>
+
+<pre><code class="language-shell">uname -r
+2.6.32-220.el6.x86_64 
+### 检查内核版本
+ll /proc/sys/fs/inotify/
+總計 0
+-rw-r--r-- 1 root root 0 2016-05-24 22:46 max_queued_events 
+### 设置排队处理事务最大值，默认为16384
+-rw-r--r-- 1 root root 0 2016-05-24 22:46 max_user_instances 
+### 设置每1个用户可设置inotify实例的最大数，默认值为128
+-rw-r--r-- 1 root root 0 2016-05-24 22:46 max_user_watches 
+### 设置每个inotify实例监听最大目录数，默认值为8192
+</code></pre>
+
+<h4 id="7-2-安装-inotify-tool-工具">7.2 安装 inotify-tool 工具</h4>
+
+<pre><code class="language-shell">yum -y install make gcc gcc-c++ 
+cd /data/backup/tmp
+wget http://nchc.dl.sourceforge.net/project/inotify-tools/inotify-tools/3.13/inotify-tools-3.13.tar.gz
+tar -zxf inotify-tools-3.13.tar.gz
+./configure &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<h4 id="7-3-查看-inotify-所提供的工具">7.3 查看 Inotify 所提供的工具</h4>
+
+<pre><code class="language-shell">ll /usr/local/bin/
+總計 1424
+-rwxr-xr-x 1 root root   38598 2016-05-24 22:52 inotifywait
+### 手机仅执行阻塞，等待inotify事件
+-rwxr-xr-x 1 root root   40361 2016-05-24 22:52 inotifywatch
+### 用来收集关于被监视的文件系统的统计数据
+</code></pre>
+
+<h4 id="7-4-inotify-监听文件实现实时备份">7.4 <strong>Inotify</strong> 监听文件实现实时备份</h4>
+
+<pre><code class="language-shell">/usr/local/bin/inotifywait -mrq --timefmt '%Y%m%d %H:%M:%S' --format '%T %w %w%f %e' -e modify,delete,create,attrib /data/backup/tmp/dest
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-m</td>
+<td>接收到一个事情而不退出，无限期地执行</td>
+<td>-r</td>
+<td>监视一个目录下的所有子目录</td>
+</tr>
+
+<tr>
+<td>-q</td>
+<td>不会输出详细信息</td>
+<td>&ndash;timefmt</td>
+<td>指定时间格式</td>
+</tr>
+
+<tr>
+<td>&ndash;format</td>
+<td>指定输出格式</td>
+<td>-e</td>
+<td>指定监听的事件</td>
+</tr>
+
+<tr>
+<td>modify</td>
+<td>修改操作</td>
+<td>delete</td>
+<td>删除操作</td>
+</tr>
+
+<tr>
+<td>create</td>
+<td>创建操作</td>
+<td>attrib</td>
+<td>文件属性的修改</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>八、Rsync 日常使用故障</p>
+</blockquote>
+
+<h4 id="8-1-ssh端口影响rsync无法使用">8.1 ssh端口影响rsync无法使用</h4>
+
+<ul>
+<li><strong>故障描述</strong></li>
+</ul>
+
+<pre><code class="language-shell">/usr/bin/rsync -avP --progress /data/backup/src/ 192.168.50.164:/data/backup/dest/
+ssh: connect to host 192.168.50.164 port 22: Connection refused
+rsync: connection unexpectedly closed (0 bytes received so far) [sender]
+rsync error: error in rsync protocol data stream (code 12) at io.c(600) [sender=3.0.6]
+</code></pre>
+
+<ul>
+<li><strong>解决方案</strong></li>
+</ul>
+
+<pre><code class="language-shell">### 修改客户端的ssh端口
+vim /etc/ssh/ssh_config
+Port 61618
+/etc/init.d/sshd reload 
+### 重新加载ssh配置
+</code></pre>
+
+<h4 id="8-2-目标文件夹权限问题导致无法同步">8.2 目标文件夹权限问题导致无法同步</h4>
+
+<ul>
+<li><strong>故障描述</strong></li>
+</ul>
+
+<pre><code class="language-shell">RSYNC_PASSWORD=xxxxx /usr/bin/rsync -avP --progress --port=62874  /data/backup/src/ rsy_user@192.168.50.164::rsync_test/
+Welcome to use the rsync services!
+Current Server IP: 192.168.50.164
+sending incremental file list
+ERROR: module is read only
+rsync error: syntax or usage error (code 1) at main.c(866) [receiver=3.0.6]
+rsync: read error: Connection reset by peer (104)
+rsync error: error in rsync protocol data stream (code 12) at io.c(759) [sender=3.0.6]
+</code></pre>
+
+<ul>
+<li><strong>解决方案</strong></li>
+</ul>
+
+<pre><code class="language-shell">### 修改远程机器rsyncd.conf配置比
+vim /data/conf/rsync/rsyncd.conf
+read only = no
+### 重新加载rsyncd.conf配置
+kill `ps aux | grep rsync | grep -v grep | awk '{print $2}'`   
+### 通过kill方式杀掉rsync进程
+/usr/bin/rsync -4 --daemon --config=/data/conf/rsync/rsyncd.conf
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Rsync%20Service&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2frsync%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2frsync%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2frsync%2f&amp;description=Rsync%20Service"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2frsync%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/27/pythontry/">
+          <section class="post">
+              <h2>Python 异常处理</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/26/monit/">
+          <section class="post">
+              <h2>Monit监控</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python HTTP代理"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python HTTP代理 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/08/03/pythonhttp/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-08-03T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python HTTP代理 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;介绍几种通过urllib/requests模块使用HTTP代理方法&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/08/03/pythonhttp/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python HTTP代理",
+    "name": "Python HTTP代理",
+    "wordCount":  102 ,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/08/03/pythonhttp/",
+    "datePublished": "2017-08-03T00:00Z",
+    "dateModified": "2017-08-03T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/08/03/pythonhttp/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python HTTP代理</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-08-03T00:00:00Z">
+            Aug 3, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>介绍几种通过urllib/requests模块使用HTTP代理方法</font></left> </p>
+
+<blockquote>
+<p>一、HTTP代理介绍</p>
+</blockquote>
+
+<ul>
+<li><code>HTTP代理</code> 最常见用途是用于网络共享、网络加速和网络限制突破;此外,HTTP代理也常用于Web应用调试，Android/IOS APP中所调用的Web API监控和分析。</li>
+<li><code>HTTP代理</code> 本质上是一个web应用，和其他普通web应用没有根本区别。</li>
+</ul>
+
+<h4 id="1-1-http-代理工作原理">1.1 HTTP 代理工作原理</h4>
+
+<ol>
+<li>HTTP代理收到请求后，根据header中host字段的主机名和Get/Post请求地址综合判断目标主机</li>
+<li>建立新的HTTP请求并转发请求数据</li>
+<li>将收到的响应数据转发给客户端</li>
+</ol>
+
+<p><font color=red><strong>注意</strong></font>：在无法设置HTTP代理的情况下，最简单的方式就是将目标Host域名的IP指向代理服务器，可以采取修改hosts文件的方式实现</p>
+
+<hr />
+
+<blockquote>
+<p>二、Python程序中设置HTTP Proxy</p>
+</blockquote>
+
+<h4 id="2-1-urllib-urllib2-代理设置">2.1 urllib/urllib2 代理设置</h4>
+
+<ul>
+<li><strong><code>urllib2</code> 是通过ProxyHandler来是指代理服务器</strong></li>
+</ul>
+
+<pre><code class="language-python">import urllib2
+
+proxy_handler = urllib2.ProxyHandler({'http':'xxx.xxx.xxx.xxx:8111'}) # 设置HTTP代理的IP和端口
+opener = urllib2.build_opener(proxy_handler)
+r = opener.open('http://www.baidu.com')
+print r.read()
+</code></pre>
+
+<ul>
+<li><strong>可以用install_opener将配置好的opener安装到全局环境中，这样所有的urllib2.urlopen都会自动使用代理</strong></li>
+</ul>
+
+<pre><code class="language-python">import urllib2
+
+proxy_handler = urllib2.ProxyHandler({'http':'xxx.xxx.xxx.xxx:8111'}) # 设置HTTP代理的IP和端口
+opener = urllib2.build_opener(proxy_handler)
+urllib2.install_opener(opener)
+r = urllib2.urlopen('http://www.baidu.com')
+print r.read()
+</code></pre>
+
+<h4 id="2-2-requests-代理设置">2.2 requests 代理设置</h4>
+
+<ul>
+<li><strong><code>requests</code> 是目前最优秀的HTTP库之一，平时构造http请求时使用最多的库</strong></li>
+</ul>
+
+<pre><code class="language-python">import requests
+
+urlread = requests.get('http://www.baidu.com',proxies={'http':'xxx.xxx.xxx.xxx:8110'}).json
+print urlread
+</code></pre>
+
+<ul>
+<li><strong>可以直接设置session的proxies属性，省去每次请求都带上proxies参数的麻烦</strong></li>
+</ul>
+
+<pre><code class="language-python">import requests
+
+s = requests.session()
+s.proxies = {'http':'xxx.xxx.xxx.xxx:80'}
+print s.get('http://www.baidu.com').json()
+</code></pre>
+
+<h4 id="2-3-http-proxy-https-proxy-环境变量">2.3 HTTP_PROXY/HTTPS_PROXY 环境变量</h4>
+
+<ul>
+<li><code>urllib2</code> 和 <code>requests</code> 库都能识别HTTP_PROXY和HTTPS_PROXY环境变量，一旦检测到这些环境变量就会自动设置使用代理。</li>
+<li>大部分软件都支持HTTP_PROXY环境变量识别</li>
+</ul>
+
+<pre><code class="language-python">http_proxy=&quot;xxx.xxx.xxx.xxx:xxx&quot;
+python -c 
+'import requests;
+print requests.get('http://www.baidu.com').json()
+'
+返回 {u'origin':u'xxx.xxx.xxx.xxx'}
+
+http_proxy=&quot;xxx.xxx.xxx.xxx:xxx&quot;
+curl www.baidu.com
+返回 
+{
+  'origin':'xxx.xxx.xxx.xxx'
+}
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20HTTP%e4%bb%a3%e7%90%86&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f03%2fpythonhttp%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f03%2fpythonhttp%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f03%2fpythonhttp%2f&amp;description=Python%20HTTP%e4%bb%a3%e7%90%86"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f03%2fpythonhttp%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/08/08/pythontime/">
+          <section class="post">
+              <h2>Python Time与Datetime模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/31/pythonre/">
+          <section class="post">
+              <h2>Python Re模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

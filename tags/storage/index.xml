@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Storage on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/storage/</link>
+    <description>Recent content in Storage on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/storage/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GlusterFS概述</title>
+      <link>http://huang901111.github.io/2017/07/21/glusterfs/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/21/glusterfs/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个开源的支持PB级分布式高可用文件系统&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

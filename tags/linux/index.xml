@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/linux/</link>
+    <description>Recent content in Linux on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Thu, 27 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rsync Service</title>
+      <link>http://huang901111.github.io/2017/07/27/rsync/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/rsync/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个用于远程数据同步，替代rcp、支持断点续传的传输工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Netcat Command</title>
+      <link>http://huang901111.github.io/2017/07/26/netcat/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/26/netcat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;网络安全界『瑞士军刀』，透过使用TCP或者UDP协议去读写数据&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Curl Command</title>
+      <link>http://huang901111.github.io/2017/07/24/curl/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/24/curl/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个利用URL规则在命令行下工作的文件传输工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell条件判断</title>
+      <link>http://huang901111.github.io/2017/07/24/shelljudge/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/24/shelljudge/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;日常条件判断倡导使用[[，支持字符串模式匹配与正则表达式&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux 发送邮件</title>
+      <link>http://huang901111.github.io/2017/07/20/sendmail/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/sendmail/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;三种发送邮件方式，任君选择&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Socat Command</title>
+      <link>http://huang901111.github.io/2017/07/20/socat/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/socat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个可以建立双向字节流并可以在其间传送数据的工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCPdump Command</title>
+      <link>http://huang901111.github.io/2017/07/20/tcpdump/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/tcpdump/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Linux版wireshark抓包功能工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell字符串处理</title>
+      <link>http://huang901111.github.io/2017/07/16/shellstr/</link>
+      <pubDate>Sun, 16 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/16/shellstr/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;对字符串实现截取、查找、替换、遍历、懒惰与贪婪匹配等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NetHogs Trickle Command</title>
+      <link>http://huang901111.github.io/2017/07/15/nethogs/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/15/nethogs/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Linux 查看进程流量与限速工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git Command</title>
+      <link>http://huang901111.github.io/2017/07/10/gituse/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/10/gituse/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Git 一款分布式版本控制工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCP端口分配</title>
+      <link>http://huang901111.github.io/2017/07/07/tcpport/</link>
+      <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/07/tcpport/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;合理分配TCP端口，处理端口冲突&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2T 以上磁盘格式化</title>
+      <link>http://huang901111.github.io/2017/07/04/diskdeal/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/diskdeal/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;利用parted工具对磁盘格式化操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Centos6 挂载16T硬盘</title>
+      <link>http://huang901111.github.io/2017/07/04/sixdiskdeal/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/sixdiskdeal/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Parted工具分区与更改分区格式GPT&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FPM 命令</title>
+      <link>http://huang901111.github.io/2017/07/04/fpm-build/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/fpm-build/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;自动化部署必备技能-定制化RPM包&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PSSH 命令</title>
+      <link>http://huang901111.github.io/2017/07/04/pssh/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/pssh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个Python编写批量执行工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hardware Infomation Gather</title>
+      <link>http://huang901111.github.io/2017/07/02/hardcheck/</link>
+      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/02/hardcheck/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font size=5 color=#D3D3D3&gt;硬件信息收集&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Netstat Command</title>
+      <link>http://huang901111.github.io/2017/07/02/netstat/</link>
+      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/02/netstat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个监控TCP/IP网络的非常有用的工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

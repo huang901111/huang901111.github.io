@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Monit监控"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Monit监控 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/26/monit/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-26T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Monitoring" />
+    
+    
+
+    <title>Monit监控 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款跨平台轻量级监控，可全面、进程状态、文件系统监控与报警&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/26/monit/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Monit监控",
+    "name": "Monit监控",
+    "wordCount":  992 ,
+    "timeRequired": "PT5M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/26/monit/",
+    "datePublished": "2017-07-26T00:00Z",
+    "dateModified": "2017-07-26T00:00Z",
+    
+    "keywords": "Monitoring",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/26/monit/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Monit监控</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-26T00:00:00Z">
+            Jul 26, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/monitoring/">#Monitoring</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一款跨平台轻量级监控，可全面、进程状态、文件系统监控与报警</font></left> </p>
+
+<blockquote>
+<p>一、Monit介绍</p>
+</blockquote>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/mAHoS68YM7-20170725-204016.png" alt="Snip20170204_351.png" /></p>
+
+<ul>
+<li><code>Monit</code>是一个跨平台的用来监控unix/linux系统（比如Linux、BSD、OSX、Solaris）的工具。</li>
+<li><code>Monit</code>特别易于安装，而且非常轻量级，并且不依赖任何第三方程序、插件或者库。</li>
+<li><code>Monit</code>可以胜任全面监控、进程状态监控、文件系统变动监控，邮件通知和对核心服务的自定义动作等场景。</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、Monit 部署</p>
+</blockquote>
+
+<h4 id="2-1-下载monit源码包">2.1 下载Monit源码包</h4>
+
+<pre><code class="language-shell">wget https://mmonit.com/monit/dist/monit-5.20.0.tar.gz
+</code></pre>
+
+<h4 id="2-2-monit-安装">2.2 Monit 安装</h4>
+
+<pre><code class="language-shell">cd /data/backup/tmp/
+tar -zxf monit-5.20.0.tar.gz 
+cd monit-5.20.0
+./configure --prefix=/usr/local/monit
+make &amp;&amp; make install
+</code></pre>
+
+<h4 id="2-3-monit-配置">2.3 Monit 配置</h4>
+
+<pre><code class="language-shell">cp -a /data/backup/tmp/monit-5.20.0/monitrc /etc/
+vim /etc/monitrc
+set daemon  30  
+# 设置monit作为守护进程运行，并且每30秒监控一次
+    with start delay 120  
+    # 加载配置2分钟后开始运行
+set logfile /data/logs/monit.log  
+# 设置日志文件的位置
+set pidfile /var/run/monit.pid  
+# 设置服务pid文件保存位置
+set idfile /var/.monit.id 
+# 设置存储monit实例的唯一ID
+set eventqueue  
+# 如果没设置email，会自动alert
+    basedir /var/monit  
+    # set the base directory where events will be stored
+set mailserver smtp.163.com 
+# 设置邮件端口、账号、密码
+    PORT 25
+    USERNAME &quot;alarmraspberrypi@163.com&quot; PASSWORD &quot;Edo078420&quot;
+set mail-format { 
+    # 设置Email格式
+   from: alarmraspberrypi@163.com
+   subject: Monit Alert --  $EVENT $SERVICE
+   message: $EVENT Service $SERVICE
+                 Date:        $DATE
+                 Action:      $ACTION
+                 Host:        $HOST
+                 Description: $DESCRIPTION
+		Your faithful employee,
+	        Monit
+}
+set alert alter@seacme.cn 
+# 设置报警接收人
+set httpd port 2812 and 
+# 开启http服务，查看监控情况
+    use address 127.0.0.1  
+    # only accept connection from localhost
+    allow localhost       
+    # allow localhost to connect to the server and
+    allow admin:monit      
+    # require user 'admin' with password 'monit'
+include /etc/monit.d/*.cfg  
+# 包含该文件夹下的配置
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、Monit 监控设置</p>
+</blockquote>
+
+<h4 id="3-1-设置监控ssh服务">3.1 设置监控ssh服务</h4>
+
+<pre><code class="language-shell">vim /etc/monit.d/check_sshd.cfg
+check process sshd with pidfile /var/run/sshd.pid
+
+   start program  &quot;/etc/init.d/sshd start&quot;
+
+   stop program  &quot;/etc/init.d/sshd stop&quot;
+
+   if failed port 61618 protocol SSH then restart
+
+   if 5 restarts within 5 cycles then timeout
+</code></pre>
+
+<h4 id="3-2-设置监控network">3.2 设置监控network</h4>
+
+<pre><code class="language-shell">check network eth0 interface eth0
+	start program = &quot;/sbin/ifup eth0&quot;
+	stop program = &quot;/sbin/ifdown eth0&quot;
+	if failed link then restart
+	if saturation &gt; 85% then alert
+	if upload &gt; 500 kB/s then alert
+	if total downloaded &gt; 1 GB in last 2 hours then alert
+	if total downloaded &gt; 10 GB in last day then alert
+</code></pre>
+
+<h4 id="3-3-设置监控messages">3.3 设置监控messages</h4>
+
+<pre><code class="language-shell">check file message with path /var/log/messages
+	if content = &quot;rm&quot; then alert
+	if content = &quot;authorized_keys&quot; then alert
+	if content = &quot;iptables&quot; then alert
+</code></pre>
+
+<h4 id="3-4-设置监控文件系统">3.4 设置监控文件系统</h4>
+
+<pre><code class="language-shell">check filesystem root with path /
+	if space usage &gt; 80% then alert
+	if inode usage &gt; 75% then alert
+
+check filesystem data with path /data
+	if space usage &gt; 80% then alert
+	if inode usage &gt; 75% then alert
+
+check filesystem boot with path /boot
+	if space usage &gt; 80% then alert
+	if inode usage &gt; 75% then alert
+</code></pre>
+
+<h4 id="3-5-设置监控系统">3.5 设置监控系统</h4>
+
+<pre><code class="language-shell">check system $HOST
+	if loadavg(1min) &gt; 2 then alert
+	if loadavg(5min) &gt; 3 then alert
+	if loadavg(15min) &gt; 1 then alert
+	if memory usage &gt; 80% for 4 cycles then alert
+	if swap usage &gt; 20% for 3 cycles then alert
+	if cpu usage (user) &gt; 80% for 2 cycles then alert
+	if cpu usage (system) &gt; 20% for 2 cycles then alert
+	if cpu usage (wait) &gt; 80% for 2 cycles then alert
+	if cpu usage &gt; 200% for 4 cycles then alert
+</code></pre>
+
+<h4 id="3-6-设置监控mysql服务">3.6 设置监控mysql服务</h4>
+
+<pre><code class="language-shell">check process mysql with pidfile /tmp/mysql.pid
+	start program = &quot;/etc/init.d/mysqld start&quot;
+	stop program = &quot;/etc/init.d/mysqld stop&quot;
+	if failed port 3306 protocol mysql then restart
+	depends on mysql_bin
+	depends on mysql_rc
+
+check file mysql_bin with path /usr/local/bin/mysqld
+	if failed checksum then unmonitor
+	if failed permission 755 then unmonitor
+	if failed uid root then unmonitor
+	if failed gid root then unmonitor
+
+check file mysql_rc with path /etc/init.d/mysqld
+	if failed checksum then unmonitor
+	if failed permission 755 then unmonitor
+	if failed uid root then unmonitor
+	if failed gid root then unmonitor
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、Monit 监控细节</p>
+</blockquote>
+
+<h4 id="4-1-一般的操作">4.1 一般的操作</h4>
+
+<pre><code class="language-shell"># Monit监控运行
+monit -c /etc/monitrc
+# Monit监控配置语法检查
+monit -t
+</code></pre>
+
+<h4 id="4-2-monit命令选项">4.2 Monit命令选项</h4>
+
+<table>
+<thead>
+<tr>
+<th>options</th>
+<th></th>
+<th>options</th>
+<th></th>
+<th>options</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-c file</td>
+<td>加载配置文件</td>
+<td>-d n</td>
+<td>n秒后后台运行</td>
+<td>-g name</td>
+<td>指定服务组进行监控</td>
+</tr>
+
+<tr>
+<td>-l logfine</td>
+<td>指定日志文件</td>
+<td>-p pidfile</td>
+<td>指定pid文件</td>
+<td>-s statefile</td>
+<td>指定状态文件</td>
+</tr>
+
+<tr>
+<td>-I</td>
+<td>不在后台运行</td>
+<td>&ndash;id</td>
+<td>打印unique ID</td>
+<td>&ndash;resetid</td>
+<td>重新设置unique ID</td>
+</tr>
+
+<tr>
+<td>-t</td>
+<td>检查配置语法</td>
+<td>start all</td>
+<td>启动所有服务</td>
+<td>stop all</td>
+<td>停止所有</td>
+</tr>
+
+<tr>
+<td>restart all</td>
+<td>重新所有服务</td>
+<td>monitor all</td>
+<td>监听所有服务</td>
+<td>reload</td>
+<td>重新加载配置</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td>打印所有服务的状态</td>
+<td>summary</td>
+<td>所有服务状态整理</td>
+<td>quit</td>
+<td>杀掉监听进程</td>
+</tr>
+
+<tr>
+<td>validate</td>
+<td>检查所有需要启动的服务，若未启动则启动</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="4-3-monit守护进程管理">4.3 Monit守护进程管理</h4>
+
+<pre><code class="language-shell"># 添加为init进程，并启动
+vim /etc/inittab
+# Run monit in standard run-levels  
+mo:2345:respawn:/usr/local/monit/bin/monit -Ic /etc/monitrc 
+
+# 启动并验证
+telinit q
+ps -ef | grep &quot;monit&quot; | grep -v &quot;grep&quot;  
+root 5655 1 0 07:34 ? 00:00:00 /usr/local/monit/bin/monit -Ic /etc/monitrc
+
+# 结束进程
+kill -9 5655
+ps -ef | grep &quot;monit&quot; | grep -v &quot;grep&quot;  
+root 13905 1 0 10:16 ? 00:00:00 /usr/local/monit/bin/monit -Ic /etc/monitrc  
+</code></pre>
+
+<h4 id="4-4-定义服务">4.4 定义服务</h4>
+
+<ul>
+<li><p><strong>定义服务，就是定义监控对象</strong></p>
+
+<ul>
+<li><code>monit</code>可以定义9中类型，包括process/file/fifo/filesystem/directory/system/program/network/host</li>
+<li><code>process</code>：建龙指定进程是否存活</li>
+<li><code>file/fifo</code>：/filesystem/directory：监控指定的文件或者目录是否存在</li>
+<li><code>system</code>：监控系统资源，包括CPU、内存和负载</li>
+<li><code>program</code>：监控指定程序的退出或者运行时间的长短</li>
+<li><code>network</code>：监控系统指定interface，包括up/down，带宽，误码率，流量，ping</li>
+<li><code>host</code>：监控其他主机，可以定义端口、tcp/udp、protocol（http/mysql/websocket）</li>
+</ul></li>
+
+<li><p><strong>监控主机的web端口，因此用host类型</strong></p></li>
+</ul>
+
+<pre><code class="language-shell">check host &lt;service&gt; address &lt;host ip address&gt;
+</code></pre>
+
+<h4 id="4-5-服务测试">4.5 服务测试</h4>
+
+<p>服务测试提供了测试监控对象状态的一种方法，根据状态不同，可以指定相应的动作</p>
+
+<ul>
+<li><strong>通用语法</strong></li>
+</ul>
+
+<pre><code class="language-shell">if &lt;test&gt; then &lt;action1&gt; else if success then &lt;action2&gt;
+</code></pre>
+
+<ul>
+<li><p><strong>test几种类型</strong></p>
+
+<ul>
+<li>状态失效，如网络不可达，进程丢失</li>
+<li>参数变化：如文件权限，文件md5，文件大小，日期等</li>
+<li>参数达到上限：如CPU&gt;80%,磁盘空间大于85%</li>
+</ul></li>
+
+<li><p><strong>action 5种类型</strong></p>
+
+<ul>
+<li>alert：发邮件告警</li>
+<li>restart/start/stop：重启/启动/停止 service。在监控进程时特别有用，先定义start、stop、restart的命令，当进程丢失时，启动相应service，恢复进程</li>
+<li>exec：执行用户定义的命令或者脚本</li>
+</ul></li>
+</ul>
+
+<h4 id="4-6-典型例子">4.6 典型例子</h4>
+
+<pre><code class="language-shell">check process apache with pidfile /var/run/httpd.pid
+       start program = &quot;/etc/init.d/httpd start&quot;  
+       # start 命令
+       stop program  = &quot;/etc/init.d/httpd stop&quot; 
+       # stop 命令
+       if cpu &gt; 40% for 2 cycles then alert 
+       # 如果2次轮询，进程cpu都大于40%，则告警
+       if total cpu &gt; 60% for 2 cycles then alert 
+       # 如果2此轮询，系统cpu都大于60%，则告警
+       if total cpu &gt; 80% for 5 cycles then restart 
+       # 如果5次轮询，系统CPU都大于80%，则重启
+       if mem &gt; 100 MB for 5 cycles then stop 
+       # 如果5次轮询，内存mem都大于100MB，则stop
+       if loadavg(5min) greater than 10.0 for 8 cycles then stop  
+       # 如果8次轮询，5分钟平均负载都大于10，则stop
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>五、Monit 官方教程</p>
+</blockquote>
+
+<p>Monit 官方wiki（<a href="https://mmonit.com/monit/documentation/monit.html#SYNOPSIS）">https://mmonit.com/monit/documentation/monit.html#SYNOPSIS）</a></p>
+
+<h4 id="5-1-补充知识点">5.1 补充知识点</h4>
+
+<ul>
+<li><strong>服务轮询检查</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 每个轮询检查2次
+check process nginx with pidfile /var/run/nginx.pid
+       every 2 cycles
+       
+# 在工作时间早上8点至下午7点检查
+check program checkOracleDatabase
+        with path /var/monit/programs/checkoracle.pl
+       every &quot;* 8-19 * * 1-5&quot;
+       
+# 在某些时间段不检查
+check process mysqld with pidfile /var/run/mysqld.pid
+       not every &quot;* 0-3 * * 0&quot;
+</code></pre>
+
+<ul>
+<li><strong>服务重启限制</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 若服务在少于3次轮询中重启了2遍则不纳入监控
+if 2 restarts within 3 cycles then unmonitor
+</code></pre>
+
+<ul>
+<li><strong>容错机制</strong></li>
+</ul>
+
+<pre><code class="language-shell">if failed port 80 for 3 times within 5 cycles then alert
+check filesystem rootfs with path /dev/hda1
+  if space usage &gt; 80% for 5 times within 15 cycles then alert
+</code></pre>
+
+<ul>
+<li><strong>存在判断机制</strong></li>
+</ul>
+
+<pre><code class="language-shell">check file with path /cifs/mydata
+  if does not exist then exec &quot;/usr/bin/mount_cifs.sh&quot;
+</code></pre>
+
+<ul>
+<li><strong>文件大小机制</strong></li>
+</ul>
+
+<pre><code class="language-shell">check file mydb with path /data/mydatabase.db
+    if size &gt; 1 GB then alert
+</code></pre>
+
+<h4 id="5-2-nginx代理访问">5.2 Nginx代理访问</h4>
+
+<pre><code class="language-shell">vim /usr/local/nginx/conf/vhosts/monit.conf  
+server  
+{  
+  listen 192.168.1.11:8012;  
+  server_name 192.168.1.11;  
+  location / {   
+    proxy_pass http://127.0.0.1:2812;  
+  }  
+} 
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>六、M/monit 部署</p>
+</blockquote>
+
+<h4 id="6-1-m-monit-下载">6.1 m/monit 下载</h4>
+
+<pre><code class="language-shell">wget https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz
+</code></pre>
+
+<h4 id="6-2-m-monit-安装">6.2 m/monit 安装</h4>
+
+<pre><code class="language-shell">cd /data/backup/tmp
+tar -zxf mmonit-3.6.2-linux-x64.tar.gz -C /usr/local/
+mv mmonit-3.6.2 mmonit
+cd /usr/local/mmonit/conf
+vim server.xml
+
+# 网站配置
+&lt;Connector address=&quot;*&quot; port=&quot;8011&quot; processors=&quot;10&quot; /&gt;
+
+# 数据库连接配置
+&lt;Realm url=&quot;mysql://admin:swordfish@127.0.0.1/mmonit&quot;
+                  minConnections=&quot;5&quot;
+                  maxConnections=&quot;25&quot;
+                  reapConnections=&quot;300&quot; /&gt;
+</code></pre>
+
+<h4 id="6-3-数据库处理">6.3 数据库处理</h4>
+
+<pre><code class="language-shell">create database mmonit
+grant all privileges on mmonit.* to mmonit@127.0.0.1 identified by  mmonit;
+grant all privileges on mmonit.* to mmonit@localhost identified by  mmonit;
+flush privileges;
+# 导入表结构
+mysql -ummonit -pmmonit  mmonit &lt; /usr/local/mmonit/db/mmonit-schema.mysql
+</code></pre>
+
+<h4 id="6-4-启动测试">6.4 启动测试</h4>
+
+<pre><code class="language-shell">ln -s /usr/local/mmonit/bin/mmonit /usr/local/bin/
+mmonit start
+</code></pre>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/yml11xlWMt-20170725-204016.png" alt="Snip20170205_359.png" /></p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/EJ3lCzzcHd-20170725-204016.png" alt="Snip20170205_358.png" /></p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Monit%e7%9b%91%e6%8e%a7&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f26%2fmonit%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f26%2fmonit%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f26%2fmonit%2f&amp;description=Monit%e7%9b%91%e6%8e%a7"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f26%2fmonit%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/27/rsync/">
+          <section class="post">
+              <h2>Rsync Service</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/26/netcat/">
+          <section class="post">
+              <h2>Netcat Command</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

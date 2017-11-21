@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Percona XtraDB Cluster"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Percona XtraDB Cluster &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/04/pxc/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-04T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Database" />
+    
+    
+
+    <title>Percona XtraDB Cluster &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;MySQL 集群高可用方案之一&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/04/pxc/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Percona XtraDB Cluster",
+    "name": "Percona XtraDB Cluster",
+    "wordCount":  762 ,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/04/pxc/",
+    "datePublished": "2017-07-04T00:00Z",
+    "dateModified": "2017-07-04T00:00Z",
+    
+    "keywords": "Database",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/04/pxc/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Percona XtraDB Cluster</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-04T00:00:00Z">
+            Jul 4, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/database/">#Database</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>MySQL 集群高可用方案之一</font></left> </p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/8ADFBAD774073D052C3FD4E921CB3A8F.png" alt="Snip20170515_29.png" /></p>
+
+<h3 id="一-pxc介绍">一、PXC介绍</h3>
+
+<blockquote>
+<p>认识</p>
+</blockquote>
+
+<ol>
+<li><p><code>Percona XtraDB Cluster</code>是基于Galera协议的高可用方案</p>
+
+<ul>
+<li>Galera是Codership提供的多主数据同步复制机制，可以实现多个节点的数据同步复制以及读写，并且可保障数据库的服务高可用及数据一致性。</li>
+</ul></li>
+
+<li><p>基于Galera的高可用方案主要有<code>MariaDB Galera Cluster</code>和<code>Percona XtraDB Cluster（简称PXC）</code>，目前PXC用的会比较多一些。</p></li>
+
+<li><p><code>Percona XtraDB Cluster</code>是一个完全开源的高可用性解决方案，适用于MySQL。它将Percona Server和Percona XtraBackup与Galera库集成，以实现同步多主复制。</p></li>
+
+<li><p>一个Cluster由nodes（节点）组成，每个节点都包含同一组数据同步。</p>
+
+<ul>
+<li>每个节点都是以一个常规的MySQL服务实例，可以将现有的MySQL服务实例转换为节点，并使用此节点作为基础运行集群</li>
+<li>同样可以从集群中分离任何节点，并将其用作常规的MySQL Server实例</li>
+<li>每个节点都包含完整的数据副本
+<br /></li>
+</ul></li>
+</ol>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/11A3D6A823E6D673FE99E2EE1D50D954.png" alt="Snip20170515_28.png" /></p>
+
+<blockquote>
+<p>优点</p>
+</blockquote>
+
+<ol>
+<li><code>当执行一个查询时，在本地节点上执行。</code>因为所有数据都在本地，无需远程访问。</li>
+<li><code>没有中央管理</code>。可以在任何时间点松开任何节点，并且集群将继续运行而不会丢失任何数据。</li>
+<li><code>用于缩放读取工作负载的良好解决方案。</code>可以将读取查询放置在任何节点。</li>
+</ol>
+
+<blockquote>
+<p>缺点</p>
+</blockquote>
+
+<ol>
+<li><code>配置新节点开销大。</code>添加新节点时，必须从现有节点之一复制完整的数据集。</li>
+<li><code>不能有效的解决写缩放问题。</code>所有的写操作都将发生在所有节点上。</li>
+<li><code>有多少个节点就有多少份重复数据。</code></li>
+</ol>
+
+<blockquote>
+<p>局限之处</p>
+</blockquote>
+
+<ol>
+<li><code>节点之间的复制（replication）仅支持InnoDB引擎</code>，其他类型的write不会复制（包括mysql.*表），DDL语句以及statement级别复制，即意味着create user&hellip; 和 grant&hellip;可以复制，但是insert into mysql.user &hellip;. 不会被复制。</li>
+<li><code>没有主键的表在各节点可能以不同的顺序显示出来</code>，比如select &hellip; limit &hellip;，Delete操作在没有主键的表不被支持，不要使用没有主键的表</li>
+<li><code>不要开启query cache（默认关闭）</code></li>
+<li><code>由于commit的时候可能会回滚（rollback），不支持XA事务</code></li>
+<li><code>事务大小</code>，Galera Cluster没有限制事务大小，为了避免大事务（比如OAD DATA）对节点的影响，wsrep_max_ws_rows和wsrep_max_ws_size限制了事务行数为128K，事务大小为1GB</li>
+<li><code>基于集群级别的并发控制</code>，一个事务的提交可能会被取消掉</li>
+<li><code>不支持windows系统</code></li>
+<li><code>不要使用binlog-do-db和binlog-ignore-db</code>，这些选项仅支持DML语句，不支持DDL语句，使用这些选项可能会引起数据的错乱。</li>
+<li><code>如果选择rsync方式传输，就不要指定character_set_server为utf16,utf32或ucs2字符集，Server可能会崩溃</code></li>
+<li><code>写入效率取决于节点最弱的一台</code>，因为PXC集群采用的是强一致性原则，一个更改操作在所有节点都成功才算成功。</li>
+</ol>
+
+<hr />
+
+<h3 id="二-pxc-rpm部署">二、PXC RPM部署</h3>
+
+<h4 id="2-1-环境介绍">2.1 环境介绍</h4>
+
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>Host</th>
+<th>IP</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>节点1</td>
+<td>PXC-S1</td>
+<td>192.168.1.228</td>
+</tr>
+
+<tr>
+<td>节点2</td>
+<td>PXC-S2</td>
+<td>192.168.1.226</td>
+</tr>
+
+<tr>
+<td>节点3</td>
+<td>PXC-S3</td>
+<td>192.168.1.212</td>
+</tr>
+
+<tr>
+<td>HAProxy</td>
+<td>HAProxy</td>
+<td>192.168.1.225</td>
+</tr>
+</tbody>
+</table>
+
+<p>软件版本：Percona-XtraDB-Cluster-57.x86_64</p>
+
+<hr />
+
+<h4 id="2-2-环境初始化">2.2 环境初始化</h4>
+
+<blockquote>
+<p>环境准备</p>
+</blockquote>
+
+<pre><code class="language-shell"># 关闭防火墙
+ /etc/init.d/iptables stop
+# 关闭selinux
+setenforce 0
+# 添加Percona官方yum源
+yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
+# 添加epel源
+cd /etc/yum.repose/ &amp;&amp; wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
+</code></pre>
+
+<hr />
+
+<h4 id="2-3-pxc-部署">2.3 PXC 部署</h4>
+
+<h5 id="2-3-1-node节点">2.3.1 node节点</h5>
+
+<blockquote>
+<p>安装依赖</p>
+</blockquote>
+
+<pre><code class="language-shell">yum install numactl nc socat libzip
+# percona xtrabackup依赖
+yum install perl-DBD-MySQL  perl-DBI  perl-Time-HiRes
+</code></pre>
+
+<blockquote>
+<p>安装percona xtrabackup</p>
+</blockquote>
+
+<pre><code class="language-shell">yum install percona-xtrabackup-24-2.4.5-1.el6.x86_64.rpm
+</code></pre>
+
+<blockquote>
+<p>安装percona xtradb cluster</p>
+</blockquote>
+
+<pre><code class="language-shell"># 根据官方yum源搜索
+yum list | grep Percona-XtraDB-Cluster-57
+Percona-XtraDB-Cluster-57.x86_64            5.7.17-29.20.3.el6           percona-release-x86_64
+Percona-XtraDB-Cluster-57-debuginfo.x86_64  5.7.17-29.20.3.el6           percona-release-x86_64
+# 执行安装操作
+yum install Percona-XtraDB-Cluster-57
+</code></pre>
+
+<blockquote>
+<p>percona xtradb cluster配置</p>
+</blockquote>
+
+<ul>
+<li>节点1</li>
+</ul>
+
+<pre><code class="language-shell"># yum安装后cnf配置文件在/etc/percona-xtradb-cluster.conf.d 
+# pxc关键配置文件：wsrep.cnf
+cd /etc/percona-xtradb-cluster.conf.d &amp;&amp; vim wsrep.cnf
+wsrep_provider=/usr/lib64/galera3/libgalera_smm.so
+# 指定Galera库的路径
+wsrep_cluster_address=gcomm://192.168.1.228,192.168.1.226,192.168.1.212
+# 指定集群中节点的IP地址
+binlog_format=ROW
+# Galera只支持行寄复制
+default_storage_engine=InnoDB
+# Galera完全支持InnoDB存储引擎
+wsrep_slave_threads= 2
+# 开启复制线程数
+wsrep_log_conflicts
+innodb_autoinc_lock_mode=2
+# 自增锁的优化
+wsrep_cluster_name=pxc-cluster
+# 指定集群的逻辑名称，集群中的所有节点必须相同
+wsrep_node_name=pxc-cluster-node-1
+# 指定每个单独节点的逻辑名称
+wsrep_node_address=192.168.1.228
+# 指定每个单独节点的IP信息
+pxc_strict_mode=ENFORCING
+# 默认情况下启用PXC严格模式
+wsrep_sst_method=xtrabackup-v2
+# 默认情况下，Percona XtraDB集群使用Percona XtraBackup进行状态快照传输（SST）
+wsrep_sst_auth=&quot;sstuser:123456&quot;
+# sst模式需要的用户名和密码
+</code></pre>
+
+<ul>
+<li>节点2/节点3</li>
+</ul>
+
+<pre><code class="language-shell"># 主要修改部分配置项
+# 节点2
+wsrep_node_name=pxc-cluster-node-2
+wsrep_node_address=192.168.1.226
+# 节点3
+wsrep_node_name=pxc-cluster-node-3
+wsrep_node_address=192.168.1.212
+</code></pre>
+
+<blockquote>
+<p>启动测试</p>
+</blockquote>
+
+<pre><code class="language-shell"># 节点1
+/etc/init.d/mysql bootstrap-pxc
+# MySQL 5.7的初始密码会出现在日志中
+less /var/log/mysqld.log
+2017-05-15T07:56:23.405594Z 1 [Note] A temporary password is generated for root@localhost: TkWu?nsD4Wyb
+# 修改初始密码
+mysqladmin -hlocalost -uroot -pTkWu?nsD4Wyb password
+# 创建sst用户与授权
+mysql -uroot -p123456
+mysql &gt; create user 'sstuser'@'localhost' identified by '123456';
+mysql &gt; grant reload,lock tables,replication client on *.* to 'sstuser'@'localhost';
+mysql &gt; flush privileges;
+# 检查状况
+mysql&gt; show status like 'wsrep%';
+# 节点2/节点3 启动
+/etc/init.d/mysql start
+</code></pre>
+
+<blockquote>
+<p>异常情况</p>
+</blockquote>
+
+<ul>
+<li>从节点启动异常，观察日志输出错误如下</li>
+</ul>
+
+<pre><code class="language-shell">20170515 16:17:03.237 WSREP_SST: [ERROR] ******************* FATAL ERROR ********************** 
+        20170515 16:17:03.241 WSREP_SST: [ERROR] xtrabackup_checkpoints missing. xtrabackup/SST failed on DONOR. Check DONOR log
+        20170515 16:17:03.244 WSREP_SST: [ERROR] ****************************************************** 
+        20170515 16:17:03.247 WSREP_SST: [ERROR] Cleanup after exit with status:2
+2017-05-15T08:17:03.255752Z 0 [ERROR] WSREP: Process completed with error: wsrep_sst_xtrabackup-v2 --role 'joiner' --address '192.168.1.226' --datadir '/var/lib/mysql/' --defaults-file '/etc/my.cnf' --defaults-group-suffix '' --parent '15020'  '' : 2 (No such file or directory)
+2017-05-15T08:17:03.255802Z 0 [ERROR] WSREP: Failed to read uuid:seqno from joiner script.
+2017-05-15T08:17:03.255815Z 0 [ERROR] WSREP: SST script aborted with error 2 (No such file or directory)
+2017-05-15T08:17:03.255890Z 0 [ERROR] WSREP: SST failed: 2 (No such file or directory)
+2017-05-15T08:17:03.255904Z 0 [ERROR] Aborting
+</code></pre>
+
+<ul>
+<li>解决方案</li>
+</ul>
+
+<pre><code class="language-shell"># 将从节点wsrep.cnf中wsrep_sst_method=xtrabackup-v2修改为
+wsrep_sst_method=rsync
+# 启动成功后重新修改，启动
+</code></pre>
+
+<hr />
+
+<h5 id="2-3-2-部署clustercheck">2.3.2 部署clustercheck</h5>
+
+<blockquote>
+<p>mysql授权</p>
+</blockquote>
+
+<pre><code class="language-shell"># 在PXC集群中任意节点执行操作
+mysql &gt; grant process on *.* to 'clustercheckuser'@'localhost' identified by 'clustercheckpassword!'
+mysql &gt; flush privileges;
+</code></pre>
+
+<blockquote>
+<p>clustercheck命令</p>
+</blockquote>
+
+<pre><code class="language-shell"># 首选检查是否存在clustercheck命令
+# 若是不存在，可以在git上下载
+git clone https://github.com/olafz/percona-clustercheck
+cp percona-clustercheck/clustercheck /usr/bin/
+# 检查命令执行是否正常
+/usr/bin/clustercheck
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Connection: close
+Content-Length: 40
+
+Percona XtraDB Cluster Node is synced.
+</code></pre>
+
+<blockquote>
+<p>xinetd配置</p>
+</blockquote>
+
+<pre><code class="language-shell"># 安装xinetd
+yum install xinetd
+# 配置xinetd
+vim /etc/xinetd.d/mysqlchk
+service mysqlchk 
+{ 
+        disable = no 
+        flags           = REUSE 
+        socket_type     = stream 
+        type            = UNLISTED
+        port            = 9200 
+        wait            = no 
+        user            = nobody 
+        server          = /usr/bin/clustercheck
+        log_on_failure  += USERID 
+        only_from       = 0.0.0.0/0
+        per_source      = UNLIMITED 
+} 
+</code></pre>
+
+<blockquote>
+<p>检查clustercheck是否正常</p>
+</blockquote>
+
+<pre><code class="language-shell"># 重启xinetd
+/etc/init.d/xinetd restart
+# 检查端口是否正常
+netstat -tunlap | grep 9200
+tcp        0      0 :::9200                     :::*                        LISTEN      44605/xinetd
+</code></pre>
+
+<hr />
+
+<h5 id="2-4-haproxy部署">2.4 HAProxy部署</h5>
+
+<blockquote>
+<p>安装HAProxy</p>
+</blockquote>
+
+<pre><code class="language-shell">yum install haproxy
+</code></pre>
+
+<blockquote>
+<p>简单配置HAProxy</p>
+</blockquote>
+
+<pre><code class="language-shell">vim /etc/haproxy/haproxy.cfg
+listen mysql-cluster 0.0.0.0:3306
+    mode http
+    balance roundrobin
+    server node1 192.168.1.212:3306 check
+    server node2 192.168.1.226:3306 check
+    server node3 192.168.1.228:3306 check
+
+listen status 192.168.1.225:8080
+    stats enable
+    stats uri /status
+    stats auth admin:admin
+    stats realm (haproxy\ statistic)
+</code></pre>
+
+<blockquote>
+<p>复杂配置HAProxy</p>
+</blockquote>
+
+<pre><code class="language-shell">vim /etc/haproxy/haproxy.cfg
+frontend pxc-onenode-front
+    bind *:3306
+    mode tcp
+    default_backend pxc-onenode-back
+    
+frontend pxc-front
+    bind *:3307
+    mode tcp
+    default_backend pxc-back
+
+frontend stats-front
+    bind *:8080
+    mode http
+    default_backend stats-back
+
+backend pxc-onenode-back
+    mode tcp
+    balance leastconn
+    option httpchk
+    server percona1 192.168.1.212:3306 check port 9200 inter 12000 rise 3 fall 3
+    server percona2 192.168.1.226:3306 check port 9200 inter 12000 rise 3 fall 3 backup
+    server percona3 192.168.1.228:3306 check port 9200 inter 12000 rise 3 fall 3 backup
+
+backend pxc-back
+    mode tcp
+    balance leastconn
+    option httpchk
+    server percona1 192.168.1.212:3306 check port 9200 inter 12000 rise 3 fall 3
+    server percona2 192.168.1.226:3306 check port 9200 inter 12000 rise 3 fall 3
+    server percona3 192.168.1.228:3306 check port 9200 inter 12000 rise 3 fall 3
+
+backend stats-back
+    mode http
+    balance roundrobin
+    stats uri /haproxy/stats
+    stats auth admin:haproxy
+</code></pre>
+
+<blockquote>
+<p>mysql授权pxc_test用户供HAProxy远程连接</p>
+</blockquote>
+
+<pre><code class="language-shell">mysql &gt; grant select,insert,update,delete on *.* to 'pxc_test'@'%' identified by '123456';
+mysql &gt; flush privileges;
+</code></pre>
+
+<blockquote>
+<p>检查HAProxy是否正常</p>
+</blockquote>
+
+<pre><code class="language-shell"># 重启HAProxy服务
+/etc/init.d/haproxy restart
+# 检查端口是否正常
+netstat -tunlap | grep -E &quot;3306|3307|8080&quot;
+tcp        0      0 0.0.0.0:3306                0.0.0.0:*                   LISTEN      18877/haproxy       
+tcp        0      0 0.0.0.0:3307                0.0.0.0:*                   LISTEN      18877/haproxy       
+tcp        0      0 0.0.0.0:8080                0.0.0.0:*                   LISTEN      18877/haproxy 
+# 连接测试
+mysql -h192.168.1.225（HAProxy机器IP） -P3307 -upxc_test -p123456
+# 登录HAProxy状态页检查
+http://192.168.1.225:8080/haproxy/stats
+</code></pre>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/689CDF8E5A6B7E8D6BA23882E3300A20.png" alt="Snip20170518_36.png" /></p>
+
+<blockquote>
+<p>异常情况</p>
+</blockquote>
+
+<ul>
+<li>从HAProxy机器执行远程连接节点，出现以下异常情况：</li>
+</ul>
+
+<pre><code class="language-shell">ERROR 2013 (HY000): Lost connection to MySQL server at 'reading initial communication packet' 
+</code></pre>
+
+<ul>
+<li>解决方案</li>
+</ul>
+
+<pre><code class="language-shell"># 在PXC集群中的node节点my.cnf中加入参数
+[mysqld]
+skip-name-resolve  
+# skip-name-resolve是禁用dns解析
+# 重启PXC集群，让配置生效
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Percona%20XtraDB%20Cluster&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpxc%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpxc%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpxc%2f&amp;description=Percona%20XtraDB%20Cluster"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpxc%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/04/pssh/">
+          <section class="post">
+              <h2>PSSH 命令</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/04/hashlib/">
+          <section class="post">
+              <h2>Python Hashlib模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

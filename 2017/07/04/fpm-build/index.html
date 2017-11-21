@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="FPM 命令"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="FPM 命令 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/04/fpm-build/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-04T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Linux" />
+    
+    
+
+    <title>FPM 命令 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;自动化部署必备技能-定制化RPM包&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/04/fpm-build/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "FPM 命令",
+    "name": "FPM 命令",
+    "wordCount":  748 ,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/04/fpm-build/",
+    "datePublished": "2017-07-04T00:00Z",
+    "dateModified": "2017-07-04T00:00Z",
+    
+    "keywords": "Linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/04/fpm-build/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">FPM 命令</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-04T00:00:00Z">
+            Jul 4, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#Linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>自动化部署必备技能-定制化RPM包</font></left> </p>
+
+<h3 id="一-fpm-简介">一、FPM 简介</h3>
+
+<ul>
+<li>FPM功能简单说就是一种类型的包转换成另外一种类型</li>
+</ul>
+
+<blockquote>
+<p>支持的源类型包</p>
+</blockquote>
+
+<ol>
+<li>dir将目录打包成所需要的类型，可以用于源码编译安装的软件包</li>
+<li>rpm对rpm进行转换</li>
+<li>gem 对rubygem包进行转换</li>
+<li>python 将python模块打包成相应的类型</li>
+</ol>
+
+<blockquote>
+<p>支持的目标类型包</p>
+</blockquote>
+
+<ol>
+<li>rpm 转换为rpm包</li>
+<li>deb转换为deb包</li>
+<li>solaris 转换为solaris包</li>
+<li>puppet 转换为puppet包</li>
+</ol>
+
+<hr />
+
+<h3 id="二-fpm-部署">二、FPM 部署</h3>
+
+<ul>
+<li>环境：CentOS release 6.2 (Final)</li>
+<li>软件包：Nginx-1.8.1 （提前源码安装完毕）</li>
+</ul>
+
+<h4 id="2-1-依赖包与模块安装">2.1 依赖包与模块安装</h4>
+
+<pre><code class="language-shell"># yum -y install gcc gcc-c++ make ruby rubygems ruby-devel rpm-build
+'### 需要ruby模块支持'
+# gem sources -a http://mirrors.aliyun.com/rubygems/
+'### 添加阿里云rubygems仓库，由于国外经常抽风..支持国货'
+# gem sources --remove http://rubygems.org/ 
+'### 移除原生的ruby仓库'
+# gem install fpm
+'### 安装fpm'
+</code></pre>
+
+<ul>
+<li><strong>注意</strong>：若出现Ruby版本低于1.9.3导致fpm无法安装，则需要利用以下源码包安装Ruby-1.9.3</li>
+</ul>
+
+<hr />
+
+<h4 id="2-2-安装-ruby-1-9-3">2.2 安装 Ruby-1.9.3</h4>
+
+<pre><code class="language-shell"># cd /data/backup/tmp
+# wget https://ruby.taobao.org/mirrors/ruby/ruby-2.3.0.tar.gz
+# tar -zxf ruby-2.3.0.tar.gz
+# cd ruby-2.3.0
+# ./configure --prefix=/usr/local/ruby
+# make &amp;&amp; make install
+# mv /usr/bin/ruby /usr/bin/ruby.old
+# ln -s /usr/loca/ruby/bin/ruby /usr/bin/ruby
+# ruby --version
+ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+</code></pre>
+
+<hr />
+
+<h4 id="2-3-安装-rubygem-2-6-4">2.3 安装 Rubygem-2.6.4</h4>
+
+<pre><code class="language-shell"># cd /data/backup/tmp
+# wget https://rubygems.org/rubygems/rubygems-2.6.4.tgz
+# tar -zxf rubygems-2.6.4.tgz
+# cd rubygems-2.6.4
+# ruby setup.rb
+</code></pre>
+
+<hr />
+
+<h4 id="2-4-错误故障解决">2.4 错误故障解决</h4>
+
+<blockquote>
+<p>故障1</p>
+</blockquote>
+
+<pre><code class="language-shell">ERROR:  Loading command: install (LoadError)
+	cannot load such file -- zlib
+ERROR:  While executing gem ... (NoMethodError)
+    undefined method 'invoke_with_build_args' for nil:NilClass
+</code></pre>
+
+<blockquote>
+<p>处理方案</p>
+</blockquote>
+
+<pre><code class="language-shell">cd ruby-2.3.0
+cd ext/zlib/
+ruby extconf.rb 
+make &amp;&amp; make install
+</code></pre>
+
+<hr />
+
+<h3 id="三-利用fpm制作nginx-rpm包">三、利用FPM制作Nginx RPM包</h3>
+
+<h4 id="3-1-创建nginx打包代码虚拟目录">3.1 创建Nginx打包代码虚拟目录</h4>
+
+<pre><code class="language-shell">mkdir -p /data/nginx/{etc/rc.d/init.d,sysconfig}
+# etc/rc.d/init.d 用于保存 Nginx 启动脚本
+cp -a /etc/init.d/nginx /data/nginx/etc/rc.d/init.d/
+mkdir -p /data/nginx/usr/local
+# usr/local 用于保存 Nginx 配置
+cp -a /usr/local/nginx /data/nginx/usr/local/
+# 将Nginx包目录拷贝到虚拟目录中
+ll /data/nginx/usr/local/nginx/
+total 40
+drwx------ 2 nginx root 4096 Jun 19 01:35 client
+drwxr-xr-x 2 root  root 4096 Jun 19 01:15 conf
+drwx------ 2 nginx root 4096 Jun 19 01:35 fcgi
+drwxr-xr-x 2 root  root 4096 Jun 19 01:15 html
+drwxr-xr-x 2 root  root 4096 Jun 19 01:35 logs
+-rw-r--r-- 1 root  root    5 Jun 19 01:35 nginx.pid
+drwx------ 2 nginx root 4096 Jun 19 01:35 proxy
+drwxr-xr-x 2 root  root 4096 Jun 19 01:35 sbin
+drwx------ 2 nginx root 4096 Jun 19 01:35 scgi
+drwx------ 2 nginx root 4096 Jun 19 01:35 uwsgi
+# 检查Nginx目录是否正常
+</code></pre>
+
+<h4 id="3-2-编写rpm包脚本">3.2 编写RPM包脚本</h4>
+
+<pre><code class="language-shell">cd /data/nginx
+cat &gt;before_install_nginx.sh&lt;&lt;EOF
+#!/bin/bash
+# before install nginx
+if rpm -q httpd &amp;&gt;/dev/null;then
+        rpm -e --nodeps httpd
+fi
+if ! grep &quot;nginx&quot; /etc/group &amp;&gt;/dev/null;then
+        groupadd nginx
+fi
+if ! grep &quot;nginx&quot; /etc/passwd &amp;&gt;/dev/null;then
+        useradd  -g nginx -s /sbin/nologin -M nginx
+fi
+exit 0
+# EOF
+# 以上脚本主要是 Nginx RPM 包安装前执行的操作
+
+cat &gt;after_install_nginx.sh&lt;&lt;EOF
+#!/bin/bash
+# after install nginx
+chkconfig --add nginx
+chkconfig nginx on
+service nginx start
+exit 0
+# EOF
+# 以上脚本主要是 Nginx RPM 包安装后执行的操作
+
+cat &gt;after_remove_install.sh&lt;&lt;EOF
+#!/bin/bash
+# after remove nginx
+nginx_pid=(/bin/grep−oE[0−9]+&lt;&lt;&lt;(/bin/grep−oE[0−9]+&lt;&lt;&lt;(awk '{print 7}' &lt;&lt;&lt;7}' &lt;&lt;&lt;(netstat -tunlp | grep nginx )))
+kill ${nginx_pid}
+chkconfig nginx off
+chkconfig --del nginx
+rm -rf /usr/local/nginx
+rm -rf /etc/init.d/nginx
+rm -rf /etc/rc.d/init.d/nginx
+userdel -rf nginx
+exit 0
+# EOF
+# 以上脚本主要是 Nginx RPM 包卸载后执行的操作
+</code></pre>
+
+<h4 id="3-3-执行-fpm-打包操作">3.3 执行 FPM 打包操作</h4>
+
+<pre><code class="language-shell">fpm -s dir -t rpm \
+# -s 指定需要转换的源包类型
+# -t 指定目标类型，即需要制作什么的包
+-n nginx -v 0.0.1 \
+# -n 定义软件包的名字
+# -v 定义软件包的版本号
+# --epoch 0 --iteration 1.el6 \
+# --epoch 为软件包设置 epoch 值
+# --iteration 就是rpm包中的release号
+# -C /data/nginx/ -p /data/backup/ \
+# -C 指定源码打包的相对路径
+# -p 输出安装包的目录
+-d 'openssl' -d 'openssl-devel' \
+# -d 指定依赖于哪些安装包
+-d 'gcc' -d 'gcc-c++' -d 'pcre' -d 'pcre-devel' \
+-d 'zlib' -d 'zlib-devel' \
+--verbose --category 'Development/Languages' \
+# --verbose 输出制作过程
+# --category RPM 包安装后软件包的归属组信息
+--description 'nginx 1.8.1 applications' \
+# --description 定义软件包的描述
+--url 'nginx.org' --license 'BSD' -m 'Seacme' \
+# --url 定义软件的官网url信息
+# --license 定义许可证
+--no-rpm-sign \
+--pre-install /data/nginx/before_install_nginx.sh \
+# 定义安装 Nginx RPM 包之前需要执行的操作
+--after-install /data/nginx/after_install_nginx.sh \
+# 定义安装 Nginx RPM 包之后需要执行的操作
+--after-remove /data/nginx/after_remove_install.sh \
+# 定义卸载 Nginx RPM 包之后要执行的操作
+--workdir /data/nginx/ etc usr
+# 定义利用 FPM 打包的目录
+</code></pre>
+
+<h4 id="3-4-fpm-打包出错">3.4 FPM 打包出错</h4>
+
+<h5 id="3-4-1-故障描述">3.4.1 故障描述</h5>
+
+<pre><code class="language-shell">Reading template {:path=&gt;&quot;/usr/local/rvm/gems/ruby-1.9.3-p551/gems/fpm-1.6.1/templates/rpm.erb&quot;, :level=&gt;:info}
+Running rpmbuild {:args=&gt;[&quot;rpmbuild&quot;, &quot;-bb&quot;, &quot;--define&quot;, &quot;buildroot /data/nginx/package-rpm-build20160619-8134-37d9ae/BUILD&quot;, &quot;--define&quot;, &quot;_topdir /data/nginx/package-rpm-build20160619-8134-37d9ae&quot;, &quot;--define&quot;, &quot;_sourcedir /data/nginx/package-rpm-build20160619-8134-37d9ae&quot;, &quot;--define&quot;, &quot;_rpmdir /data/nginx/package-rpm-build20160619-8134-37d9ae/RPMS&quot;, &quot;--define&quot;, &quot;_tmppath /data/nginx/&quot;, &quot;/data/nginx/package-rpm-build20160619-8134-37d9ae/SPECS/nginx.spec&quot;], :level=&gt;:info}
+Need executable 'rpmbuild' to convert dir to rpm {:level=&gt;:error}
+# 以上一行错误信息：提醒需要执行工具 rpmbuild
+</code></pre>
+
+<h5 id="3-4-2-解决方案">3.4.2 解决方案</h5>
+
+<pre><code class="language-shell">yum -y install rpm-build
+</code></pre>
+
+<hr />
+
+<h3 id="四-nginx-rpm-包检测">四、Nginx RPM 包检测</h3>
+
+<h4 id="4-1-查看-nginx-rpm-包相关信息">4.1 查看 Nginx RPM 包相关信息</h4>
+
+<pre><code class="language-shell">rpm -qpi  nginx-0.0.1-1.el6.x86_64.rpm 
+Name        : nginx                        Relocations: / 
+Version     : 0.0.1                             Vendor: root@mail.free.com
+Release     : 1.el6                         Build Date: Sun 19 Jun 2016 12:50:15 PM CST
+Install Date: (not installed)               Build Host: ghs.l.google.com
+Group       : Development/Languages         Source RPM: nginx-0.0.1-1.el6.src.rpm
+Size        : 11060453                         License: BSD
+Signature   : (none)
+Packager    : Seacme
+URL         : nginx.org
+Summary     : nginx 1.8.1 applications
+Description :
+nginx 1.8.1 applications
+</code></pre>
+
+<h4 id="4-2-nginx-rpm-安装测试">4.2 Nginx RPM 安装测试</h4>
+
+<pre><code class="language-shell">rpm -ivh nginx-0.0.1-1.el6.x86_64.rpm 
+error: Failed dependencies:
+        openssl-devel is needed by nginx-0.0.1-1.el6.x86_64
+        pcre-devel is needed by nginx-0.0.1-1.el6.x86_64
+        zlib-devel is needed by nginx-0.0.1-1.el6.x86_64
+# 以上的得知 Nginx 包安装依赖与openssl、pcre、zlib
+yum -y install openssl openssl-devel pcre pcre-devel zlib zlib-devel
+rpm -ivh nginx-0.0.1-1.el6.x86_64.rpm             
+Preparing...                ########################################### [100%]
+   1:nginx                  ########################################### [100%]
+nginx -v
+nginx version: nginx/1.8.1
+# 检查 Nginx 版本正常
+service nginx start
+# 启动 Nginx 服务
+netstat -tunlp | grep nginx
+tcp        0      0 0.0.0.0:80                  0.0.0.0:*                   LISTEN      8170/nginx   
+# 检查 Nginx 进程端口正常
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=FPM%20%e5%91%bd%e4%bb%a4&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2ffpm-build%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2ffpm-build%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2ffpm-build%2f&amp;description=FPM%20%e5%91%bd%e4%bb%a4"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2ffpm-build%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/04/sixdiskdeal/">
+          <section class="post">
+              <h2>Centos6 挂载16T硬盘</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/04/leanote/">
+          <section class="post">
+              <h2>Leanote开源笔记</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

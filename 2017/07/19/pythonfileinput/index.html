@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python FileInput模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python FileInput模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/19/pythonfileinput/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-19T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python FileInput模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;FileInput模块实现对一个或多个文件内容遍历操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/19/pythonfileinput/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python FileInput模块",
+    "name": "Python FileInput模块",
+    "wordCount":  574 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/19/pythonfileinput/",
+    "datePublished": "2017-07-19T00:00Z",
+    "dateModified": "2017-07-19T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/19/pythonfileinput/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python FileInput模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-19T00:00:00Z">
+            Jul 19, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>FileInput模块实现对一个或多个文件内容遍历操作</font></left> </p>
+
+<blockquote>
+<p>介绍</p>
+</blockquote>
+
+<ul>
+<li>对一个或多个文件中的内容进行迭代、遍历等操作</li>
+<li>该模块的input函数有点类似文件readlines（）方法，区别在于：前者是一个迭代对象，即每次只生成一行，需要用for循环迭代，后者是一次性读取所有行。在碰到大文件的读取时，前者无疑效率更高效。</li>
+<li>用fileinput对文件进行循环遍历，格式化输出，查找，替换等操作，非常方便。</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>一、基本用法</p>
+</blockquote>
+
+<ul>
+<li>典型用法</li>
+</ul>
+
+<pre><code class="language-shell">  import fileinput
+  for line in fileinput.input():
+    process(line)
+</code></pre>
+
+<ul>
+<li>默认格式</li>
+</ul>
+
+<pre><code class="language-shell">fileinput.input(files=None,inplace=False,backup='', bufsize=0, mode='r', openhook=None)
+# files:文件的路径列表，默认是stdin方式，多文件是['1.txt','2.txt'.....]
+# inplace:是否将标准输出的结果写回文件，默认不取代
+# backup:备份文件的扩展名，只指定扩展名，如.bak
+# bufsize:缓冲区的大小，默认未0
+# mode:读写模式，默认为只读
+# openbhook:该钩子用于控制打开的所有文件，比如编码方式等
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>二、常用函数</p>
+</blockquote>
+
+<ul>
+<li><code>fileinput.input()</code>:返回能够用于for循环遍历的对象</li>
+<li><code>fileinput.filename()</code>:返回当前文件的名称</li>
+<li><code>fileinput.lineno()</code>:返回当前已经读取行的数量</li>
+<li><code>fileinput.isfirstline()</code>:检查当前行是否是文件的第一行</li>
+<li><code>fileinput.isstdin()</code>:判断最后一行是否从stdin中读取</li>
+<li><code>fileinput.close()</code>:关闭队列</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>三、常见例子</p>
+</blockquote>
+
+<ul>
+<li><strong>利用fileinput读取一个文件的所有行</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput
+for line in fileinput.input('/data/sh/white/tx_upload.sh'):
+    print line,
+   ...:
+# 输出结果   
+#!/bin/bash
+
+echo -e &quot;$(date +%F&quot; &quot;%T) 执行同步资源到TX机器&quot; &gt; /data/logs/white_test_20161212.log
+
+if [ $? -eq 0 ];then
+
+   echo &quot;操作成功&quot;
+
+else
+
+   echo &quot;操作失败&quot;
+
+fi
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput对多文件操作，并原地修改内容</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput
+
+def process(line):
+
+	return line.rstrip() + ' line'
+
+for line in fileinput.input('/data/sh/white/tx_upload.sh',inplace=1):
+
+	print process(line)
+# 输出结果	
+#!/bin/bash line line
+ line line
+echo -e &quot;$(date +%F&quot; &quot;%T) 执行同步资源到TX机器&quot; &gt; /data/logs/white_test_20161212.log line line
+ line line
+if [ $? -eq 0 ];then line line
+ line line
+   echo &quot;操作成功&quot; line line
+ line line
+else line line
+ line line
+   echo &quot;操作失败&quot; line line
+ line line
+fi line line
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput实现文件内容替换，并将源文件备份</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput
+for line in fileinput.input('/data/sh/white/tx_upload.sh',backup='.bak',inplace=1):
+    print line.rstrip().replace('line','number')
+    
+# 输出结果
+#!/bin/bash number number
+ number number
+echo -e &quot;$(date +%F&quot; &quot;%T) 执行同步资源到TX机器&quot; &gt; /data/logs/white_test_20161212.log number number
+ number number
+if [ $? -eq 0 ];then number number
+ number number
+   echo &quot;操作成功&quot; number number
+ number number
+else number number
+ number number
+   echo &quot;操作失败&quot; number number
+ number number
+fi number number
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput将CRLF文件转为LF</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput
+import sys
+
+for line in fileinput.input(inplace=True):  
+    #将Windows/DOS格式下的文本文件转为Linux的文件  
+    if line[-2:] == &quot;\r\n&quot;:    
+        line = line + &quot;\n&quot;  
+    sys.stdout.write(line) 
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput对文件简单处理</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput,sys
+
+for line in fileinput.input('/data/sh/white/tx_upload.sh'):
+
+   ...:     sys.stdout.write('=&gt; ')
+   ...:     sys.stdout.write(line)
+   ...:
+   
+# 输出结果
+=&gt; #!/bin/bash number number
+=&gt;  number number
+=&gt; echo -e &quot;$(date +%F&quot; &quot;%T) 执行同步资源到TX机器&quot; &gt; /data/logs/white_test_20161212.log number number
+=&gt;  number number
+=&gt; if [ $? -eq 0 ];then number number
+=&gt;  number number
+=&gt;    echo &quot;操作成功&quot; number number
+=&gt;  number number
+=&gt; else number number
+=&gt;  number number
+=&gt;    echo &quot;操作失败&quot; number number
+=&gt;  number number
+=&gt; fi number number
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput批处理文件</strong></li>
+</ul>
+
+<pre><code class="language-python">import fileinput
+import glob
+
+for line in fileinput.input(glob.glob(&quot;test*.txt&quot;)):  
+    if fileinput.isfirstline():  
+        print '-'*20, 'Reading %s...' % fileinput.filename(), '-'*20  
+    print str(fileinput.lineno()) + ': ' + line.upper(),  
+    
+# 输出结果:  
+&gt;&gt;&gt;   
+-------------------- Reading test.txt... --------------------  
+1: AAAAA  
+2: BBBBB  
+3: CCCCC  
+4: DDDDD  
+5: FFFFF  
+-------------------- Reading test1.txt... --------------------  
+6: FIRST LINE  
+7: SECOND LINE  
+-------------------- Reading test2.txt... --------------------  
+8: THIRD LINE  
+9: FOURTH LINE  
+-------------------- Reading test3.txt... --------------------  
+10: THIS IS LINE 1  
+11: THIS IS LINE 2  
+12: THIS IS LINE 3  
+13: THIS IS LINE 4  
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput及re做日志分析：提取所有含日期的行</strong></li>
+</ul>
+
+<pre><code class="language-python">import re
+import fileinput
+import sys
+
+pattern = '\d{4}-\d{2}-\d{2} \d{2}:\d{2}-\d{2}'
+
+for line in fileinput.input('error.log',backup='.bak',inplace=1):
+    if re.search(pattern,line):
+        sys.stdout.write(&quot;=&gt; &quot;)
+        sys.stdout.write(line)
+        
+# 输出结果
+
+=&gt; 1970-01-01 13:45:30  Error: **** Due to System Disk spacke not enough...  
+=&gt; 1970-01-02 10:20:30  Error: **** Due to System Out of Memory... 
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput及re做分析：提取符合条件的电话号码</strong></li>
+</ul>
+
+<pre><code class="language-python">import re
+import fileinput
+
+pattern = '[010|021]-\d{8}'
+
+for line in fileinput.input('phone.txt')
+    if re.search(pattern,line):
+        print '=' * 50
+        print 'Filename:' + fileinput.filename() + ' | Line Number:' + str(fileinput.lineno()) + ' | ' + line
+
+# 输出结果
+==================================================  
+Filename:phone.txt | Line Number:3 | 010-99999999  
+==================================================  
+Filename:phone.txt | Line Number:5 | 021-88888888
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput实现类似于grep的功能</strong></li>
+</ul>
+
+<pre><code class="language-python">import sys
+import re
+import fileinput
+
+pattern = re.compile(sys.argv[1])
+for line in fileinput.input(sys.argv[2]):
+    if parttern.match(line):
+        print fileinput.filename(),fileinput.filelieno(),line
+        
+# 输出结果
+./test.py import.*re *.py
+addressBook.py  2   import re  
+addressBook1.py 10  import re  
+addressBook2.py 18  import re  
+test.py         238 import re 
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput做正则匹配</strong></li>
+</ul>
+
+<pre><code class="language-python"># 测试样本：* [Learning Python](#author:Mark Lutz)
+
+import re,fileinput
+
+for line in fileinput.input():
+    line = re.sub(r'\* (.*)#(.*)',r'&lt;h2 id=&quot;\2&quot;&gt;\1&lt;/h2&gt;',line.strip())
+    print line
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput做正则替换，不同字模块之间的替换</strong></li>
+</ul>
+
+<pre><code class="language-python"># 测试模板：[@!$First]&amp;[*%-Second]&amp;[Third]
+
+import re
+import fileinput
+
+regex = re.compile(r'^([^&amp;]*)(&amp;)([^&amp;]*)(&amp;)([^&amp;]*)')
+
+for line in fileinput.input('test.txt',inplace=1,backup=&quot;.bak&quot;):
+    print regex.sub(r'\3\2\1\4\5',line)
+    
+# 输出结果:
+[*%-Second]&amp;[@!$First]&amp;[Third] 
+</code></pre>
+
+<ul>
+<li><strong>利用fileinput根据argv命令输入做替换</strong></li>
+</ul>
+
+<pre><code class="language-python">import sys
+import fileinput
+
+source = sys.argv[1]
+target = sys.argv[2]
+files = sys.argv[3:]
+
+for line in fileinput.input(files,backup='.bak',openhook=fileinput.hook_encoded(&quot;gb2312&quot;)):
+    # 对打开的文件执行中文字符集编码
+    line = line.rstrip().replace(source,target)
+    print line
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20FileInput%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonfileinput%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonfileinput%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonfileinput%2f&amp;description=Python%20FileInput%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonfileinput%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/19/pythonconfigparser/">
+          <section class="post">
+              <h2>Python ConfigParser模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/19/pythonjson/">
+          <section class="post">
+              <h2>Python JSON模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="PSSH 命令"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="PSSH 命令 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/04/pssh/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-04T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Linux" />
+    
+    
+
+    <title>PSSH 命令 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个Python编写批量执行工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/04/pssh/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "PSSH 命令",
+    "name": "PSSH 命令",
+    "wordCount":  649 ,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/04/pssh/",
+    "datePublished": "2017-07-04T00:00Z",
+    "dateModified": "2017-07-04T00:00Z",
+    
+    "keywords": "Linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/04/pssh/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">PSSH 命令</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-04T00:00:00Z">
+            Jul 4, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#Linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一个Python编写批量执行工具</font></left> </p>
+
+<h2 id="一-pssh-介绍">一、PSSH 介绍</h2>
+
+<ul>
+<li>Pssh 全称为 Parallel SSH Program</li>
+<li>Pssh 是一个python编写可以在多台服务器上执行命令的工具，同时支持拷贝文件。</li>
+<li>主要提供的工具如下：
+
+<ul>
+<li>Parallel-SSH（pssh）在多个主机上并行地运行命令。</li>
+<li>Parallel-SCP（pscp）把文件并行地复制到多个主机上。</li>
+<li>Parallel-RSYNC（psync）通过rsync协议把文件高效地并行复制到多个主机上。</li>
+<li>Parallel-SLURP（pslurp）把文件并行地从多个远程主机复制到中心主机上。</li>
+<li>Parallel-nuke（pnuke）并行地多个远程主机上杀死进程。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="二-pssh-命令">二、PSSH 命令</h2>
+
+<h3 id="2-1-pssh-相关参数">2.1 PSSH 相关参数</h3>
+
+<ul>
+<li>【-h】：执行命令的远程主机列表，文件内容格式[user@]host[:port]</li>
+<li>【-H】：执行命令的主机，主机格式user@ip:port</li>
+<li>【-I】：远程主机的用户名</li>
+<li>【-p】：一次最大允许多少连接</li>
+<li>【-P】：执行时输出执行信息</li>
+<li>【-o】：输出内容重定向到一个文件</li>
+<li>【-e】：执行错误重定向到一个文件</li>
+<li>【-t】：设置命令执行超时时间</li>
+<li>【-A】：提示输入密码并且把密码传递给ssh（如果私钥也有密码也用这个参数）</li>
+<li>【-O】：设置ssh一些选项</li>
+<li>【-x】：设置ssh额外一些参数，可以多个，不同参数间空格分开</li>
+<li>【-i】：显示标准输出和标准错误在每台host执行完毕后</li>
+</ul>
+
+<hr />
+
+<h3 id="2-2-pssh-实例操作">2.2 PSSH 实例操作</h3>
+
+<ul>
+<li>检查指定某机器的负载情况</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  ~ pssh -i -l root -x &quot;-p61618&quot; -H 192.168.8.73 -H 192.168.8.45 uptime
+  [1] 00:33:21 [SUCCESS] 192.168.8.73
+   00:33:42 up 78 days,  8:20,  0 users,  load average: 0.55, 0.28, 0.20
+  [2] 00:33:22 [SUCCESS] 192.168.8.45
+   00:37:31 up 59 days, 10:38,  0 users,  load average: 0.08, 0.09, 0.13
+   # -l 指定远程主机的用户名
+   # -x 设置ssh额外一些参数
+   # -H 执行命令的主机
+</code></pre>
+
+<ul>
+<li>将执行内容输出重定向到文件</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  ~ pssh -i -l root -x &quot;-p61618&quot; -o /data/logs/pssh_log -H 192.168.8.73 -H 192.168.8.45 uptime
+  [1] 00:39:37 [SUCCESS] 192.168.8.73
+   00:39:57 up 78 days,  8:26,  0 users,  load average: 0.16, 0.24, 0.19
+  [2] 00:39:38 [SUCCESS] 192.168.8.45
+   00:43:47 up 59 days, 10:45,  0 users,  load average: 0.16, 0.15, 0.13
+  ➜  ~ cd /data/logs/pssh_log
+  ➜  pssh_log ls
+  192.168.8.45  192.168.8.73
+  ➜  pssh_log cat 192.168.8.45
+   00:43:47 up 59 days, 10:45,  0 users,  load average: 0.16, 0.15, 0.13
+   # -o 执行日志输出文件目录，以执行IP生成日志文件，查看日志可得知执行结果
+</code></pre>
+
+<ul>
+<li>将执行错误内容输出重定向到文件</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pssh_error_log pssh -i -l root -x &quot;-p61618&quot; -e /data/logs/pssh_error_log -H 192.168.8.73 -H 192.168.8.45 faee
+  [1] 00:43:36 [FAILURE] 192.168.8.73 Exited with error code 127
+  Stderr: bash: faee: command not found
+  [2] 00:43:42 [FAILURE] 192.168.8.45 Exited with error code 127
+  Stderr: bash: faee: command not found
+  ➜  pssh_error_log ls
+  192.168.8.45  192.168.8.73
+  ➜  pssh_error_log cat 192.168.8.45
+  bash: faee: command not found
+  # -e 执行错误日志输出文件目录，以执行IP生成日志文件，查看日志可得知错误信息
+</code></pre>
+
+<ul>
+<li>设置ssh额外的参数</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pssh_error_log pssh -i -l root -x &quot;-o StrictHostKeyChecking=no -p61618&quot; -H 192.168.8.73 -H 192.168.8.45 free
+  [1] 00:55:45 [SUCCESS] 192.168.8.73
+               total       used       free     shared    buffers     cached
+  Mem:       3938844    1370696    2568148          0     231280     734952
+  -/+ buffers/cache:     404464    3534380
+  Swap:     12287996          0   12287996
+  [2] 00:55:46 [SUCCESS] 192.168.8.45
+               total       used       free     shared    buffers     cached
+  Mem:       1918648     683028    1235620          0       2620      15512
+  -/+ buffers/cache:     664896    1253752
+  Swap:     12287992     633716   11654276
+  # -x 设置ssh额外一些参数
+</code></pre>
+
+<ul>
+<li>读取服务器列表批量处理</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pssh -h /data/pssh/list.txt -l root -i -x &quot;-p61618&quot; uptime
+  [1] 21:54:32 [SUCCESS] 192.168.8.72
+   21:54:32 up 94 days, 12:49,  1 user,  load average: 0.31, 0.22, 0.21
+  [2] 21:54:40 [SUCCESS] 192.168.8.45
+   21:58:50 up 60 days,  8:00,  0 users,  load average: 0.18, 0.30, 0.30
+   # -h 指定服务器列表的文件/data/pssh/list.txt
+</code></pre>
+
+<hr />
+
+<h2 id="三-pscp-命令">三、PSCP 命令</h2>
+
+<h3 id="3-1-pscp-基本用法">3.1 PSCP 基本用法</h3>
+
+<ul>
+<li>PSCP 用来将文件并行复制到多个主机上</li>
+<li>PSCP 基本使用方法：pscp -h ip文件 本地文件 远程目录（pscp和pssh很多参数都一样）</li>
+</ul>
+
+<h3 id="3-2-pscp-实例操作">3.2 PSCP 实例操作</h3>
+
+<ul>
+<li>将文件铺开到指定服务器</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pscp -H 192.168.8.73 -x &quot;-P61618&quot; -l root /data/backup/php-5.6.24-1.el1.x86_64.rpm /data/backup/
+  [1] 22:03:20 [SUCCESS] 192.168.8.73
+  # -H 指定铺开服务器IP
+  # -x 设置ssh额外的参数
+  # -l 指定远程主机的用户名
+</code></pre>
+
+<ul>
+<li>将文件铺开到指定服务器列表</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pscp -h /data/pssh/list.txt -x &quot;-P61618&quot; -l root /data/backup/php-5.6.24-1.el1.x86_64.rpm /data/backup/
+  [1] 22:12:17 [SUCCESS] 192.168.8.73
+  # -h 指定服务器列表的文件/data/pssh/list.txt
+</code></pre>
+
+<ul>
+<li>将目录铺开到指定服务器（铺开到服务器列表如上）</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pscp -H 192.168.8.73 -x &quot;-P61618&quot; -r -l root  /data/backup/php-bak /data/backup
+  [1] 22:19:03 [SUCCESS] 192.168.8.73
+  # -r 用于递归的复制目录
+</code></pre>
+
+<hr />
+
+<h2 id="四-pslurp-命令">四、PSLURP 命令</h2>
+
+<h3 id="4-1-pslurp-基本用法">4.1 PSLURP 基本用法</h3>
+
+<ul>
+<li>pslurp 把文件并行地从多个远程主机复制到中心主机上</li>
+<li>pslurp 基本用法：pslurp -h IP地址 -L 本地目录 远程文件 本地文件名称</li>
+</ul>
+
+<h3 id="4-2-pslurp-实例操作">4.2 PSLURP 实例操作</h3>
+
+<ul>
+<li>将指定服务器的文件复制到本地主机</li>
+</ul>
+
+<pre><code class="language-shell">  # 本地创建专门用于保存拉回文件的目录
+  mkdir -p /data/backup/pslurp_copy
+  ➜  pslurp -H 192.168.8.73 -l root -x &quot;-P61618&quot; -L /data/backup/pslurp_copy /data/backup/php-5.6.24-1.el1.x86_64.rpm php-5.6.rpm
+  ➜  ~ ls /data/backup/pslurp_copy
+  192.168.8.73
+  # -L 指定保存目录下以拉回IP为目录命名
+</code></pre>
+
+<ul>
+<li>将指定服务器列表的文件复制到本地主机</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  pslurp -h /data/pssh/list.txt -l root -x &quot;-P61618&quot; -L /data/backup/pslurp-bak /data/backup/php-5.6.24-1.el1.x86_64.rpm php-5.6.$(date +%Y%m%d).rpm
+  # -h 指定服务器列表的文件/data/pssh/list.txt
+  # 利用$(date +%Y%m%d)版本控制拉回文件
+</code></pre>
+
+<hr />
+
+<h2 id="五-pnuke-命令">五、PNUKE 命令</h2>
+
+<h3 id="5-1-pnuke-基本用法">5.1 PNUKE 基本用法</h3>
+
+<ul>
+<li>PNUKE 并行地在多个远程主机杀死进程</li>
+<li>PNUKE 基本用法：punke -h IP地址 -l 远程主机的用户名 进程名</li>
+</ul>
+
+<h3 id="5-2-pnuke-实例操作">5.2 PNUKE 实例操作</h3>
+
+<ul>
+<li>将指定服务器的进程杀掉</li>
+</ul>
+
+<pre><code class="language-SHELL">  ➜  ~ pnuke -H 192.168.8.73:61618 -l root  httpd
+  [1] 22:50:04 [SUCCESS] 192.168.8.73:61618
+</code></pre>
+
+<hr />
+
+<h2 id="六-prsync-命令">六、PRSYNC 命令</h2>
+
+<h3 id="6-1-prsync-基本用法">6.1 PRSYNC 基本用法</h3>
+
+<ul>
+<li>PRSYNC 通过 rsync 协议把文件高效地并行复制到多个主机上</li>
+<li>PRSYNC 基本用法：prsync  -h  IP地址  -l  远程主机的用户名  本地目录  远程目录</li>
+</ul>
+
+<h3 id="6-2-prsync-实例操作">6.2 PRSYNC 实例操作</h3>
+
+<ul>
+<li>将本地文件同步到指定服务器</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  prsync -H 192.168.8.73 -l root -x &quot;-e'ssh -p61618'&quot; /data/backup/php-bak /data/backup/php-bak
+  [1] 23:01:34 [SUCCESS] 192.168.8.73
+  # 利用-x指定ssh端口
+</code></pre>
+
+<ul>
+<li>将本地文件限速同步到指定服务器</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  prsync  -H 192.168.8.73 -l root -a -x &quot;--bwlimit=100 -e'ssh -p61618'&quot; /data/backup/php-bak /data/backup/php-bak
+  # 利用-x指定限速选项--bwlimit 传输速度为：100k Bytes/s
+</code></pre>
+
+<ul>
+<li>将本地文件以archive模式同步到指定服务器</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  prsync  -H 192.168.8.73 -l root -x &quot;-avPe 'ssh -p61618'&quot; /data/backup/php-bak /data/backup/php-bak
+  [1] 23:12:24 [SUCCESS] 192.168.8.73
+  # 利用-x指定参数-avPe 指定以archive模式同步
+</code></pre>
+
+<ul>
+<li>查看文件传输过程</li>
+</ul>
+
+<pre><code class="language-shell">  ➜  prsync.log prsync  -H 192.168.8.73 -l root -x &quot;-avPe 'ssh -p61618'&quot; -o /data/logs/prsync.log  /data/backup/php-bak /data/backup/php-bak
+  [1] 23:26:19 [SUCCESS] 192.168.8.73
+  ➜  prsync.log cat 192.168.8.73
+  sending incremental file list
+  created directory /data/backup/php-bak
+  php-bak/
+  php-bak/php-5.6.24-1.el1.x86_64.rpm
+      34942504 100%   37.70MB/s    0:00:00 (xfer#1, to-check=0/2)
+
+  sent 34946907 bytes  received 35 bytes  5376452.62 bytes/sec
+  total size is 34942504  speedup is 1.00
+  # -o 指定主机传输到远程主机的过程日志目录，目录下以远程主机IP为日志命名
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=PSSH%20%e5%91%bd%e4%bb%a4&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpssh%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpssh%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpssh%2f&amp;description=PSSH%20%e5%91%bd%e4%bb%a4"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fpssh%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/04/leanote/">
+          <section class="post">
+              <h2>Leanote开源笔记</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/04/pxc/">
+          <section class="post">
+              <h2>Percona XtraDB Cluster</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

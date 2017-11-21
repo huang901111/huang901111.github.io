@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="TCP端口分配"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="TCP端口分配 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/07/tcpport/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-07T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Linux" />
+    
+    
+
+    <title>TCP端口分配 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;合理分配TCP端口，处理端口冲突&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/07/tcpport/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "TCP端口分配",
+    "name": "TCP端口分配",
+    "wordCount":  110 ,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/07/tcpport/",
+    "datePublished": "2017-07-07T00:00Z",
+    "dateModified": "2017-07-07T00:00Z",
+    
+    "keywords": "Linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/07/tcpport/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">TCP端口分配</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-07T00:00:00Z">
+            Jul 7, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#Linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>合理分配TCP端口，处理端口冲突</font></left> </p>
+
+<blockquote>
+<p>一、背景阐述</p>
+</blockquote>
+
+<ul>
+<li>公司使用HAProxy充当代理中间件角色去连接后端服务</li>
+</ul>
+
+<pre><code class="language-shell">## 连接原理
+### 假设后端服务是MySQL数据库服务，端口为：3306
+client --- 连接（HAProxy IP:端口） ----&gt; HAProxy ---- 连接（HAProxy 随机分配1个端口连接后端3306端口）---&gt; MySQL 服务（3306端口）
+</code></pre>
+
+<ul>
+<li><p>影响</p>
+
+<ul>
+<li>HAProxy随机分配端口，有可能会出现端口冲突现象</li>
+</ul></li>
+
+<li><p>愿景</p>
+
+<ul>
+<li>对程序需要使用的端口保留，不作分配给HAProxy使用，解决端口冲突现象
+<br /></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、调研方案</p>
+</blockquote>
+
+<h4 id="1-实现原理">1. 实现原理</h4>
+
+<ul>
+<li>规划出一段端口段作为服务端口分配</li>
+<li>保留服务部分特殊端口不被分配</li>
+</ul>
+
+<h4 id="2-内核参数">2. 内核参数</h4>
+
+<pre><code class="language-shell">net.ipv4.ip_local_port_range
+# 定义了本地TCP/UDP的端口范围，缺省值为：32768 ~ 60999
+net.ipv4.ip_local_reserved_ports
+# 定义了本地TCP/UDP保留（不被分配）端口，缺省值为：Empty
+## 注意：内核版本要大于2.6.18-164才支持以上两个内核参数
+</code></pre>
+
+<h4 id="3-如何修改内核参数">3. 如何修改内核参数</h4>
+
+<pre><code class="language-shell"># 查看IP协议本地端口号限制
+root@debian-01:~# cat /proc/sys/net/ipv4/ip_local_port_range
+32768	61000
+# 修改参数
+root@debian-01:~# vim /etc/sysctl.p
+net.ipv4.ip_local_port_range = 1024 65000
+# net.ipv4.ip_local_port_range的最小值为1024，1024以下的端口已经规划为TCP协议占用
+net.ipv4.ip_local_reserved_ports = 3306
+# 保留3306端口不被分配
+# 保存修改后，需要执行sysctl命令保存修改
+root@debian-01:~# sysctl -p
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>方案测试</p>
+</blockquote>
+
+<h4 id="1-环境部署">1. 环境部署</h4>
+
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>IP地址</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>client</td>
+<td>192.168.129.130</td>
+</tr>
+
+<tr>
+<td>haproxy</td>
+<td>192.168.129.128</td>
+</tr>
+
+<tr>
+<td>mysql</td>
+<td>192.168.129.129</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>client端执行：<code>mysql -h192.168.129.128 -uxxx -pxxx</code>连接后端MySQL，通过HAProxy中间件转发</li>
+</ul>
+
+<h4 id="2-情景1-未调整内核参数情况下端口分配情况">2. 情景1：未调整内核参数情况下端口分配情况</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/43BAA4A67B4DBF39BBABF6542A3E3EE9.png" alt="Snip20170705_63.png" /></p>
+
+<ul>
+<li>观察得知，端口随机从47829~47834分配</li>
+</ul>
+
+<h4 id="3-情景2-调整内核参数观察端口分配情况">3. 情景2：调整内核参数观察端口分配情况</h4>
+
+<pre><code class="language-shell">net.ipv4.ip_local_port_range = 1024 1028
+# 设定端口分配范围：1024~1028
+net.ipv4.ip_local_reserved_ports = 1023,1027
+# 保留1023,1027端口不被使用
+</code></pre>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/60A97A72CBC069B711593EB486FCCFBB.png" alt="Snip20170705_64.png" /></p>
+
+<ul>
+<li>观察得知，端口从1024~1028随机分配，但保留1023和1027端口不被使用</li>
+</ul>
+
+<h4 id="4-情景3-端口分配完毕触发异常情况">4. 情景3：端口分配完毕触发异常情况</h4>
+
+<ul>
+<li>下图得知，分配端口范围内可用端口已经全被使用</li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/DBF7578D34B04E4279467390F12FDAC2.png" alt="Snip20170705_65.png" /></p>
+
+<ul>
+<li>触发连接异常
+<br /></li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/8CD23FCCA106F9C555F880B94D10CE99.png" alt="Snip20170705_66.png" /></p>
+
+<hr />
+
+<blockquote>
+<p>结论归结</p>
+</blockquote>
+
+<ul>
+<li>若出现端口不够用的情况，可调整<code>net.ipv4.ip_local_port_range</code>参数为1024 65535，因为缺省值为32768 61000</li>
+<li>对划分可用端口部分端口设置保留，这需要提前与程序沟通固定好保留的端口段，可调整<code>net.ipv4.ip_local_reserved_ports</code>参数实现</li>
+</ul>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=TCP%e7%ab%af%e5%8f%a3%e5%88%86%e9%85%8d&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f07%2ftcpport%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f07%2ftcpport%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f07%2ftcpport%2f&amp;description=TCP%e7%ab%af%e5%8f%a3%e5%88%86%e9%85%8d"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f07%2ftcpport%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/10/gituse/">
+          <section class="post">
+              <h2>Git Command</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/04/diskdeal/">
+          <section class="post">
+              <h2>2T 以上磁盘格式化</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

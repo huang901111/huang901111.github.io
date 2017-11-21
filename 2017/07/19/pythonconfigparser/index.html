@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python ConfigParser模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python ConfigParser模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/19/pythonconfigparser/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-19T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python ConfigParser模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Configparser用于读取配置文件&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/19/pythonconfigparser/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python ConfigParser模块",
+    "name": "Python ConfigParser模块",
+    "wordCount":  192 ,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/19/pythonconfigparser/",
+    "datePublished": "2017-07-19T00:00Z",
+    "dateModified": "2017-07-19T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/19/pythonconfigparser/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python ConfigParser模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-19T00:00:00Z">
+            Jul 19, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Configparser用于读取配置文件</font></left> </p>
+
+<blockquote>
+<p>一、Configparser简介</p>
+</blockquote>
+
+<ul>
+<li><code>Configparser</code>用来读取配置文件的包。</li>
+<li>配置文件格式：中括号&rdquo;[]&ldquo;内包含的为section。</li>
+</ul>
+
+<h4 id="1-1-ini文件结构">1.1 ini文件结构</h4>
+
+<p><strong>注意事项：</strong></p>
+
+<ol>
+<li><strong>键值对</strong> 可用&rdquo;=&ldquo;或者&rdquo;:&ldquo;进行分隔</li>
+<li><strong>section</strong> 的名字是区分大小写的，而 <em>key</em> 的名字是不区分大小写的</li>
+<li><strong>键值对</strong> 中头部和尾部的空白符会被去掉</li>
+<li>值可以为多行</li>
+<li>配置文件可以包含注释，注释以&rdquo;#&ldquo;或者&rdquo;;&ldquo;为前缀</li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>二、基本使用</p>
+</blockquote>
+
+<h4 id="2-1-ini文档模型">2.1 ini文档模型</h4>
+
+<pre><code class="language-shell">[OA]
+IP = 192.168.8.58
+Backup_Time = 9
+Backup_Folder = /data/www/oa
+Backup_Database = oa
+Backup_Table = t.login
+
+[test]
+IP = 192.168.8.73
+Backup_Time = 9
+Backup_Folder = /data/www/test
+Backup_Database = test
+Backup_Table = t.login
+</code></pre>
+
+<h4 id="2-2-基本操作">2.2 基本操作</h4>
+
+<ul>
+<li><p>读取配置文件</p>
+
+<ol>
+<li><code>read(filename)</code>：直接读取配置文件内容</li>
+<li><code>readfp(fp)</code>：读取配置文件,fp为文件操作类，可以用open(filename)来填充</li>
+<li><code>sections()</code>：返回所有的section列表</li>
+<li><code>options(section)</code>：返回section下的所有option列表</li>
+<li><code>items(section)</code>：得到section下面的键对值</li>
+<li><code>get(section,option)</code>：得到section中的option值，string类型返回</li>
+<li><code>getint(section,option)</code>：返回类型int</li>
+<li><code>getboolean(section,option)</code>：返回类型为bool</li>
+<li><code>getfloat(section,option)</code>：返回类型为float</li>
+</ol></li>
+
+<li><p>修改配置文件</p>
+
+<ol>
+<li><code>add_section(section)</code>：添加一个新的section</li>
+<li><code>set(section,option,value)</code>：对section中的option进行修改</li>
+<li><code>write(fp)</code>：将内容写入到配置文件，fp为文件操作类，可以用open(filename)来填充</li>
+<li><code>remove_section(section)</code>：删除section</li>
+<li><code>remove_option(section,option)</code>：删除option</li>
+</ol></li>
+
+<li><p>判断配置文件</p>
+
+<ol>
+<li><code>has_section(section)</code>：判断ini文件中是否存在section</li>
+<li><code>has_option(section,option)</code>：判断section中是否存在option</li>
+</ol></li>
+</ul>
+
+<h4 id="2-3-初始工作">2.3 初始工作</h4>
+
+<ul>
+<li>使用<code>Configparser</code>首选需要初始化实例，并读取配置文件</li>
+</ul>
+
+<pre><code class="language-shell">cf = ConfigParser.ConfigParser()
+cf.read('配置文件')
+</code></pre>
+
+<h4 id="2-4-常见用法">2.4 常见用法</h4>
+
+<ul>
+<li>获取所有的section列表</li>
+</ul>
+
+<pre><code class="language-shell">secs = cf.sections()
+print secs
+['OA', 'test']
+</code></pre>
+
+<ul>
+<li>返回section下所有的option列表</li>
+</ul>
+
+<pre><code class="language-shell">opts = cf.options('test')
+print opts
+['ip', 'backup_time', 'backup_folder', 'backup_database', 'backup_table']
+</code></pre>
+
+<ul>
+<li>返回section下面的键对值</li>
+</ul>
+
+<pre><code class="language-shell">its = cf.items('OA')
+print its
+[('ip', '192.168.8.58'), ('backup_time', '9'), ('backup_folder', '/data/www/oa'), ('backup_database', 'oa'), ('backup_table', 't.login')]
+</code></pre>
+
+<ul>
+<li>返回section中的options值，string类型返回</li>
+</ul>
+
+<pre><code class="language-shell">ip_info = cf.get('OA','IP')
+print ip_info
+192.168.8.58
+</code></pre>
+
+<ul>
+<li>对section中的options值进行修改</li>
+</ul>
+
+<pre><code class="language-shell">new_ip = cf.set('test','IP','192.168.8.72')
+cf.write(open('xxxx.txt','w'))
+print cf.get('test','IP')
+192.168.8.7
+</code></pre>
+
+<ul>
+<li>添加一个新的section</li>
+</ul>
+
+<pre><code class="language-shell">cf.add_section('test2')
+cf.set('test2','phone','137112121212')
+cf.write(open('xxxx.txt','w'))
+print cf.items('test2')
+[('phone', '13121212121')]
+</code></pre>
+
+<ul>
+<li>删除一个section</li>
+</ul>
+
+<pre><code class="language-shell">cf.remove_section('test2')
+cf.remove_option('phone')
+cf.write(open('xxxx.txt','w'))
+print cf.sections()
+['OA', 'test']
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、ConfigParser高级功能</p>
+</blockquote>
+
+<ul>
+<li>三种读取配置文件的工具：<code>ConfigParser</code>、<code>RawConfigParser</code>、<code>SafeConfigParser</code>的异同点</li>
+</ul>
+
+<h4 id="3-1-配置文件例子">3.1 配置文件例子</h4>
+
+<pre><code class="language-shell">[db]
+url = http://%(host)s:%(port)s/db
+host = 1.2.3.4
+port = 342
+</code></pre>
+
+<h4 id="3-2-configparser读取">3.2 ConfigParser读取</h4>
+
+<pre><code class="language-shell">cf = ConfigParser.ConfigParser()
+cf.read('xxxx.conf')
+
+print cf.get('db','url')
+http://1.2.3.4:342/db
+</code></pre>
+
+<h4 id="3-3-rawconfigparser读取">3.3 RawConfigParser读取</h4>
+
+<pre><code class="language-shell">rcf = ConfigParser.RawConfigParser()
+rcf.read('xxxx.conf')
+
+print rcf.get('db','url')
+http://%(host)s:%(port)s/db
+</code></pre>
+
+<h4 id="3-4-safeconfigparser读取">3.4 SafeConfigParser读取</h4>
+
+<pre><code class="language-shell">scf = ConfigParser.SafeConfigParser()
+scf.read('xxxx.conf')
+
+print scf.get('db','url')
+http://1.2.3.4:342/db
+</code></pre>
+
+<p><strong>总结：</strong></p>
+
+<ul>
+<li><code>RawConfigParser</code>没有办法处理环境变量</li>
+<li><code>ConfigParser</code>与<code>SafeConfigParse</code>可以传递变量进行赋值</li>
+</ul>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20ConfigParser%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonconfigparser%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonconfigparser%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonconfigparser%2f&amp;description=Python%20ConfigParser%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonconfigparser%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/20/tcpdump/">
+          <section class="post">
+              <h2>TCPdump Command</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/19/pythonfileinput/">
+          <section class="post">
+              <h2>Python FileInput模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

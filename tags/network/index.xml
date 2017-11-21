@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/network/</link>
+    <description>Recent content in Network on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Tue, 25 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SmokePing 部署</title>
+      <link>http://huang901111.github.io/2017/07/25/smokeping/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/25/smokeping/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款用于监控IDC多线路网络质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kcpTun网络加速</title>
+      <link>http://huang901111.github.io/2017/07/21/kcptun/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/21/kcptun/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款采用KCP协议提升30%~40%网络服务质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FRP 工具</title>
+      <link>http://huang901111.github.io/2017/07/18/frp/</link>
+      <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/18/frp/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款内网穿透高兴能反向代理&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>判断CDN文件与源文件是否一致</title>
+      <link>http://huang901111.github.io/2017/07/14/cdncheck/</link>
+      <pubDate>Fri, 14 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/14/cdncheck/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;curl请求确认资源推送CDN是否成功&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

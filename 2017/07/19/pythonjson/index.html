@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python JSON模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python JSON模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/19/pythonjson/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-19T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python JSON模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个处理轻量级的数据交换格式JSON模块&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/19/pythonjson/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python JSON模块",
+    "name": "Python JSON模块",
+    "wordCount":  343 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/19/pythonjson/",
+    "datePublished": "2017-07-19T00:00Z",
+    "dateModified": "2017-07-19T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/19/pythonjson/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python JSON模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-19T00:00:00Z">
+            Jul 19, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一个处理轻量级的数据交换格式JSON模块</font></left> </p>
+
+<blockquote>
+<p>一、JSON 概述</p>
+</blockquote>
+
+<h4 id="1-1-介绍">1.1 介绍</h4>
+
+<ul>
+<li><code>JSON(JavaScript Object Notation)</code>是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。</li>
+<li><code>JSON</code>采用完全独立于语言的文本格式，但是也使用了类似C语言家族的习惯。</li>
+</ul>
+
+<h4 id="1-2-json建构两种结构">1.2 JSON建构两种结构</h4>
+
+<ul>
+<li><code>JSON</code>只提供了两种结构：<em>字典</em> 和 <em>数组</em></li>
+<li><code>名称/值</code>对的集合（A collection of name/value pairs）。在不同的语言中，它被理解为对象（object）、纪录（record）、结构（struct）、字典（dictionary）、哈希表（hash table）、有键列表（keyed list）或者关联数组（associative array）。&mdash;-&gt; <em>字典</em></li>
+<li>值得有序列表（An ordered list of values）&mdash;-&gt; <em>数组</em></li>
+</ul>
+
+<h4 id="1-3-形式">1.3 形式</h4>
+
+<ul>
+<li><code>对象</code>：一个*无序*的键值对集合。一个以<code>{</code>开始，<code>}</code>结束。每个<code>键值</code>后跟一个<code>『：』</code>;键值对之间使用<code>『,』</code>分隔。</li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/B3340688A3C5BAD3A28F34F7EFE45C76.png" alt="Snip20170224_163.png" /></p>
+
+<ul>
+<li><p><code>数组</code>：是值得*有序*集合，一个键可以对应一个数组。一个数组以<code>[</code>开始，以<code>]</code>结束。值之间使用<code>『，』</code>分隔。</p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/BE5B8C2CEAF14DC11C0A990DA40FD64C.png" alt="Snip20170224_164.png" /></p></li>
+
+<li><p><code>值</code>：可以是双引号括起来的字符串、数值、true、false、null、对象或者数组。这些结构是可以<code>嵌套</code>的。</p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/BFCE740F1E362DAB0F5D796050C54A4F.png" alt="Snip20170224_165.png" /></p></li>
+
+<li><p><code>字符串</code>：是由双引号包围的任意数量<code>Unicode</code>字符的集合，适应反斜线转义。一个字符即一个单独的字符串。</p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/DA3DB7E4F9C923A666E335A9DA722026.png" alt="Snip20170224_166.png" /></p></li>
+
+<li><p><code>数值</code>：数值与C/C++中的数值非常相似。</p></li>
+
+<li><p><code>空白</code>：空白符号（包括空格、Tab以及回车）可以加入到任何符号之间，不会影响JSON的含义</p></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、JSON函数</p>
+</blockquote>
+
+<ol>
+<li><code>encode</code>函数：将Python对象编码转换成JSON字符串</li>
+<li><code>decode</code>函数：将已编码的JSON字符串解码成Python对象</li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>三、Python &lt;&ndash;转换&ndash;&gt; JSON</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>JSON</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>dict（字典）</td>
+<td>object（对象）</td>
+</tr>
+
+<tr>
+<td>list（列表），tuple（元组）</td>
+<td>array（数组）</td>
+</tr>
+
+<tr>
+<td>str（字符串）</td>
+<td>string（字符串）</td>
+</tr>
+
+<tr>
+<td>int（整数型），float（浮点型）</td>
+<td>number（）</td>
+</tr>
+
+<tr>
+<td>True</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td>False</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>None</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>四、Python &ndash;&gt; JSON</p>
+</blockquote>
+
+<h4 id="4-1-基本语法参数">4.1 基本语法参数</h4>
+
+<ol>
+<li><p>JSON库中的<code>dump</code>以及<code>dumps</code>函数进行JSON编码</p>
+
+<ul>
+<li><code>dump</code>和<code>dumps</code>各项参数含义基本一致，唯一区别在于<code>dump</code>函数编码产生一个JSON文件流，而<code>dumps</code>编码产生一个JSON字符串</li>
+</ul></li>
+
+<li><p>dump 语法</p>
+
+<pre><code class="language-shell">json.dump(obj, fp, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)
+</code></pre></li>
+
+<li><p>dumps 语法</p>
+
+<pre><code class="language-shell">json.dumps(obj, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)
+</code></pre></li>
+
+<li><p>参数详解</p>
+
+<ul>
+<li><code>obj</code>：编码对象</li>
+<li><code>fp</code>：指定文件流</li>
+<li><code>skipkeys</code>：若skipkeys为真，则非标准类型将会跳过，否则返回TypeError</li>
+<li><code>ensure_ascii</code>：若ensure_ascii为真，则输出时将会确保没有非ASCII字符；否则将会原样输出</li>
+<li><code>check_circular</code>：若check_circular为真，则将会检测是否存在循环调用；否则将会跳过检测</li>
+<li><code>allow_nan</code>：若allow_nan为真，则将会允许存在空值（无穷大值）；否则会返回ValueError异常</li>
+<li><code>cls</code>：若cls为控制，则会使用JSONError；否则使用指定子类进行编码</li>
+<li><code>indent</code>：若indent为空值，则无缩进；否则使用指定值进行缩进</li>
+<li><code>separators</code>：若separators为空值，则使用(&lsquo;,&rsquo;,&rsquo;:&lsquo;)进行分隔；否则使用指定的元祖分隔</li>
+<li><code>default</code>：若default为空值，则使用自带的default方法，否则使用指定值</li>
+<li><code>sort_keys</code>：若sort_keys为真，则输出将会按照键进行排序</li>
+</ul></li>
+</ol>
+
+<h4 id="4-2-参数实例">4.2 参数实例</h4>
+
+<ul>
+<li><p>skipkeys参数</p>
+
+<ul>
+<li>如果key不是基本类型（*str、unicode、int、long、float、bool、None*），在dumps的时候会报TypeError错误。</li>
+</ul>
+
+<pre><code class="language-shell">data = {1: 1, 'a': 'a', None: None, (0, 0): 'bad'}
+# （0,0）：'bad'不是基本类型
+json.dumps(data,skipkeys=True)
+'{&quot;a&quot;: &quot;a&quot;, &quot;1&quot;: 1, &quot;null&quot;: null}'
+json.dumps(data)
+TypeError: keys must be a string
+</code></pre></li>
+
+<li><p>ensure_ascii参数</p>
+
+<ul>
+<li>所有的非ascii字符在输出时都会被转义为<code>\uxxxx</code>的序列，返回的对象是一个只由ascii字符组成的str类型。</li>
+</ul>
+
+<pre><code class="language-shell">data = {u'游': u'戏', u'运': u'维'}
+json.dumps(data)
+'{&quot;\\u6e38&quot;: &quot;\\u620f&quot;, &quot;\\u8fd0&quot;: &quot;\\u7ef4&quot;}'
+json.dumps(data,ensure_ascii=False)
+u'{&quot;\u6e38&quot;: &quot;\u620f&quot;, &quot;\u8fd0&quot;: &quot;\u7ef4&quot;}'
+print json.dumps(data)
+{&quot;\u6e38&quot;: &quot;\u620f&quot;, &quot;\u8fd0&quot;: &quot;\u7ef4&quot;}
+print json.dumps(data,ensure_ascii=False)
+{&quot;游&quot;: &quot;戏&quot;, &quot;运&quot;: &quot;维&quot;}
+</code></pre></li>
+
+<li><p>indent参数</p>
+
+<ul>
+<li>设置对json进行pretty-printed的缩进空格数</li>
+</ul>
+
+<pre><code class="language-shell">data = {'游': '戏', '运': '维'}
+print json.dumps(data,ensure_ascii=False,indent=0)
+{
+&quot;游&quot;: &quot;戏&quot;,
+&quot;运&quot;: &quot;维&quot;
+}
+print json.dumps(data,ensure_ascii=False,indent=4)
+{
+    &quot;游&quot;: &quot;戏&quot;,
+    &quot;运&quot;: &quot;维&quot;
+}
+</code></pre></li>
+
+<li><p>separators参数</p>
+
+<ul>
+<li>默认值是(&lsquo;,&rsquo;,&rsquo;:&lsquo;)，第一个元素为item的分隔符，第二个是key和value的分隔符。</li>
+<li><code>separators=(',',':')</code>是用来去掉json中的空格来压缩json</li>
+</ul>
+
+<pre><code class="language-shell">print json.dumps(data,ensure_ascii=False)
+{&quot;游&quot;: &quot;戏&quot;, &quot;运&quot;: &quot;维&quot;}
+# json压缩空格
+print json.dumps(data,ensure_ascii=False,separators=(',',':'))
+{&quot;游&quot;:&quot;戏&quot;,&quot;运&quot;:&quot;维&quot;}
+# 替换分隔符
+print json.dumps(data,ensure_ascii=False,separators=('-','+'))
+{&quot;游&quot;+&quot;戏&quot;-&quot;运&quot;+&quot;维&quot;}
+</code></pre></li>
+
+<li><p>sort_key参数</p>
+
+<ul>
+<li>默认是false，不进行排序操作</li>
+</ul>
+
+<pre><code class="language-shell">data = {'q': 1, 'w': 2, 'e': 3, 'r': 4}
+# 默认不排序
+print json.dumps(data, ensure_ascii=False, sort_keys=False)
+{&quot;q&quot;: 1, &quot;r&quot;: 4, &quot;e&quot;: 3, &quot;w&quot;: 2}
+# 排序
+print json.dumps(data, ensure_ascii=False, sort_keys=True)
+{&quot;e&quot;: 3, &quot;q&quot;: 1, &quot;r&quot;: 4, &quot;w&quot;: 2}
+</code></pre></li>
+
+<li><p>命令行格式化显示json模块<code>json.tool</code></p>
+
+<pre><code class="language-shell">cat data.json
+{&quot;游&quot;: &quot;戏&quot;, &quot;运&quot;: &quot;维&quot;}
+cat data.json | python -m json.tool
+{
+    &quot;\u4e2d&quot;: &quot;\u534e&quot;,
+    &quot;\u7231&quot;: &quot;\u6211&quot;
+}
+</code></pre></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>五、JSON &lt;&ndash;转换&ndash;&gt; Python</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th>JSON</th>
+<th>Python</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>object（对象）</td>
+<td>dict（字典）</td>
+</tr>
+
+<tr>
+<td>array（数组）</td>
+<td>list（列表）</td>
+</tr>
+
+<tr>
+<td>string（字符串）</td>
+<td>str（字符串）</td>
+</tr>
+
+<tr>
+<td>number（int）</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>number（real）</td>
+<td>float</td>
+</tr>
+
+<tr>
+<td>true</td>
+<td>True</td>
+</tr>
+
+<tr>
+<td>false</td>
+<td>False</td>
+</tr>
+
+<tr>
+<td>null</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>七、JSON &ndash;&gt; Python</p>
+</blockquote>
+
+<h4 id="6-1-基本语法参数">6.1 基本语法参数</h4>
+
+<ul>
+<li><code>JSON</code>库中的<code>load</code>以及<code>loads</code>函数来进行JSON解码。</li>
+<li><code>load</code>和<code>loads</code>各项参数含义基本一致，唯一的区别在于<code>load</code>函数用于解码<code>JSON文件流</code>，而<code>loads</code>用于解码<code>JSON字符串</code></li>
+</ul>
+
+<h4 id="6-2-load语法">6.2 load语法</h4>
+
+<pre><code class="language-shell">json.load(fp, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
+</code></pre>
+
+<h4 id="6-3-loads语法">6.3 loads语法</h4>
+
+<pre><code class="language-shell">json.loads(s, encoding=None, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
+</code></pre>
+
+<h4 id="6-4-参数详解">6.4 参数详解</h4>
+
+<ul>
+<li><code>fp</code>：指定文件流</li>
+<li><code>s</code>；指定字符串</li>
+<li><code>encoding</code>：指定字符串编码</li>
+<li><code>cls</code>：若cls为空值，则使用JSONEncoder；否则使用指定子类进行编码</li>
+<li><code>object_hook</code>：若object_hook为空值，对象则返回解码器dict；否则使用自定义类型返回</li>
+<li><code>parse_float</code>：若parse_float为空，则JSON浮点数转换为浮点数；否则转换成指定类型</li>
+<li><code>parse_int</code>：若parse_int为空，则JSON整数转换为整数；否则转换为指定类型</li>
+<li><code>parse_constant</code>：若parse_constant为空，则不会处理非法输入；否则抛出异常</li>
+<li><code>object_pairs_hook</code>：若object_pairs_hook为空值，则数组返回解码器dict；否则使用自定义类型返回</li>
+</ul>
+
+<h4 id="6-5-参考实例">6.5 参考实例</h4>
+
+<pre><code class="language-shell">import json
+json.loads('[&quot;foo&quot;, {&quot;bar&quot;:[&quot;baz&quot;, null, 1.0, 2]}]')
+['foo', {'bar': ['baz', None, 1.0, 2]}]
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20JSON%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonjson%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonjson%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonjson%2f&amp;description=Python%20JSON%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonjson%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/19/pythonfileinput/">
+          <section class="post">
+              <h2>Python FileInput模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/19/pythonos/">
+          <section class="post">
+              <h2>Python OS模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

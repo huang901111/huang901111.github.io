@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="NetHogs Trickle Command"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="NetHogs Trickle Command &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/15/nethogs/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-15T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="linux" />
+    
+    
+
+    <title>NetHogs Trickle Command &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Linux 查看进程流量与限速工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/15/nethogs/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "NetHogs Trickle Command",
+    "name": "NetHogs Trickle Command",
+    "wordCount":  148 ,
+    "timeRequired": "PT1M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/15/nethogs/",
+    "datePublished": "2017-07-15T00:00Z",
+    "dateModified": "2017-07-15T00:00Z",
+    
+    "keywords": "linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/15/nethogs/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">NetHogs Trickle Command</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-15T00:00:00Z">
+            Jul 15, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Linux 查看进程流量与限速工具</font></left> </p>
+
+<blockquote>
+<p>NetHogs命令</p>
+</blockquote>
+
+<ul>
+<li>NetHogs是一个小型的net top工具。</li>
+<li>不像大多数工具那样拖慢每个协议或者是每个子网的速度，而是按照了进程进行带宽分组。</li>
+<li>NetHogs不需要依赖载入某个特殊的内核模块。</li>
+<li>如果发生了网络阻塞，可以启动NetHogs看到哪个PID造成这种状况。</li>
+<li>简单来说，可以通过NetHogs查看Linux下进程的流量</li>
+</ul>
+
+<blockquote>
+<p>1.1 安装依赖包</p>
+</blockquote>
+
+<pre><code class="language-shell">  yum -y install libpcap libpcap-devel
+</code></pre>
+
+<blockquote>
+<p>1.2 安装NetHogs工具</p>
+</blockquote>
+
+<pre><code class="language-shell">  git clone https://github.com/raboof/nethogs
+  cd nethogs
+  make &amp;&amp; make install &amp;&amp; hash -r
+</code></pre>
+
+<blockquote>
+<p>1.3 NetHogs实例</p>
+</blockquote>
+
+<ul>
+<li>设置每5秒刷新一次</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs -d 5
+</code></pre>
+
+<ul>
+<li>监控eth0网络带宽</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs eth0
+</code></pre>
+
+<ul>
+<li>同时监控eth0和eth1网络带宽</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs eth0 eth1
+</code></pre>
+
+<ul>
+<li>指定网络带宽输出格式</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs -v 1 -d 5
+  # -v 指定网络带宽输出格式，默认值为0
+  # 0 = KB/s, 1 = total KB, 2 = total B, 3 = total MB
+</code></pre>
+
+<ul>
+<li>指定以发送流量排序输出</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs -s -d 5
+</code></pre>
+
+<ul>
+<li>检查nethogs工具版本</li>
+</ul>
+
+<pre><code class="language-shell">  nethogs -V
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Trickle命令</p>
+</blockquote>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/56C0D095F648B3C89189D60A8094225B.png" alt="Snip20161121_80.png" /></p>
+
+<ul>
+<li>Trickle是一款带宽控制供给，用来限制如Firefox，FTP,SSH以及其他使用网络带宽的程序的带宽。</li>
+
+<li><p>Trickle可以让你基于单个应用程序来控制网络流量速率，而不是仅仅针对单个用户。</p></li>
+
+<li><p>补充：</p>
+
+<ul>
+<li><p>Trickle通过控制socket数据读写量来控制和限制应用的上传/下载速度。</p></li>
+
+<li><p><font color=red>注意</font>:Trickle不能用于限制使用UDP协议的应用的带宽，它只可用于TCP连接，并且不能对所有的TCP有效，它只对使用Glibc动态库的应用有效。</p></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>1.1 安装Trickle工具</p>
+</blockquote>
+
+<ul>
+<li>epel源安装</li>
+</ul>
+
+<pre><code class="language-shell">  yum -y install trickle 
+</code></pre>
+
+<blockquote>
+<p>1.2 检查命令是否能以trickle限制</p>
+</blockquote>
+
+<pre><code class="language-shell">  ldd $(which rsync) | grep libc.so
+  # 出现以下内容表示之处
+  libc.so.6 =&gt; /lib64/libc.so.6 (0x00000031ec000000)
+</code></pre>
+
+<blockquote>
+<p>1.3 基本用法</p>
+</blockquote>
+
+<ul>
+<li><p>选项</p>
+
+<ul>
+<li>-V：查看trickle工具的版本</li>
+<li>-d：限制下载速度</li>
+<li>-u：限制上传速度</li>
+<li>-s：在独立模式下独立运行</li>
+<li>-n：指定trickled socket名称保存文件。默认为/tmp/.trickled.sock
+<br /></li>
+</ul></li>
+
+<li><p>用法一：限制wget下载速度</p></li>
+</ul>
+
+<pre><code class="language-shell">  trickle -s -d 100 wget &quot;http://www.centoscn.com/plus/download.php?open=2&amp;id=7341&amp;uhash=899beee900c0a763e4402ab8&quot;
+  ......
+  0% [                                       ] 1,128,268   99.8K/s  eta 1h 41m
+</code></pre>
+
+<ul>
+<li>用法二：限制scp推送速度</li>
+</ul>
+
+<pre><code class="language-shell">  /usr/bin/trickle -s -d 50 scp -P61618 root@192.168.8.73:/data/backup/tmp/mc-curl-7.46.0-1.el6.x86_64.rpm ./
+</code></pre>
+
+<ul>
+<li>用法三：限制rsync推送速度</li>
+</ul>
+
+<pre><code class="language-shell">  /usr/bin/trickle -s -d 50 rsync -avPe &quot;ssh -p61618&quot; root@192.168.8.73:/data/backup/tmp/mc-curl-7.46.0-1.el6.x86_64.rpm ./
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=NetHogs%20Trickle%20Command&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f15%2fnethogs%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f15%2fnethogs%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f15%2fnethogs%2f&amp;description=NetHogs%20Trickle%20Command"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f15%2fnethogs%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/16/shellstr/">
+          <section class="post">
+              <h2>Shell字符串处理</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/14/cdncheck/">
+          <section class="post">
+              <h2>判断CDN文件与源文件是否一致</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

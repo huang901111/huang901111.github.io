@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="kcpTun网络加速"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="kcpTun网络加速 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/21/kcptun/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-21T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="network" />
+    
+    
+
+    <title>kcpTun网络加速 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款采用KCP协议提升30%~40%网络服务质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/21/kcptun/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "kcpTun网络加速",
+    "name": "kcpTun网络加速",
+    "wordCount":  346 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/21/kcptun/",
+    "datePublished": "2017-07-21T00:00Z",
+    "dateModified": "2017-07-21T00:00Z",
+    
+    "keywords": "network",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/21/kcptun/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">kcpTun网络加速</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-21T00:00:00Z">
+            Jul 21, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/network/">#network</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一款采用KCP协议提升30%~40%网络服务质量工具</font></left> </p>
+
+<blockquote>
+<p>一、KCP 介绍</p>
+</blockquote>
+
+<p><code>KCP</code> 是一个快速可靠协议，能以比TCP浪费10%-20%的带宽的代价，换取平均延时降低30%-40%,且最大延迟降低三倍的传输效果。</p>
+
+<h4 id="1-技术特性">1. 技术特性</h4>
+
+<ul>
+<li><p><strong>KCP与TCP对比</strong></p>
+
+<ul>
+<li>TCP 是为了流量设计的（每秒内可以传输多少KB的数据），讲究的是充分利用带宽。</li>
+<li><code>KCP</code> 是为了流速设计的（单个数据包从一端发送到一端需要多少时间），以10%-20%带宽浪费的代价换取了比TCP快30%-40%的传输速度。</li>
+<li>TCP 信道是一条流速很慢，但每秒流量很大的大运河，而KCP是水流喘急的小激流
+<br />
+<br /></li>
+</ul></li>
+
+<li><p><strong>RTO翻倍 vs 不翻倍</strong></p>
+
+<ul>
+<li>TCP 超时计算是RTOx2，这样连续丢三次包就变成RTOx8了，而KCP启动快速模式后不是x2.只是x1.5，提高传输速度</li>
+<li>RTO：指灾难发生后，从IT系统宕机导致业务停顿之时开始，到IT系统恢复至可以支持各部门运作、恢复运营时，两点之间的时间段
+<br /></li>
+</ul></li>
+
+<li><p><strong>选择性重传 vs 全部重传</strong></p>
+
+<ul>
+<li>TCP 丢包时全部重传从丢的那个包开始以后的数据，KCP是选择性重传，只重传真正丢失的数据包</li>
+</ul></li>
+
+<li><p><strong>快速重传</strong></p>
+
+<ul>
+<li>发送端发送了1，2，3，4，5几个包，然后收到远端的ACK：1，3，4，5，当收到ACK3时，KCP知道2被跳过1次，收到ACK4时，知道2被跳过了2次，此时可以认为2号丢失，不用等超时，直接重传2号包，大大改善了丢包时的传输速度
+<br /></li>
+</ul></li>
+
+<li><p><strong>延迟ACK vs 非延迟ACK</strong></p>
+
+<ul>
+<li>TCP为了充分利用带宽，延迟发送ACK（NODELAY都没用），这样超时计算会算出较大RTT时间，延长了丢包时的判断过程。KCP的ACK是否延迟发送可以调节。
+<br /></li>
+</ul></li>
+
+<li><p><strong>UNA vs ACK+UNA</strong></p>
+
+<ul>
+<li>ARQ模型响应有两种，UNA（此编号前所有包已收到，如TCP）和ACK（该编号包已收到），光用UNA将导致全部重传，光用ACK则丢失成本太高，以往协议都是二选其一，而 KCP协议中，除去单独的 ACK包外，所有包都有UNA信息</li>
+</ul></li>
+
+<li><p><strong>非退让流控</strong></p>
+
+<ul>
+<li>KCP正常模式同TCP一样使用公平退让法则，即发送窗口大小由：发送缓存大小、接收端剩余接收缓存大小、丢包退让及慢启动这四要素决定。但传送及时性要求很高的小数据时，可选择通过配置跳过后两步，仅用前两项来控制发送频率。以牺牲部分公平性及带宽利用率之代价，换取了开着BT都能流畅传输的效果。</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、KCPTUN 网络加速</p>
+</blockquote>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/02C4D6364AE9684AAF9B9F65240B51A7.png" alt="Snip20161112_171.png" /></p>
+
+<p><strong>openvz类vps目前有效的加速方案：kcptun、finalspeed、net_speeder</strong></p>
+
+<h4 id="2-1-kcptun-介绍">2.1 KCPTUN 介绍</h4>
+
+<ul>
+<li><code>KCPTUN</code> 是一个非常简单和快速的，基于KCP协议的UDP隧道，它可以将TCP流转换为KCP+UDP流，而KCP协议是一个快速可靠协议，能以比TCP浪费10%-20%的带宽的代价，换取平均速度提高30%-40%，且最大延迟降低三倍的传输速度效果</li>
+<li><code>KCPTUN</code> 是KCP协议的一个简单应用，可以用于任何TCP网络程序的传输承载，以提高网络流畅度，降低掉线情况。</li>
+</ul>
+
+<h4 id="2-2-kcptun-工作原理">2.2 KCPTUN 工作原理</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/D144D1F51A5C21D41283D7E413659A93.png" alt="Snip20161112_172.png" /></p>
+
+<h4 id="2-3-kcptun-server-安装">2.3 KCPTUN-server 安装</h4>
+
+<ul>
+<li><p><strong>可利用网上github脚本一键安装</strong></p>
+
+<ul>
+<li><a href="https://raw.githubusercontent.com/kuoruan/kcptun_installer/master/kcptun.sh">kcptun-server安装脚本</a></li>
+</ul>
+
+<pre><code>wget --no-check-certificate https://raw.githubusercontent.com/kuoruan/kcptun_installer/master/kcptun.sh
+chmod +x kcptun.sh
+./kcptun.sh
+</code></pre></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>三、手动部署KCPTUN-server</p>
+</blockquote>
+
+<ul>
+<li>生成kcptun配置文件</li>
+</ul>
+
+<pre><code class="language-shell">vim /usr/share/kcptun/server-config.json
+
+{
+    &quot;listen&quot;: &quot;:29900&quot;, # 设置KCPTUN服务端口
+    &quot;target&quot;: &quot;127.0.0.1:8381&quot;, # 设置目标机器使用KCPTUN加速的端口
+    &quot;key&quot;: &quot;mMxJN3mJ73XU3DC&quot;, # 设置KCPTUN认证密码
+    &quot;crypt&quot;: &quot;aes-128&quot;, # 设置KCPTUN认证方式
+    &quot;mode&quot;: &quot;fast2&quot;, # 设置加速模式
+    &quot;mtu&quot;: 1400, # 设置UDP数据包的MTU(最大传输单元)值
+    &quot;sndwnd&quot;: 2048, # 设置发送窗口大小
+    &quot;rcvwnd&quot;: 2048, # 设置接收窗口大小
+    &quot;datashard&quot;: 10, # 设置前后纠错datashard
+    &quot;parityshard&quot;: 3, # 设置前向纠错 parityshard
+    &quot;dscp&quot;: 0, # 设置差分服务代码点(DSCP)
+    &quot;nocomp&quot;: false, # 设置是否禁用数据压缩
+    &quot;acknodelay&quot;: false, # 设置是否启用 acknodelay 模式
+    &quot;nodelay&quot;: 0, # 设置是否启用 nodelay 模式
+    &quot;interval&quot;: 20, # 设置协议内部工作的 interval
+    &quot;resend&quot;: 2, # 设置启用快速重传模式(resend)
+    &quot;nc&quot;: 1, # 设置是否关闭流控
+    &quot;sockbuf&quot;: 4194304, # 设置设置 UDP 收发缓冲区大小(sockbuf)
+    &quot;keepalive&quot;: 10 # 设置 Keepalive 的间隔时间
+}
+</code></pre>
+
+<ul>
+<li><p>安装软件依赖包</p>
+
+<ul>
+<li>安装工具包</li>
+</ul>
+
+<pre><code class="language-shell">yum makecache
+yum update -y ca-certificates
+yum install -y curl wget python-setuptools tar
+    ```
+    
+-  安装Json 解析工具
+
+[Json 解析工具](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64)
+
+```shell
+wget --no-check-certificate -O /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+chmod +x /usr/bin/jq
+</code></pre>
+
+<ul>
+<li>安装supervisor管理工具
+<br /></li>
+</ul>
+
+<pre><code class="language-shell"># 判断机器是否存在supervisor配置文件夹
+[ -d /etc/supervisor/conf.d/ ] || mkdir -p /etc/supervisor/conf.d/
+# 判断是否存在supervisord命令
+[ command -v echo_supervisord_conf] 
+# 设置supervisord服务自启
+chkconfig --add supervisord
+chkconfig supervisord on
+</code></pre></li>
+
+<li><p><strong>下载KCPTUN服务端安装包</strong></p>
+
+<ul>
+<li><a href="https://github.com/xtaci/kcptun/releases/download/v20161111/kcptun-linux-amd64-20161111.tar.gz">KCPTUN 服务端安装包</a></li>
+</ul>
+
+<pre><code class="language-shell"># 创建kcptun安装目录
+mkdir -p /usr/local/kcptun
+wget https://github.com/xtaci/kcptun/releases/download/v20161111/kcptun-linux-amd64-20161111.tar.gz
+tar -zxf kcptun-linux-amd64-20161111.tar.gz -C /usr/local/kcptun/
+chmod +x server_linux_amd64
+</code></pre></li>
+
+<li><p><strong>添加supervisor管理配置文件</strong></p></li>
+</ul>
+
+<pre><code class="language-shell"># 修改supervisor配置加载文件夹
+vim /etc/supervisor/supervisord.conf
+
+[include]
+files = /etc/supervisor/conf.d/*.conf
+
+# 添加kcptun服务用户与用户组
+groupadd nogroup
+useradd -s /sbin/nologin -g nogroup nobody
+
+# 添加KCPTUN配置文件到supervisor中
+cat &gt; /etc/supervisor/conf.d/kcptun.cnf &lt;&lt;EOF
+[program:kcptun]
+user=nobody
+directory=/usr/share/kcptun
+command=/usr/share/kcptun/server_linux_amd64 -c &quot;/usr/share/kcptun/server-config.json&quot;
+process_name=%(program_name)s
+autostart=true
+redirect_stderr=true
+stdout_logfile=/var/log/kcptun/server.log
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=0
+EOF
+</code></pre>
+
+<ul>
+<li><strong>下载KCPTUN服务初始化脚本</strong></li>
+</ul>
+
+<pre><code class="language-shell">init_file_url=&quot;https://raw.githubusercontent.com/kuoruan/kcptun_installer/master/redhat.init&quot;
+wget --no-check-certificate -O /etc/init.d/supervisord ${init_file_url} 
+</code></pre>
+
+<ul>
+<li><strong>配置防火墙</strong></li>
+</ul>
+
+<pre><code class="language-shell">iptables -D INPUT -p udp --dport 29900 -j ACCEPT &gt;/dev/null 2&gt;&amp;1 # KCPTUN服务监听29900端口
+sysctl -p
+service iptables restart
+</code></pre>
+
+<ul>
+<li><strong>KCPTUN服务由supervisor管理</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 重启KCPTUN服务
+/etc/init.d/supervisord restart kcptun
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、KCPTUN-client部署</p>
+</blockquote>
+
+<ul>
+<li><p><a href="https://github.com/xtaci/kcptun/releases/download/v20161111/kcptun-darwin-amd64-20161111.tar.gz">KCPTUN-client下载</a></p></li>
+
+<li><p><strong>KCPTUN-client 安装使用</strong></p></li>
+</ul>
+
+<pre><code class="language-shell">tar -zxf kcptun-darwin-amd64-20161111.tar.gz
+mv client_linux_amd64 /usr/local/bin/
+chmod +x client_linux_amd64
+# 客户端开启kcptun
+nohup /usr/local/bin/client_linux_amd64 -r 45.78.24.26:8381 -l :29900 -mode fast2 -key mMxJN3mJ73XU3DC -mtu 1400 -sndwnd 2048 -rcvwnd 2048 -crypt aes-128
+# 客户端启用的配置需要与服务端配置一致方可使用
+jobs # 查看运行的进程
+jb %n # 结束后台运行的进程
+tail -f nohup.out # 跟踪进程运行的输出
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=kcpTun%e7%bd%91%e7%bb%9c%e5%8a%a0%e9%80%9f&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f21%2fkcptun%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f21%2fkcptun%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f21%2fkcptun%2f&amp;description=kcpTun%e7%bd%91%e7%bb%9c%e5%8a%a0%e9%80%9f"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f21%2fkcptun%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/21/glusterfs/">
+          <section class="post">
+              <h2>GlusterFS概述</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/20/sendmail/">
+          <section class="post">
+              <h2>Linux 发送邮件</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

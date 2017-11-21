@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Shell字符串处理"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Shell字符串处理 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/16/shellstr/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-16T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="linux" />
+    
+    
+
+    <title>Shell字符串处理 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;对字符串实现截取、查找、替换、遍历、懒惰与贪婪匹配等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/16/shellstr/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Shell字符串处理",
+    "name": "Shell字符串处理",
+    "wordCount":  362 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/16/shellstr/",
+    "datePublished": "2017-07-16T00:00Z",
+    "dateModified": "2017-07-16T00:00Z",
+    
+    "keywords": "linux",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/16/shellstr/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Shell字符串处理</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-16T00:00:00Z">
+            Jul 16, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/linux/">#linux</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>对字符串实现截取、查找、替换、遍历、懒惰与贪婪匹配等</font></left> </p>
+
+<blockquote>
+<p>一、计算字符串长度</p>
+</blockquote>
+
+<ul>
+<li>方法1</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abcd&quot;
+expr length ${str}
+4 
+</code></pre>
+
+<ul>
+<li>方法2</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abcd&quot;
+echo ${#str}
+4
+</code></pre>
+
+<ul>
+<li>方法3</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abcd&quot;
+expr &quot;${str}&quot; : &quot;.*&quot;
+4
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>二、查找字符位置</p>
+</blockquote>
+
+<pre><code class="language-shell">str=&quot;abcd&quot;
+expr index ${str} &quot;a&quot;
+1
+### 查找字符a在字符串str中的位置
+expr index ${str} &quot;p&quot;
+0
+### 返回结果为0即不存在字符
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、根据位置选取字符串</p>
+</blockquote>
+
+<pre><code class="language-shell">str=&quot;Hello World Students&quot;
+expr substr ${str} 1 3
+Hel
+### 选取字符串str中位置从1到3的字符
+expr substr ${str} 2 20
+ello World Students
+expr substr ${str} 2 30
+ello World Students
+### 选取字符串str中从位置2开始，以上形式必须指定结束位置，否则报错，若结束位置超出总位置数，也只输出到末尾
+echo ${str:2}
+llo World Students
+### 从字符串str位置2开始选取到末尾
+# echo ${str:2:4}
+llo
+### 从字符串str位置2到位置4选取
+echo ${str:(-4):3}
+ent
+### 从字符串str倒数第4个位置向右取3个字符
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、截取字符串</p>
+</blockquote>
+
+<ul>
+<li>4.1 ${str#} 前缀删除(懒惰模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abbc,def,ghi,abcjkl&quot;
+echo ${str#a*c}
+,def,ghi,abcjkl
+### 一个#号表示懒惰模式匹配'
+### 从左往右匹配第一个模式为[a*c]的字符串，输出剩余字符串
+</code></pre>
+
+<ul>
+<li>4.2 ${str##} 前缀删除(贪婪模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abbc,def,ghi,abcjkl&quot;
+echo ${str##a*c}
+jkl
+### 两个##号表示贪婪模式匹配
+### 从左往右匹配最长模式为[a*c]的字符串，输出剩余字符串
+</code></pre>
+
+<ul>
+<li>4.3 特殊使用</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abbc,def,ghi,abcjkl&quot;
+echo ${str#&quot;a*c&quot;}
+abbc,def,ghi,abcjkl
+echo ${str##&quot;a*c&quot;}
+abbc,def,ghi,abcjkl
+### 从左往右匹配“a*c“的字符串，若不存在匹配则输出原字符串
+echo ${str#d*f}
+abbc,def,ghi,abcjkl
+### 由于str字符串第一个字符不为d，则不存在匹配则输出原字符串
+echo ${str#*d*f}
+,ghi,abcjkl
+echo ${str#*a*c*}
+,def,ghi,abcjkl
+### 从左往右匹配第一个模式为[*a*c*]的字符串，输出剩下字符串
+echo ${str##*a*c*}
+输出为空值
+### 从左往右匹配最长模式为[*a*c*]的字符串，由于整行匹配，所以输出剩余字符串为空值
+</code></pre>
+
+<ul>
+<li>4.4 ${str%} 后缀删除(懒惰模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abbc,def,ghi,abcjkl&quot;
+echo ${str%a*l}
+abbc,def,ghi,
+### 从右往左匹配第一个模式为[a*l]的字符串，输出剩余字符串
+</code></pre>
+
+<ul>
+<li>4.5 ${str%%} 后缀删除(贪婪模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;abbc,def,ghi,abcjkl&quot;
+echo ${str%a*l}
+输出为空值
+### 从右往左匹配最长模式为[a*l]的字符串，由于匹配整个字符串，输出空值
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>五、字符串替换</p>
+</blockquote>
+
+<ul>
+<li>5.1 ${str/xxx/xxx} 最少替换 (懒惰模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;apple, tree, apple tree&quot;
+echo ${str/apple/Apple}
+Apple, tree, apple tree
+### 从左往右将匹配到的第一个apple字符串替换成Apple字符串
+</code></pre>
+
+<ul>
+<li>5.2 ${str//xxx/xxx} 全局替换 (贪婪模式)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;apple, tree, apple tree&quot;
+echo ${str//apple/Apple}
+Apple, tree, Apple tree
+### 从左往右将匹配到的全部apple字符串替换成Apple字符串
+</code></pre>
+
+<ul>
+<li>5.3 ${str/#xxx/xxx} 匹配以xxx开头的字符串替换 (懒惰替换)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;apple, tree, apple tree&quot;
+echo ${str/#apple/Apple}
+Apple, tree, apple tree
+### 从左往右匹配第一个模式以apple开头的字符串替换成Apple字符串
+echo ${str/#tree/TREE}
+apple, tree, apple tree
+### 从左往右匹配第一个模式以tree开头的字符串替换成TREE字符串，由于不存在匹配则输出整个字符串
+</code></pre>
+
+<ul>
+<li>5.4 ${str/%xxx/xxx} 匹配以xxx结尾的字符串替换 (懒惰替换)</li>
+</ul>
+
+<pre><code class="language-shell">str=&quot;apple, tree, apple tree&quot;
+echo ${str/%apple/Apple}
+apple, tree, apple tree
+### 从右往左匹配第一个模式以apple结尾的字符串替换成Apple字符串，由于不存在匹配则输出整个字符串
+echo ${str/%tree/TREE}
+apple, tree, apple TREE
+### 匹配以tree结尾的字符串替换成TREE字符串
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>六、${parameter:-word} 用法</p>
+</blockquote>
+
+<ul>
+<li>如果parameter为null或者未设置，则word作为parameter的缺省值，但不替换原值</li>
+</ul>
+
+<pre><code class="language-shell">test=	# 定义空变量test
+echo ${test}
+ 
+echo ${test:-word}
+word
+### 若test的值为null或未设置，则word为test的缺省值
+echo ${test}
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>七、${parameter:=word} 用法</p>
+</blockquote>
+
+<ul>
+<li>如果parameter为null或者未设置，则word作为parameter的缺省值，并将word值赋予parameter</li>
+</ul>
+
+<pre><code class="language-shell">test=	# 定义空变量test
+echo ${test}
+
+echo ${test:=word}
+word
+echo ${test}
+word
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>八、${parameter:?word} 用法</p>
+</blockquote>
+
+<ul>
+<li>如果parameter为null或者未设置，则word作为错误信息输出</li>
+</ul>
+
+<pre><code class="language-shell">test=	# 定义空变量test
+echo ${test}
+
+echo ${test:?word}
+zsh: test: word
+echo $?
+1
+test=&quot;value&quot;
+echo ${test}
+value
+echo ${test:?word}
+value
+### 若parameter值不为空，则输出原值
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>九、${parameter:+word} 用法</p>
+</blockquote>
+
+<ul>
+<li>如果parameter值不为空，则word作为parameter值输出，但不替换原值</li>
+</ul>
+
+<pre><code class="language-shell">test=&quot;value&quot;
+echo ${test:+word}
+word
+echo ${test}
+value
+test=
+echo ${test}
+
+echo ${test:+word}
+ 
+### 若parameter值为空，则输出空值
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>十、${!var@} 与 ${!var*}  用法</p>
+</blockquote>
+
+<ul>
+<li>输出以var开始命令的变量</li>
+</ul>
+
+<pre><code class="language-shell">var1=1
+var2=2
+echo ${!var@}
+var1 var2
+echo ${!var*}
+var1 var2
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>十一、${!arr[@]} 与 ${!arr[*]} 用法</p>
+</blockquote>
+
+<ul>
+<li>返回数组中数值的下标值</li>
+</ul>
+
+<pre><code class="language-shell">arr=(1 2 3 4)
+for i in ${!arr[@]}
+do
+ 	echo ${i}
+done
+0 1 2 3 
+for i in ${!arr[*]}
+do
+	echo ${i}
+done
+0 1 2 3
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>十二、${!str} 用法</p>
+</blockquote>
+
+<ul>
+<li>返回str变量的值，多用于变量传递的值获取</li>
+</ul>
+
+<pre><code class="language-shell">str=value
+value=123
+echo ${!str}
+123
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Shell%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%84%e7%90%86&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fshellstr%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fshellstr%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fshellstr%2f&amp;description=Shell%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%84%e7%90%86"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fshellstr%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/16/pythonbase/">
+          <section class="post">
+              <h2>Python语法技巧</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/15/nethogs/">
+          <section class="post">
+              <h2>NetHogs Trickle Command</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

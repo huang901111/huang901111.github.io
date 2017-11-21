@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python OS模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python OS模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/19/pythonos/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-19T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python OS模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;OS模块是Python内置标准库，提供了一种可移植的方法使用操作系统的功能
+&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/19/pythonos/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python OS模块",
+    "name": "Python OS模块",
+    "wordCount":  481 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/19/pythonos/",
+    "datePublished": "2017-07-19T00:00Z",
+    "dateModified": "2017-07-19T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/19/pythonos/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python OS模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-19T00:00:00Z">
+            Jul 19, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>OS模块是Python内置标准库，提供了一种可移植的方法使用操作系统的功能
+</font></left> </p>
+
+<blockquote>
+<p>一、OS模块介绍</p>
+</blockquote>
+
+<ul>
+<li>Python的标准库中的<code>os</code>模块包含普遍的操作系统功能。</li>
+<li>这个模块的作用主要是提供与平台无关的功能。</li>
+</ul>
+
+<h4 id="注意">注意:</h4>
+
+<p>有些特定的功能还是使用特定的模块</p>
+
+<ol>
+<li>只想读或者写文件，请使用<code>open()</code></li>
+<li>想操作文件路径，请使用<code>os.path</code>模块</li>
+<li>想在命令行中，读入所有文件的所有行，请使用<code>fileinput</code>模块</li>
+<li>创建临时文件和文件夹，请使用<code>tempfile</code>模块</li>
+<li>更高级的文件和文件夹处理，请使用<code>shutil</code>模块</li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>二、OS模块常用函数</p>
+</blockquote>
+
+<h4 id="2-1-工作路径的管理">2.1 工作路径的管理</h4>
+
+<ul>
+<li><code>os.name</code>：输出字符串指示正在使用的平台</li>
+</ul>
+
+<pre><code class="language-shell">os.name
+'posix'
+# 如果是windows则用'nt'表示，对于linux/unix用户，则使用'posix'表示
+</code></pre>
+
+<ul>
+<li><code>os.environ</code>：一个mapping对象表示环境</li>
+</ul>
+
+<pre><code class="language-shell">os.environ['HOME']
+# 表示你自己home文件夹的路径
+# 这个mapping对象在os模块第一次导入时被创建，一般在python启动时，作为size.py处理过程的一部分。
+# 在这一次之后改变environment不影响os.environ，除非直接修改os.environ
+</code></pre>
+
+<ul>
+<li><code>os.getcwd()/os.path.abspath('.')</code>：当前完整的工作路径</li>
+</ul>
+
+<pre><code class="language-shell">os.getcwd()
+/root
+# 或者：
+os.path.abspath('.')
+'/root'
+</code></pre>
+
+<ul>
+<li><code>os.listdir('.')</code>：列出目前文件夹中所有的文件和文件夹</li>
+</ul>
+
+<pre><code class="language-shell">os.listdir('.')
+['nagios',
+ '.cache',
+ '.oh-my-zsh',
+ '.muttrc',
+ 'memcached_stop',
+ 'mysql_stop',
+ '.pki']
+</code></pre>
+
+<ul>
+<li><code>os.chdir()</code>：更改工作路径</li>
+</ul>
+
+<pre><code class="language-shell"># 返回到上一级路径
+os.chair('../')
+print os.getcwd()
+/
+</code></pre>
+
+<ul>
+<li><code>os.path.exists()</code>：检验给出的路径是否真正地存在</li>
+</ul>
+
+<pre><code class="language-shell"># 判断/data/backup/tmp文件夹是否存在
+os.path.exists('/data/backup/tmp')
+</code></pre>
+
+<ul>
+<li><code>os.curdir()</code>：返回当前目录</li>
+</ul>
+
+<pre><code class="language-shell">os.curdir
+.
+</code></pre>
+
+<ul>
+<li><code>os.pardir()</code>：返回当前目录的父目录字符串名</li>
+</ul>
+
+<pre><code class="language-shell">os.pardir
+..
+</code></pre>
+
+<ul>
+<li><code>os.path.dirname(os.path.realpath(__file__))</code>：返回脚本当前完整路径</li>
+</ul>
+
+<pre><code class="language-shell">folder_here = os.path.dirname(os.path.realpath(__file__))
+</code></pre>
+
+<ul>
+<li><code>os.devnull</code>：空设备的文件路径</li>
+</ul>
+
+<pre><code class="language-shell">os.devnull
+# 例如POSIX上的'/dev/null'，也可以通过os.path
+</code></pre>
+
+<ul>
+<li><code>os.chown()</code>：改变path的所属用户和组</li>
+</ul>
+
+<pre><code class="language-shell">os.chown('/data/backup/tmp',100,-1)
+</code></pre>
+
+<ul>
+<li><code>os.chroot()</code>：改变根目录为path</li>
+</ul>
+
+<pre><code class="language-shell">os.chroot('/')
+</code></pre>
+
+<ul>
+<li><code>os.link(source,link_name)</code>：做软链接</li>
+</ul>
+
+<pre><code class="language-shell">os.link('/data/backup/tmp','/data/tmp')
+</code></pre>
+
+<ul>
+<li><code>os.sep</code>：系统分割路径字符</li>
+</ul>
+
+<pre><code class="language-shell">print os.sep
+/
+</code></pre>
+
+<ul>
+<li><code>os.extsep</code>：分割基本文件名和扩展名的字符</li>
+</ul>
+
+<pre><code class="language-shell">print os.extsep
+.
+</code></pre>
+
+<ul>
+<li><code>os.pathsep</code>：分割搜索路径的字符</li>
+</ul>
+
+<pre><code class="language-shell">print os.pathsep
+:
+</code></pre>
+
+<h4 id="2-2-文件夹和文件的操作">2.2 文件夹和文件的操作</h4>
+
+<ul>
+<li><strong>创建与删除文件夹</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 生成多层递归目录
+os.makedirs('dirname1/dirname2')
+# 生成单级目录
+os.mkdir('dirname')
+# 若目录为空，则删除，并递归到上一级目录，如若也为空，则删除，依次类推
+os.removedirs('dirname1')
+# 删除单级空目录，若目录不为空则无法删除，报错；
+os.rmdir('dirname')
+# 使用相对路径
+os.mkdir('./dir2')
+</code></pre>
+
+<ul>
+<li><strong>检验是否存在dir</strong></li>
+</ul>
+
+<pre><code class="language-shell">import os
+if os.path.exists('./dir'):
+    pass
+else:
+    os.mkdir('./dir')
+</code></pre>
+
+<ul>
+<li><strong>检验是否存在文件夹dir2或文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">import os
+if os.path.isdir('./dir2'): # os.path.isfile('./dir2')
+    pass
+else:
+    os.mkdir('./dir2')
+</code></pre>
+
+<ul>
+<li><strong>文件处理</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 删除文件
+os.remove()
+# 重命名文件/目录
+os.rename(&quot;oldname&quot;,&quot;newname&quot;)
+# 获取文件/目录信息
+os.stat('path/filename')
+# 创建符号链接，源需要绝对路径
+os.symlink('path/filename','ln_filename')
+# 修改时间属性
+os.utime()
+</code></pre>
+
+<ul>
+<li><strong>权限管理</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 改变文件权限模式
+os.chmod('pathfile',os.W_OK)
+</code></pre>
+
+<ul>
+<li><strong>列出文件夹内所有文件</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 方法1：使用os.listdir
+import os
+for filename in os.listdir(r'/data/backup'):
+    print filename    
+# 方法2：使用glob模块，可以设置文件过滤
+import glob
+for filename in glob.glob(r'/data/backup/*.txt'):
+    print filename
+# 方法3：通过os.path.walk递归遍历，可以访问子文件夹
+import os.path
+def processDirectory( args, dirname, filenames):
+    print 'Directory',dirname
+    for filename in filenames:
+        print 'File',filename
+# 方法4：非递归
+import os
+for dirpath,dirnames,filenames in os.walk('/data/backup'):
+    print 'Directory',dirpath
+for filename in filenames:
+    print 'File',filename
+def read_all_file():
+    for dirpath.dirnames,input_file_names in os.walk('temp'):
+        print dirpath,dirnames,input_file_names
+    retuen input_file_names
+</code></pre>
+
+<ul>
+<li><strong>其他操作</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 通过打开的文件描述符改变当前工作目录
+os.fchadir(fd)
+# 像stat()，但没有符号链接
+os.lstat(path)
+# 创建命名管道
+os.mkfifo(path,[,mode])
+# 递归重命名文件夹或者文件
+os.renames(old,new)
+# 执行一个stat()系统调用在给定的path上
+os.stat(path)
+</code></pre>
+
+<h4 id="2-3-进程id">2.3 进程ID</h4>
+
+<ul>
+<li><strong>获取进程ID</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 返回进程控制终端的文件名
+os.ctermid()
+# 返回当前进程有效的group id
+os.gategid()
+# 返回当前进程支持的groups的id列表
+os.getgroups()
+# 返回进程控制终端登录用户的名字
+os.getlogin()
+# 返回当前进程的id
+os.getpid()
+# 返回当前父进程的id
+os.getppid()
+# 返回当前进程用户的id
+os.getuid()
+</code></pre>
+
+<ul>
+<li><strong>设置进程ID</strong></li>
+</ul>
+
+<pre><code class="language-shell"># 设置当前进程有效用户的id
+os.seteuid(euid)
+# 设置当前进程组的id
+os.setgid(gid)
+# 设置当前进程支持的groups id列表
+os.setgroups(groups)
+# 设置当前process当前和有效的用户id
+os.setreuid(ruid,euid)
+# 设置当前process当前和有效的组id
+os.setregid(rgid,egid)
+# 调用system的getsid()
+os.getsid(pid)
+# 调用system的setsid()
+os.setsid()
+# 设置当前user id
+os.setuid(uid)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、从指定路径获取文件名</p>
+</blockquote>
+
+<ul>
+<li><code>os.path.basename(path)</code>：返回文件名</li>
+</ul>
+
+<pre><code class="language-shell">os.path.basename('/data/backup/tmp/test.txt')
+'test.txt'
+</code></pre>
+
+<ul>
+<li><code>os.path.dirname(path)</code>：返回文件路径</li>
+</ul>
+
+<pre><code class="language-shell"># 方法1
+os.path.dirname('/data/backupt/tmp/test.txt')
+'/data/backup/tmp'
+# 方法2
+os.path.split('/data/backup/tmp/test.txt')
+('/data/backup/tmp', 'test.txt')
+os.path.split('/data/backup/tmp/test.txt')[1]
+'test.txt'
+</code></pre>
+
+<ul>
+<li><code>os.path.splitext()</code>：分离文件名和扩展名</li>
+</ul>
+
+<pre><code class="language-shell">os.path.splitext('a.txt')
+('a','.txt')
+</code></pre>
+
+<ul>
+<li><code>os.path.join()</code>：连接目录与文件名或目录</li>
+</ul>
+
+<pre><code class="language-shell">os.path.join('/data/backup/tmp','test.txt')
+'/data/backup/tmp/test.txt'
+</code></pre>
+
+<ul>
+<li><code>os.path.getsize(filename)</code>：获取文件大小</li>
+</ul>
+
+<pre><code class="language-shell">os.path.getsize(name)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、调用linux命令</p>
+</blockquote>
+
+<ul>
+<li><p><code>os.system('bash command')</code>：运行shell命令，直接显示</p></li>
+
+<li><p><code>os.popen('bash command')</code>：运行shell命令。生成对象，可赋给变量，再用read读取</p></li>
+</ul>
+
+<pre><code class="language-shell">import os
+os.system('ls /data/backup/tmp')
+LS = os.popen('ls /data/backup/tmp')
+LS.readlines()
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>五、os.walk与os.path.walk差异</p>
+</blockquote>
+
+<p>Python OS模块提供了<code>os.walk()</code>和<code>os.path.walk()</code>两种方法可以遍历文件树。
+前者可以列出文件树中的文件和文件夹，后者可以对每个遍历的文件和文件夹调动visit访问函数。</p>
+
+<h4 id="5-1-os-walk">5.1 os.walk（）</h4>
+
+<ul>
+<li><p>函数声明：os.walk(top,topdown=True,onerror=True)</p>
+
+<ol>
+<li><code>top</code>：表示需要遍历的顶级目录的路径</li>
+<li><code>topdown</code>：默认值是&rsquo;True&rsquo;，表示首先返回顶级目录下的文件，然后再遍历子目录中的文件。当topdown的值为&rsquo;False&rsquo;时，表示先遍历子目录中的文件，然后再返回顶级目录下的文件。</li>
+<li><code>onerror</code>：默认值是&rsquo;None&rsquo;，表示忽略文件遍历时的错误，如果不为空，则提供一个自定义函数提示错误信息后继续遍历或抛出异常终止遍历。</li>
+</ol></li>
+
+<li><p>返回值</p>
+
+<ul>
+<li>函数返回一个元组，含有三个元素。这三个元素分别是：每次遍历的路径名、路径下子目录列表、目录下文件列表</li>
+</ul></li>
+
+<li><p>使用实例（删除某个文件夹）</p></li>
+</ul>
+
+<pre><code class="language-shell">import os
+
+def Remove_dir(top_dir):
+    if os.path.exists(top_dir) == False:
+        print 'Not Exists'
+        retunrn 1
+    if os.path.isdir(top_dir) == False:
+        print 'Not A Dir'
+        return 1
+    for dir_path,subpaths,files in os.walk(top_file,False):
+        for file in files:
+            file_path = os.path.join(dir_path,file)
+            print 'delete file:%s' %file_path
+            os.remove(file_path)
+        print 'delete dir:%s' %dir_path
+        os.rmdir(dir_path)
+
+# 调用
+Remove_dir(r'/data/backup/tmp/test')
+</code></pre>
+
+<h4 id="5-2-os-path-walk">5.2 os.path.walk()</h4>
+
+<ul>
+<li><p>函数声明：os.path.walk(top,func,arg)</p>
+
+<ol>
+<li><code>top</code>：表示需要遍历的目录路径</li>
+<li><code>func</code>：表示回调函数，即对遍历路径进行处理的函数。所谓<code>回调函数</code>，是作为某个函数的参数使用。当某个时间触发时，程序将调用定义好的回调函数处理某个任务。</li>
+<li><code>arg</code>：传递给回调函数的元组，为回调函数提供处理参数，arg可以为空。回调函数的第1个参数就是用来接收这个传入的元组的。</li>
+</ol></li>
+
+<li><p>过程</p>
+
+<ol>
+<li>以<code>top</code>为根的目录树种的每一个目录（包含top自身，如果它是一个目录），以参数（arg,dirname,names）调用回调函数funct。</li>
+<li>参数<code>dirname</code>指定访问的目录，参数<code>names</code>列出在目录中的文件（从os.listdir(dirname)中得到）。</li>
+<li>回调函数可以修改names，改变dirname下面访问目录的设置。</li>
+</ol></li>
+
+<li><p>使用实例（遍历文件夹下所有文件）</p></li>
+</ul>
+
+<pre><code class="language-shell">import os
+def find_file(arg,dirname,files):
+    for file in files:
+        file_path = os.path.join(dirname,file)
+        if os.path.isfile(file_path):
+            print 'find file:%s' % file_path
+
+# 调用
+os.path.walk(r'/data/backup/tmp',find_file,())
+</code></pre>
+
+<h4 id="5-3-区别">5.3 区别</h4>
+
+<ul>
+<li>os.path.walk()与os.walk()产生的文件名列表并不相同。</li>
+<li>os.walk()产生目录树下的目录路径和文件路径</li>
+<li>os.path.walk()产生文件路径（是子目录与文件的混合列表）</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>六、os.path.dirname(<strong>file</strong>)用法</p>
+</blockquote>
+
+<ul>
+<li><p>用途</p>
+
+<p>os.path.dirname()：用来获取文件的路径</p></li>
+
+<li><p>os.path.dirname(file)用途</p>
+
+<ul>
+<li>os.path.dirname(<strong>file</strong>)是用来获取python文件运行时的路径</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">import os
+print os.path.dirname(__file__)
+
+# 以绝对路径运行python脚本时，输出脚本所在的完整路径
+python /data/python/test.py
+/data/python
+
+# 以相对路径运行时，输出其相对路径或者空目录
+python ./python/test.py
+python
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>七、os.path介绍</p>
+</blockquote>
+
+<h4 id="7-1-介绍">7.1 介绍</h4>
+
+<ul>
+<li><code>os.path</code>模块主要用于对文件路径的操作</li>
+<li>如：路径分割和拼接、取文件相对路径和绝对路径、获取文件路径对应文件的时间属性、判断文件路径对应文件的类型、判断两个路径是否为同一个文件等。</li>
+</ul>
+
+<h4 id="7-2-使用实例">7.2 使用实例</h4>
+
+<ul>
+<li><strong>返回指定文件的绝对路径名</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.abspath(path)
+</code></pre>
+
+<ul>
+<li><p><strong>将路径名分割成两部分（head,tail）</strong></p>
+
+<ul>
+<li><code>tail</code>是路径名称path中的最后一部分且不包含斜线（路径风格符），<code>head</code>是<code>tail</code>之前的所有部分。</li>
+<li>如果<code>path</code>以斜线结尾则<code>tail</code>为空字符串，如果<code>path</code>中没有斜线则<code>head</code>为空字符串。</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.split(path)
+</code></pre>
+
+<ul>
+<li><strong>将路径名称分割成两部分（root、ext），ext表示后缀名</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.splitext(path)
+</code></pre>
+
+<ul>
+<li><p><strong>返回path路径名的基名称</strong></p>
+
+<ul>
+<li>实际上就是os.path.split(path)函数返回值的第二个值</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.basename(path)
+</code></pre>
+
+<ul>
+<li><p><strong>返回path路径名得目录名称</strong></p>
+
+<ul>
+<li>实际上就是os.path.split(path)函数返回值的第一个值</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.dirname(path)
+</code></pre>
+
+<ul>
+<li><p><strong>将一个或者多个路径中的非空值通过路径分隔符拼接成一个新的路径名称</strong></p>
+
+<ul>
+<li>如果在拼接过程中遇到结对路径将对其前面的部分并从绝对路径重新开始拼接</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.join(path,*paths)
+</code></pre>
+
+<ul>
+<li><strong>指定的文件路径存在则返回True，否则返回false</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.exists(path)
+</code></pre>
+
+<ul>
+<li><p><strong>返回该路径对应文件的最近一次<code>访问时间</code>的时间戳。</strong></p>
+
+<ul>
+<li>如果文件不存在或者无法访问，则引发OSError</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.getattime(path)
+</code></pre>
+
+<ul>
+<li><p><strong>返回该路径对应文件的最后<code>修改时间</code>的时间戳</strong></p>
+
+<ul>
+<li>如果文件不存在或者无法访问，则引发OSError</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.getmtime(path)
+</code></pre>
+
+<ul>
+<li><p><strong>返回该路径对应文件的ctime</strong></p>
+
+<ul>
+<li>如果文件不存在或者无法访问，则引发OSError</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">os.path.getctime(path)
+</code></pre>
+
+<ul>
+<li><strong>返回指定路径对应文件的字节大小</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.getsize(path)
+</code></pre>
+
+<ul>
+<li><strong>返回path相对于start的相对路径</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.relpath(path,start=os.curdir)
+</code></pre>
+
+<ul>
+<li><strong>获取path的真实路径、绝对路径（可用于获取软链接文件指向的文件路径）</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.realpath(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path是否是绝对路径，是则返回True，否则返回False</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.isabs(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path是否是一个文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.isfile(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path是否是一个目录</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.isdir(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path是否是一个链接</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.islink(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path是否是一个挂载点</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.ismount(path)
+</code></pre>
+
+<ul>
+<li><strong>判断path1和path2是否为同一个文件</strong></li>
+</ul>
+
+<pre><code class="language-shell">os.path.samefile(path1,path2)
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20OS%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonos%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonos%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonos%2f&amp;description=Python%20OS%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f19%2fpythonos%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/19/pythonjson/">
+          <section class="post">
+              <h2>Python JSON模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/18/frp/">
+          <section class="post">
+              <h2>FRP 工具</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

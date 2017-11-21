@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python语法技巧"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python语法技巧 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/16/pythonbase/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-16T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="python" />
+    
+    
+
+    <title>Python语法技巧 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;列举Python列表、元组、集合、字典相关操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/16/pythonbase/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python语法技巧",
+    "name": "Python语法技巧",
+    "wordCount":  2373 ,
+    "timeRequired": "PT12M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/16/pythonbase/",
+    "datePublished": "2017-07-16T00:00Z",
+    "dateModified": "2017-07-16T00:00Z",
+    
+    "keywords": "python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/16/pythonbase/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python语法技巧</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-16T00:00:00Z">
+            Jul 16, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>列举Python列表、元组、集合、字典相关操作</font></left> </p>
+
+<blockquote>
+<p>List （列表）</p>
+</blockquote>
+
+<h4 id="1-1-list-append-方法">1.1 List.append 方法</h4>
+
+<ul>
+<li>append 在结尾增加1个元素</li>
+</ul>
+
+<pre><code class="language-python">  append(...)
+   |      L.append(object对象) -- append object to end
+</code></pre>
+
+<ul>
+<li><p>定义测试列表为L1 = [1,2,3]</p></li>
+
+<li><p>将不同类型值加入列表</p></li>
+</ul>
+
+<pre><code class="language-python">  ### 将整数型数值加入列表
+  num = 1
+  L1.append(num)
+  ['1', '2', 3]
+
+  ### 将字符串、列表、元组、字典加入列表
+  str = &quot;test&quot;
+  L1.append(str)
+  ['1', '2', 3, 'test']
+
+  L2 = ['A','B','C']
+  L1.append(L2)
+  ['1', '2', 3, 'test', ['A', 'B', 'C']]
+
+  T1 = ('ONE','TWO')
+  L1.append(T1)
+  ['1', '2', 3, 'test', ['A', 'B', 'C'], ('ONE', 'TWO')]
+
+  D1 = {'key':'value'}
+  L1.append(D1)
+  ['1', '2', 3, 'test', ['A', 'B', 'C'], ('ONE', 'TWO'), {'key':'value'}]
+</code></pre>
+
+<h4 id="1-2-list-extend-方法">1.2 List.extend 方法</h4>
+
+<ul>
+<li><p>extend 在结尾增加一个list(必须是一个可迭代对象)</p>
+
+<pre><code class="language-python">extend(...)
+	L.extend(iterable) -- extend list by appending elements from the 	 iterable
+</code></pre></li>
+
+<li><p>定义测试列表为L1 = [1,2,3]</p></li>
+
+<li><p>将不同类型值加入列表</p></li>
+</ul>
+
+<pre><code class="language-python">  ### 将整数型数值加入列表
+  num = 4 
+  L1.extend(num)
+  ---------------------------------------------------------------------------
+  TypeError                                 Traceback (most recent call last)
+  &lt;ipython-input-3-5d539c6c1664&gt; in &lt;module&gt;()
+  ----&gt; 1 L1.extend(4)
+
+  TypeError: 'int' object is not iterable
+  ### 由于整数型数值并不是可迭代对象（iterable），so报错
+
+  ### 将字符串、列表、元组、字典加入列表
+  str = &quot;4&quot;
+  L1.extend(str)
+  [1, 2, 3, '4']
+  str2 = 'Seacme'
+  L1.extend(str2)
+  [1, 2, 3, 'S', 'e', 'a', 'c', 'm', 'e']
+
+  L2 = ['QQ','WeiXin']
+  L1.extend(L2)
+  [1, 2, 3,'QQ', 'WeiXin']
+
+  T1 = ('Hi','Hello')
+  L1.extend(T1)
+  [1, 2, 3,'Hi', 'Hello']
+
+  D1 = {'Name':'Seacme'}
+  L1.extend(D1)
+  [1, 2, 3, 'Name']
+  ### 注意：List.extend方法只会将字典key值加入List中，与List.append方法存在差异
+</code></pre>
+
+<h4 id="1-3-list-insert-方法">1.3 List.insert 方法</h4>
+
+<ul>
+<li>insert 在指定的index处插入一个元素</li>
+</ul>
+
+<pre><code class="language-python">  insert(...)
+      L.insert(index, object) -- insert object before index
+</code></pre>
+
+<ul>
+<li><p>定义测试列表为L1 = [1,2,3]</p></li>
+
+<li><p>将不同类型值加入列表</p></li>
+</ul>
+
+<pre><code class="language-python">  ### 将整数型数值加入列表
+  num = 4
+  L1.insert(1，num)
+  [1, 4, 2, 3]
+  ### 将整数型数值4加入index（位置）为1的前面（即数值2的前面）
+  L1.insert(-1,num)
+  [1, 2, 4, 3]
+  ### 将整数型数值4加入index（位置）为-1的前面（即数值3的前面）
+
+  ### 将列表、元组、字典加入列表
+  L2 = ['QQ','Weixin'，5]
+  L1.insert(0,L2)
+  [['QQ', 'Weixin', 5], 1, 2, 3]
+
+  T1 = ('Hello','Hi')
+  L1.insert(0,T1)
+  [('Hello', 'Hi'),1, 2, 3]
+
+  D1 = {'Name':'Seacme'}
+  L1.insert(0,D1)
+  [{'Name': 'Seacme'}, 1, 2, 3]
+</code></pre>
+
+<h4 id="1-4-list-remove-方法">1.4 List.remove 方法</h4>
+
+<ul>
+<li>remove 删除指定值的元素</li>
+</ul>
+
+<pre><code class="language-PYTHON">  L.remove(value) -- remove first occurrence of value.
+      Raises ValueError if the value is not present.
+</code></pre>
+
+<ul>
+<li>将不同类型值从列表中删除</li>
+</ul>
+
+<pre><code class="language-python">  ### 将整数型数值从列表中删除
+  L1 = [1,2,3]
+  num = 3
+  L1.remove(num)
+  [1, 2]
+
+  L1 = [1,1,2,3]
+  L1.remove(1)
+  [1, 2, 3]
+  ### List.remove 只会删除第一个出现的
+
+  L1 = [1,2,3]
+  num = '3'
+  L1.remove(num)
+  ---------------------------------------------------------------------------
+  ValueError                                Traceback (most recent call last)
+  &lt;ipython-input-56-b1d5696c7e43&gt; in &lt;module&gt;()
+  ----&gt; 1 L1.remove(num)
+
+  ValueError: list.remove(x): x not in list
+  ### 由于3是字符串类型，在L1列表中不存在，so remove报错，List.remove 必须删除列表中存在的值
+
+  ### 将列表、元组、字典从列表中删除
+  L1 = [1,2,[3,4]]
+  L2 = [3,4]
+  L1.remove(L2)
+  [1, 2]
+
+  ### 将列表中的列表某个值删除
+  L1 = [1,2,[3,4]]
+  L1[2]=L1[2][1]
+  [1, 2, 4]
+
+  L1 = [1,2,(3,4)]
+  T1 = (3,4)
+  L1.remove(T1)
+  [1, 2]
+
+  L1 = [1,2,{'Name':'Seacme'}]
+  D1 = {'Name':'Seacme'}
+  L1.remove(D1)
+  [1, 2]
+
+  ### 将列表中的字典某个值删除
+  L1 = [1,2,{'Name':'Seacme','Age':'26'}]
+  del L1[2]['Age']
+  [1, 2, {'Name': 'Seacme'}]
+</code></pre>
+
+<h4 id="1-5-list-index-方法">1.5 List.index 方法</h4>
+
+<ul>
+<li>index 查找给定值的index（位置）</li>
+</ul>
+
+<pre><code class="language-python">  index(...)
+      L.index(value, [start, [stop]]) -&gt; integer -- return first index of value.
+      Raises ValueError if the value is not present.
+</code></pre>
+
+<ul>
+<li>寻找指定值的位置</li>
+</ul>
+
+<pre><code class="language-python">  ### 寻找数值在列表中的位置
+  L1 = ['h', 'e', 'l', 'l', 'o']
+  L1.index('e')
+  1
+</code></pre>
+
+<ul>
+<li>利用 List.index 实现列表值一一对应（购物车商品与价格）</li>
+</ul>
+
+<pre><code class="language-python">  products = ['Apple','Banana','Bear','Orange']
+  prices = ['10','20','30','40']
+  ### 输出 Apple 价格
+  prices[products.index('Apple')]
+  10
+</code></pre>
+
+<h4 id="1-6-list-pop-方法">1.6 List.pop 方法</h4>
+
+<ul>
+<li>pop 删除且返回列表（list）的最后一个值</li>
+</ul>
+
+<pre><code class="language-python">  pop(...)
+      L.pop([index]) -&gt; item -- remove and return item at index (default last).
+      Raises IndexError if list is empty or index is out of range.
+</code></pre>
+
+<ul>
+<li>定义测试列表为L1 = [1,2,3]</li>
+</ul>
+
+<pre><code class="language-python">  ### 默认删除且返回最后一个值
+  L1.pop()
+  3
+  [1,2]
+
+  ### 删除且返回指定位置的数值
+  L1.pop(1)
+  2
+  [1, 3]
+</code></pre>
+
+<h4 id="1-7-list-count-方法">1.7 List.count 方法</h4>
+
+<ul>
+<li>count 获取给定值在列表（list）重复的个数</li>
+</ul>
+
+<pre><code class="language-python">  count(...)
+      L.count(value) -&gt; integer -- return number of occurrences of value
+</code></pre>
+
+<ul>
+<li>定义测试列表为 L1 = [&lsquo;H&rsquo;,&lsquo;h&rsquo;,(&lsquo;Yes&rsquo;,&lsquo;YES&rsquo;,&lsquo;Yes&rsquo;)]</li>
+</ul>
+
+<pre><code class="language-python">  L1.count('H')
+  1
+  L1.count('Yes')
+  0
+</code></pre>
+
+<h4 id="1-8-list-sort-方法">1.8 List.sort 方法</h4>
+
+<ul>
+<li>sort 列表值进行排序</li>
+</ul>
+
+<pre><code class="language-python">  sort(...)
+      L.sort(cmp=None, key=None, reverse=False) -- stable sort *IN PLACE*;
+      cmp(x, y) -&gt; -1, 0, 1
+</code></pre>
+
+<ul>
+<li>定义测试列表为 L1 = [&lsquo;1&rsquo;,&lsquo;2&rsquo;,3,4,&lsquo;Hello&rsquo;,&lsquo;hello&rsquo;,[&lsquo;1&rsquo;,&lsquo;2&rsquo;],&lsquo;Yes&rsquo;]</li>
+</ul>
+
+<pre><code class="language-python">  L1.sort()
+  [3, 4, ['1', '2'], '1', '2', 'Hello', 'Yes', 'hello']
+  ### 默认采用升序按整数型、字符串、字母大写到小写，此种方法导致L1列表结构发生改变，默认不能根据不同形式排序
+
+  sorted(L1)
+  [3, 4, ['1', '2'], '1', '2', 'Hello', 'Yes', 'hello']
+  print L1
+  ['1', '2', 3, 4, 'Hello', 'hello', ['1', '2'], 'Yes']
+  ### 此种方式主要采用ASCII码从小到大执行排序，优点是：不影响列表自身结构
+</code></pre>
+
+<ul>
+<li>Sorted 排序函数根据不同形式执行排序操作</li>
+</ul>
+
+<pre><code class="language-python">  b = ['aa','BB','bb','zz','CC']
+  sorted(b)
+  ['BB', 'CC', 'aa', 'bb', 'zz']
+  ### 根据ACSII码从小到大排序
+
+  c = ['CCC', 'bb', 'ffff', 'z']
+  sorted(c,key=len)
+  ### 根据列表中的元素长度执行排序
+
+  d =['CCC', 'bb', 'ffff', 'z'] 
+  sorted(d,key = str.lower )
+  ['bb', 'CCC', 'ffff', 'z']
+  ### 将列表中的每个元素都变成小写，再按每个元素中的每个字母的ASCII码从小到大排序
+
+  e = ['abc','b','AAz','ef']
+  def laststr(s):
+      return s[-1]
+  sorted(f,key = laststr)
+  ['b', 'abc', 'ef', 'AAz']
+  ### 以上定义函数laststr，每次传入返回每个元素中的最后一个字母，将获取到值按ASCII码从小到大排序
+
+  f = [{'name':'abc','age':20},{'name':'def','age':30},{'name':'ghi','age':25}]
+  ### 列表中含有字典元素
+  def age(s):
+      return s['age']
+  sorted(f,key = age)
+  [{'age': 20, 'name': 'abc'},
+   {'age': 25, 'name': 'ghi'},
+   {'age': 30, 'name': 'def'}]
+  ### 以上定义函数age，每次传入返回key age对应的value值，按照value值的大小执行排序
+
+  或采用此种方法 “sorted(f,key = lambda x:x['age'])&quot;
+</code></pre>
+
+<h4 id="1-9-list-reverse-方法">1.9 List.reverse 方法</h4>
+
+<ul>
+<li>reverse 将列表执行倒序输出</li>
+</ul>
+
+<pre><code class="language-python">  reverse(...)
+      L.reverse() -- reverse *IN PLACE*
+</code></pre>
+
+<ul>
+<li>定义测试列表为 mylist = [123, &lsquo;xyz&rsquo;, &lsquo;zara&rsquo;, &lsquo;abc&rsquo;, &lsquo;xyz&rsquo;]</li>
+</ul>
+
+<pre><code class="language-python">  mylist.reverse()
+  ['xyz', 'abc', 'zara', 'xyz', 123]
+  ### 列表中的元素根据ASCII码从大到小执行排序，此种方法导致mylist列表发生结构变化
+</code></pre>
+
+<h4 id="注意-list-sort-与-reverse-方法使用误区">注意：List.sort 与 reverse 方法使用误区</h4>
+
+<ul>
+<li>误区：</li>
+</ul>
+
+<pre><code class="language-python">  mylist = ['4','1','7']
+  newlist = mylist.sort()
+  newlist2 = mylist.reverse()
+  print netlist,newlist2
+  None,None
+  ### List 内置函数sort与reverse，是直接操作变量本身，调通函数后，变量本身的结构发生变化，所以不能使用以上方法进行排序
+</code></pre>
+
+<ul>
+<li>准确操作</li>
+</ul>
+
+<pre><code class="language-python">  mylist = ['4','1','7']
+  mylist.sort()
+  newlist = mylist
+  print newlist
+  ['1', '4', '7']
+  ### List 内置函数reverse如同操作
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Lambda 函数</p>
+</blockquote>
+
+<h4 id="2-1-lambda-函数介绍">2.1 Lambda 函数介绍</h4>
+
+<ul>
+<li>Python 中使用 Lambda 来创建匿名函数</li>
+<li>Lambda 的主体是一个表达式，而不是一个代码块，仅仅能在 Lambda 表达式中封装有限的逻辑</li>
+<li>Lambda 函数拥有自己的命名空间，且不能访问自有参数列表之外或全局命名空间里的参数</li>
+</ul>
+
+<h4 id="2-2-lambda-优势">2.2 Lambda 优势</h4>
+
+<ul>
+<li>使用 Lambda 可以省去定义函数的过程，让代码更加精简</li>
+<li>对于一些抽象的，不会在别的地方再复用的函数</li>
+<li>使用 Lambda 能让代码更容易理解</li>
+</ul>
+
+<h4 id="2-3-lamdba-基础使用">2.3 Lamdba 基础使用</h4>
+
+<ul>
+<li>声明 sum 函数求和</li>
+</ul>
+
+<pre><code class="language-python">  def sum(x,y):
+  	return x+y
+  sum(10,20)
+
+  ### 使用 Lambdb 让代码更加简洁
+  sum = lambda x,y:x+y
+  sum
+  &lt;function __main__.&lt;lambda&gt;&gt;
+  ### sum 作为函数表达式使用
+  sum(10,20)
+  或： 
+  sum = (lambda x,y:x+y)(10,20)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Map 函数</p>
+</blockquote>
+
+<ul>
+<li>大多数的for循环可以用map来代替</li>
+<li>map(func,seq) 自动地将函数表达式（func）施加到 seq（可迭代对象）的每一个元素对象，并返回一个列表</li>
+</ul>
+
+<pre><code class="language-python">  map(...)
+      map(function, sequence[, sequence, ...]) -&gt; list
+</code></pre>
+
+<h4 id="3-1-map-函数实例">3.1 Map 函数实例</h4>
+
+<ul>
+<li>将列表a中值的平方加入到列表b中</li>
+</ul>
+
+<pre><code class="language-python">  a = [1,2,3,4]
+  b = []
+
+  ### 简单的for循环
+  for i in a:
+      square = i * i
+      b.append(square)
+      
+  ### 列表解释器
+  b = [i * i for i in a]
+
+  ### Map函数配合Lambda函数
+  b = map(lambda i:i*i,a)
+</code></pre>
+
+<ul>
+<li>获取列表中元组某个值</li>
+</ul>
+
+<pre><code class="language-python">  L1 = [(u'gmain', u'xxx_xxx_xxxx_192.168.8.195', u'192.168.8.195'), (u'gmain', u'xxx_xxx_xxxx_192.168.8.198', u'192.168.8.198')]
+
+  ### 列表解释器
+  IPS = [ i[2] for i in L1]
+
+  ### Map函数配合Lambda函数
+  IPS = map(lambda i:i[2],L1)
+</code></pre>
+
+<ul>
+<li>获取列表中元素的某段值</li>
+</ul>
+
+<pre><code class="language-python">  games = ['xxx_xxx_1220','xxx_xxx_9999','xxx_xxx_8999']
+
+  ### 列表解释器
+  Sids = [ i.split('_')[2] for i in games]
+
+  ### Map函数配合Lambda函数
+  Sids = map(lambda x:x.split('_')[-1],games)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Filter 函数</p>
+</blockquote>
+
+<ul>
+<li><p>Filter 是对一个 seq（可迭代对象）中的每一个元素进行过滤，返回符合条件的那些元素</p></li>
+
+<li><p>Filter(fund,seq) 自动地将函数表达式（func）施加到 seq（可迭代对象）的每一个元素对象，并返回符合条件的列表、元组或者字符串。</p></li>
+</ul>
+
+<pre><code class="language-python">  filter(...)
+      filter(function or None, sequence) -&gt; list, tuple, or string
+</code></pre>
+
+<h4 id="4-1-filter-函数实例">4.1 Filter 函数实例</h4>
+
+<ul>
+<li>获取 List 中的所有奇数</li>
+</ul>
+
+<pre><code class="language-python">  List = [3,5,7,12,18]
+
+  ### Filter函数配合Lambda函数
+  JiShu = filter(lambda x:x%2,List)
+  print JiShu
+  [3, 5, 7]
+
+  ### 列表解释器
+  JiShu = [ i for i in List if i%2]
+  print JiShu
+  [3, 5, 7]
+</code></pre>
+
+<ul>
+<li>获取列表中出现匹配的某字符串</li>
+</ul>
+
+<pre><code class="language-python">  sentence = ['Hi Steven!','Hi David','How are you?']
+
+  ### Filter函数配合Lambda函数
+  partern = filter(lambda x:x.count('Hi'),sentence)
+  print partern
+  ['Hi Steven!', 'Hi David']
+  ### 返回的并不是“Hi“出现的次数，而是返回存在“Hi”的对象元素
+
+  ### 列表解释器
+  partern = [ i for i in sentence if i.count('Hi')]
+  print partern
+  ['Hi Steven!', 'Hi David']
+</code></pre>
+
+<ul>
+<li>获取列表值中符合条件的字符串</li>
+</ul>
+
+<pre><code class="language-python">  games = ['xxx_xxx_1220','xxx_xxx_9999','xxx_xxx_8999']
+
+  ### Filter函数配合Lambda函数
+  sids = filter(lambda x:int(x.split('_')[-1])&gt;8000,games)
+  print sids
+  ['xxx_xxx_9999', 'xxx_xxx_8999']
+  ### 获取sid值比8000大的值
+</code></pre>
+
+<ul>
+<li>误区：</li>
+</ul>
+
+<pre><code class="language-python">  sids = filter(lambda x:x.split('_')[-1]&gt;8000,games)
+  print sids
+  ['xxx_xxx_1220', 'xxx_xxx_9999', 'xxx_xxx_8999']
+  ### 由于列表元素截取到的是字符串，字符串与整数型无法比较，导致出错
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Reduce 函数</p>
+</blockquote>
+
+<ul>
+<li><p>Reduce(func,seq) 是对seq（可迭代对象）中的每个元素进行func操作，每次携带一对（先前的结果以及下一个序列的元素），连续的将现有的结果和下一个值作用在获得的随后的结果上，最后减少我们的序列为一个单一的返回值。</p></li>
+
+<li><p>Reduce(func,seq,starting_value) 如果有starting_value，还可以作为初始值调用</p></li>
+</ul>
+
+<pre><code class="language-python">  reduce(...)
+      reduce(function, sequence[, initial]) -&gt; value
+</code></pre>
+
+<h4 id="5-1-reduce-函数实例">5.1 Reduce 函数实例</h4>
+
+<ul>
+<li>求 List 列表中所有元素的乘积</li>
+</ul>
+
+<pre><code class="language-python">  List = [1,2,3,4,5]
+
+  ### Reduce函数配合Lambda函数
+  chengji = reduce(lambda x,y:x*y,List)
+  24
+  ### 此处lambad函数有两个参数x和y，reduce会将List里面的头两个参数作为x和y，求他们的乘积，然后再把结果与第3个数相乘，以此类推，最后输出乘积结果
+</code></pre>
+
+<ul>
+<li>获取 List 列表中的最大值</li>
+</ul>
+
+<pre><code class="language-python">  List = [1,2,3,4]
+
+  ### Reduce函数配合Lambda函数
+  max = reduce(lambda x,y:x if x&gt;y else y,List)
+  4
+  ### 此处lambda函数有两个参数x和y，reduce会将List里面的头两个参数进行比较，获取前两者比较大值与第3个值进行比较，以此类推，最后输出最大值
+  或
+  max = reduce(max,List)
+  4
+</code></pre>
+
+<ul>
+<li>获取 List 列表中的平方和</li>
+</ul>
+
+<pre><code class="language-python">  List = [1,2,3,4]
+
+  ### Reduce函数配合Lambda函数
+  sum = reduce(lambda x,y:x+y**2,List,0)
+  print sum
+</code></pre>
+
+<ul>
+<li>误区：
+<br /></li>
+</ul>
+
+<pre><code class="language-python">  sum = reduce(lambda x,y:x**2+y**2,List)
+  ### 以上操作会获取到错误的结果，由于平方和的实现形式是列表中数值平方相加
+  ### 以上操作是抽取列表前2个数值进行平方求和，获取到结果平方与第3个值平方相加，以此类推，得出错误的结果
+</code></pre>
+
+<ul>
+<li>列表中的元素为列表，将其组合成1个列表</li>
+</ul>
+
+<pre><code class="language-python">  a = [[1,2],[3,4],[5,6]]
+
+  ### Reduce函数配合Lambda函数
+  b = reduce(lambda x,y:x+y,a)
+  print b
+  [1, 2, 3, 4, 5, 6]
+</code></pre>
+
+<ul>
+<li>统计某字符串出现次数</li>
+</ul>
+
+<pre><code class="language-python">  sentences = ['Mary read a story to Sam and Isla.',
+               'Isla cuddled Sam.',
+               'Sam chortled.']
+               
+  ### Reduce函数配合Lambda函数
+  count = reduce(lambda a,x:a+x.count('Sam'),sentences,0)
+  print count
+  3
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Lambda 、Map、Filter 和 Reduce 函数混合使用</p>
+</blockquote>
+
+<ul>
+<li>求 List 中数值中能被7整除的数的立方和</li>
+</ul>
+
+<pre><code class="language-python">  List = [14,7,26,19,25,74,33,10,35,28]
+
+  ### Lambda函数、Filter函数配合Reduce函数
+  sum = reduce(lambda a,x:a+x**3,filter(lambda x:x%7==0,List),0)
+  print sum
+  67914
+</code></pre>
+
+<ul>
+<li>返回1-100的数中不能被2和13整除的数的平方</li>
+</ul>
+
+<pre><code class="language-python">  List = range(1,100)
+
+  ### Lambda函数、Filter函数配合Map函数
+  newList = map(lambda x:x*x,filter(lambda x:x%2 !=0 and x%13 !=0,List))
+  print newlist
+  [1, 9, 25, 49, 81, 121, 225, 289, 361, 441, 529, 625, 729, 841, 961, 1089, 1225, 1369, 1681, 1849, 2025, 2209, 2401, 2601, 2809, 3025, 3249, 3481, 3721, 3969, 4489, 4761, 5041, 5329, 5625, 5929, 6241, 6561, 6889, 7225, 7569, 7921, 8649, 9025, 9409, 9801]
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Zip 函数</p>
+</blockquote>
+
+<h4 id="7-1-zip-函数介绍">7.1 Zip 函数介绍</h4>
+
+<ul>
+<li>Zip() 是Python 中的一个内建函数，它接受一系列可迭代的对象作为参数，将对象中的元素打包成一个个tuple（元组），然后返回由这些tuples组成的list（列表）。</li>
+<li>注意：Zip()函数生成新的序列的长度以参数中最短的序列为准。</li>
+</ul>
+
+<h4 id="7-2-zip-函数实例">7.2 Zip 函数实例</h4>
+
+<ul>
+<li>新的序列的长度以参数中最短的序列为准</li>
+</ul>
+
+<pre><code class="language-python">  a = ['1','2']
+  b = ['x','y','z']
+  zip(a,b)
+  [('1', 'x'), ('2', 'y')]
+</code></pre>
+
+<ul>
+<li>(*)操作符与zip函数配合可以实现与zip相反的功能，即将合并的序列拆分为多个tuple（元组）</li>
+</ul>
+
+<pre><code class="language-python">  a = ['1','2','3']
+  b = ['x','y','z']
+  zip(*zip(a,b))
+  [('1', '2', '3'), ('x', 'y', 'z')]
+</code></pre>
+
+<ul>
+<li>两个清单组成购物列表</li>
+</ul>
+
+<pre><code class="language-python">  products = ['Apple','Orange','Banana']
+  prices = [14,15,16]
+
+  ### 利用Zip函数组成购物列表
+  ShopList = zip(products,prices)
+  print ShopList
+  [('Apple', 14), ('Orange', 15), ('Banana', 16)]
+</code></pre>
+
+<ul>
+<li>二维矩阵变换（矩阵的行列互换）</li>
+</ul>
+
+<pre><code class="language-python">  a = [[1,2,3],[4,5,6],[7,8,9]]
+
+  ### 利用Zip函数将矩阵的行列互换
+  b = zip(*a)
+  print b 
+  [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+
+  b = map(list,zip(*a))
+  print b
+  [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+
+  ### 利用列表解释器
+  b = [[ row[col] for row in a ] for col in range(len(a[0]))]
+  print b
+  [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+</code></pre>
+
+<ul>
+<li>合并列表相邻的列表项</li>
+</ul>
+
+<pre><code class="language-python">  a = [1,2,3,4,5,6,7]
+  zip(*([iter(a)] * 2))
+  [(1, 2), (3, 4), (5, 6)]
+  ### 以上按每2个元素组成tuple（元组），由多个tuples组成列表
+  zip(*([iter(a)] * 3))
+  [(1, 2, 3), (4, 5, 6)]
+  ### 以上按每3个元素组成tuple（元组），由多个tuples组成列表
+</code></pre>
+
+<ul>
+<li>使用Zip()函数反转字典</li>
+</ul>
+
+<pre><code class="language-python">  m = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+  zip(m.values(),m.keys())
+  [(1, 'a'), (3, 'c'), (2, 'b'), (4, 'd')]
+  m_new = dict(zip(m.values(),m.keys()))
+  print m_new
+  {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Any All 函数</p>
+</blockquote>
+
+<ul>
+<li>all ：当 seq （可迭代对象）为空（empty）或 seq （可迭代对象）中的所有元素都为真（True）时则返回True，否则返回False。</li>
+</ul>
+
+<pre><code class="language-python">  all(...)
+      all(iterable) -&gt; bool
+      Return True if bool(x) is True for all values x in the iterable.
+</code></pre>
+
+<ul>
+<li>any : 当 seq （可迭代对象）不为空且任意一个元素为真（True）则返回True，否则返回False。</li>
+</ul>
+
+<pre><code class="language-python">  any(...)
+      any(iterable) -&gt; bool 
+      Return True if bool(x) is True for any x in the iterable.
+</code></pre>
+
+<ul>
+<li>此两个函数的参数都是 iterable（可迭代对象），也就是 list 、tuple 或者 dict。</li>
+</ul>
+
+<h4 id="8-1-any-all-函数实例">8.1 Any All 函数实例</h4>
+
+<ul>
+<li>All() 函数简单使用</li>
+</ul>
+
+<pre><code class="language-python">  all(['a',(2,4),1,True])
+  True
+  all(['a',(),1,True])
+  False
+  ### 由于列表中存在空的tuple元组
+  all(['a',(2,4),0,True])
+  False
+  ### 由于列表中存在0值
+  all(['a',(2,4),3,False])
+  False
+  ### 由于列表中存在false值
+  all([])
+  True
+  all(())
+  True
+  all({})
+  True
+  all('')
+  True
+  ### 以上证明可迭代对象（字符串、列表、元组和字典）为空，返回结果都为True
+</code></pre>
+
+<ul>
+<li>Any() 函数简单使用</li>
+</ul>
+
+<pre><code class="language-python">  any(['a',(2,4),3,True])
+  True
+  any('a',(),3,False)
+  True
+  ### 由于any()函数只需存在1个True则返回True，由于'a'与 3 都为True，则返回True值
+  any(())
+  False
+  any({})
+  False
+  any('')
+  False
+  any(())
+  False
+  ### 以上证明可迭代对象（字符串、列表、元组和字典）为空，则返回值都为False
+</code></pre>
+
+<ul>
+<li>判断 List 列表中所有元素都大于100</li>
+</ul>
+
+<pre><code class="language-python">  List = ['1','105','200','2']
+  print all([int(x) &gt; 100 for x in List])
+  False
+  ### 利用all()函数判断所有元素是否大于100，所有元素都为True则为True，由于数值1小于100，则结果为False'
+</code></pre>
+
+<ul>
+<li>误区：</li>
+</ul>
+
+<pre><code class="language-python">  print all([x &gt; 100 for x in List]) 
+  True
+  ### 由于列表中的值为字符串，必须转变成整数型进行比较
+</code></pre>
+
+<ul>
+<li>判断 List 列表中是否存在某值</li>
+</ul>
+
+<pre><code class="language-python">  List = ['Seacme','Tom','Lucy','Tom']
+  print any(x=='Seacme' for x in List)
+  True
+  ### 利用any()函数判断List中是否存在某值
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Enumerate 函数</p>
+</blockquote>
+
+<ul>
+<li>Enumerate() 函数特别适用于一个for循环时，当我们需要计数和元素时可以使用这个函数 。</li>
+</ul>
+
+<pre><code class="language-python">  enumerate(iterable[, start]) -&gt; iterator for index, value of iterable
+  Return an enumerate object.
+</code></pre>
+
+<ul>
+<li>Enumerate() 函数提供简练的语法处理一个 iterator（可迭代对象），并在处理过程中取得迭代器每个项目的索引。</li>
+<li>Enumerate() 函数的第一个参数表示的数组，必须与第二个参数表示的索引对应</li>
+<li>如果enumerat(data_list,start=i)，若i的值为3，则value的值还是从data_list[0]开始，而不是从data_list[3]开始。</li>
+</ul>
+
+<h4 id="9-1-enumerate-函数实例">9.1 Enumerate 函数实例</h4>
+
+<ul>
+<li>获取 列表中元素值和索引</li>
+</ul>
+
+<pre><code class="language-python">  ### 利用for循环遍历列表
+  i = 0
+  List = ['one','two','three']
+  for element in range(len(List))：
+    seq = '%d:%s' %(i,List[element])
+    i = i + 1
+    print seq
+  0:one
+  1:two
+  2:three 
+        
+  ### 利用enumerate函数遍历列表
+  List = ['one','two','three']
+  for x,y in enumerate(List):
+    print '%d:%s' %（x，y）
+  0:one
+  1:two
+  2:three
+        
+  ### 显而言之，enumerate函数让代码更加简直，省去定义计数用的临时变量
+</code></pre>
+
+<ul>
+<li>指定 enumerate() 函数中的start值，更改索引开始值</li>
+</ul>
+
+<pre><code class="language-python">  ### 利用enumerate函数遍历列表
+  List = ['one','two','three']
+  for x,y in enumerate(List,2):
+    print '%d:%s' %（x，y）
+  2:one
+  3:two
+  4:three
+</code></pre>
+
+<ul>
+<li>找出str字符串中H出现的位置</li>
+</ul>
+
+<pre><code class="language-python">  str = &quot;HelloHi&quot;
+  print ['%d:%s' %(x,y) for x,y in enumerate(str) if y=='H']
+  ['0:H', '5:H']
+  ### 快速搜出字符串中&quot;H&quot;的位置
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Tuple （元组）</p>
+</blockquote>
+
+<ul>
+<li>Tuple (元组) 与列表类似，不同之处在于元组的元素不能修改</li>
+<li>Tuple (元组) 使用小括号</li>
+<li>日常操作：访问、修改、删除、len()、max()、min()与tuple(seq)</li>
+</ul>
+
+<h4 id="10-1-tuple-元组-实例">10.1 Tuple (元组) 实例</h4>
+
+<ul>
+<li>访问 Tuple (元组)</li>
+</ul>
+
+<pre><code class="language-python">  T1 = ('one','two','three')
+  print T1[0]
+  one
+  print T1[1:3]
+  ('two', 'three')
+</code></pre>
+
+<ul>
+<li>修改 Tuple (元组)</li>
+</ul>
+
+<pre><code class="language-python">  T1 = (1,2)
+  T2 = (3,4)
+  T3 = T1+T2
+  print T3
+  (1, 2, 3, 4)
+  ### 注意：元组本身是不可以修改
+</code></pre>
+
+<ul>
+<li>删除 Tuple (元组)</li>
+</ul>
+
+<pre><code class="language-python">  T3 = (1,2,3,4)
+  del T3
+  print T3
+</code></pre>
+
+<ul>
+<li>计算 Tuple (元组) 元素个数</li>
+</ul>
+
+<pre><code class="language-python">  T3 = (1,2,3,4)
+  print len(T3)
+  4
+</code></pre>
+
+<ul>
+<li>获取列表中的最大与最小值</li>
+</ul>
+
+<pre><code class="language-PYTHON">  T3 = (1,2,3,4)
+  print max(T3)
+  4
+  print min(T3)
+  1
+</code></pre>
+
+<ul>
+<li>将列表转换为元组</li>
+</ul>
+
+<pre><code class="language-python">  L1 = ['one','two','three']
+  print tuple(L1)
+  ('one', 'two', 'three')
+</code></pre>
+
+<ul>
+<li>元组遍历操作</li>
+</ul>
+
+<pre><code class="language-python">  sign = ((123,'21212'),(234,'21213131'))
+  for i in sign:
+    print i[0],i[1]
+  123 21212
+  234 21213131
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Set（可变集合）</p>
+</blockquote>
+
+<ul>
+<li>Python 中  <code>集合对象</code>  是一组无序排列的可哈希的值，包含两种类型：可变集合（set）和不可变 集合（frozenset）。</li>
+<li><code>集合对象</code>  的元素是没有重复，而且是无序的。</li>
+<li>作为一个无序的集合，<code>集合对象</code>  不记录元素位置或者插入点。</li>
+<li><code>集合对象</code>  支持 union（联合）、intersection（交集）、difference（差集）和sysmmetric difference （对称差集）等数学运算。</li>
+<li>可变集合（set）特有方法：add、remove、discard、pop、clear等方法。</li>
+</ul>
+
+<pre><code class="language-python">  class set(object)
+     |  set() -&gt; new empty set object
+     |  set(iterable) -&gt; new set object
+</code></pre>
+
+<h4 id="11-1-set-可变集合-实例">11.1 Set（可变集合）实例</h4>
+
+<ul>
+<li>字符串/列表/元组/字典 &mdash;&gt; 集合</li>
+</ul>
+
+<pre><code class="language-python">  ### 字符串 ---&gt; 集合
+  str = 'hello'
+  s = set(str)
+  {'e', 'h', 'l', 'o'}
+  type(s)
+  set
+  ### 以上可以看出集合对象的元素是无序的
+
+  ### 列表 ---&gt; 集合
+  List = [1,2,3,1,2,4]
+  s = set(List)
+  {1, 2, 3, 4}
+  type(s)
+  set
+  ### 以上可以看出集合对象的元素是没有重复的
+
+  ### 元组 ---&gt; 集合
+  T1 = （1,2,3,4）
+  s = set(T1)
+  {1, 2, 3, 4}
+  type(s)
+  set
+
+  ### 字典 ---&gt; 集合
+  D1 = {'Name':'Seacme','Age':26}
+  s = set(D1)
+  {'Age', 'Name'}
+  type(s)
+  set
+</code></pre>
+
+<ul>
+<li>可变集合（set）常用操作</li>
+</ul>
+
+<pre><code class="language-python">  ### 成员关系：判断集合中是否存在
+  str = 'hello'
+  s = set(str)
+  {'e', 'h', 'l', 'o'}
+  'h' in s
+  True
+  'h' not in s
+  False
+
+  ### 可变集合新增删除操作
+  List = [1,2,3,4]
+  s = set(List)
+  {1, 2, 3, 4}
+  s.add(4)
+  {1, 2, 3, 4}
+  ### 若添加的元素已经存在于set中，add()不会报错，但是不会加进去
+  s.add(5)
+  {1, 2, 3, 4, 5}
+  s.remove(5)
+  {1, 2, 3, 4}
+
+  ### 可变集合更新操作
+  a = set([1,2,3])
+  b = set([2,3,4])
+  a.update(b)
+  a
+  {1, 2, 3, 4}
+  ### 将集合b加入到集合a中，并修改集合a的值
+
+  ### 判断集中是否存在某元素，若有则删除
+  a = set([1,2,3])
+  a.discard(3)
+  a
+  {1, 2}
+
+  ### 删除并且返回集合中不确定的元素，若集合已空引发KeyError
+  a = set([1,2])
+  a.pop()
+  1
+  a.pop()
+  2
+  a.pop()
+  ---------------------------------------------------------------------------
+  KeyError                                  Traceback (most recent call last)
+  &lt;ipython-input-49-353a8f813834&gt; in &lt;module&gt;()
+  ----&gt; 1 a.pop()
+
+  KeyError: 'pop from an empty set'
+        
+  ### 删除集合中的所有元素
+  a = set([1,2,3])
+  a.clear()
+  a
+  set()
+</code></pre>
+
+<ul>
+<li>集合间操作</li>
+</ul>
+
+<pre><code class="language-python">  a = set([1,2,3])
+  b = set([2,3,4])
+
+  ### 交集,返回一个新集合包含集合a与集合b中的每一个元素
+  s = a.union(b)
+  {1, 2, 3, 4}
+  或：
+  s = a | b
+
+  ### 并集，返回一个新的集合包含集合a与集合b中的公共元素
+  s = a.intersection(b)
+  {2, 3}
+  或：
+  s = a &amp; b 
+
+  ### 差集，返回一个新的集合包含集合a中有但是集合b中没有的元素
+  s = a.difference(b)
+  {1}
+  或：
+  s = a - b
+
+  ### 差分集：返回一个新的集合包含集合a和集合b中不重复的元素
+  s = a.symmetric_difference(b)
+  {1, 4}
+  或：
+  s = a ^ b
+
+  ### 判断集合a中的每一个元素是否在集合b中
+  a = set([1,2,3])
+  b = set([1,2,3,4])
+  a.issubset(b)
+  True
+  或：
+  a&lt;=b
+  True
+
+  ### 判断集合b中的每一个元素是否在集合a中
+  a = set([1,2,3])
+  b = set([1,2,3,4])
+  b.issuperset(a)
+  True
+  或：
+  b&gt;=a
+  True
+
+  ### 集合拷贝
+  a = set([1,2,3])
+  b = a.copy()
+  b
+  {1, 2, 3}
+
+  ### 集合推导
+  b = { x for x in range(10) }
+  {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+  type(b)
+  set
+</code></pre>
+
+<ul>
+<li>误区：</li>
+</ul>
+
+<pre><code class="language-python">  b = [ x for x in range(10) ]
+  print b 
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  type(b)
+  list
+  ### 注意：以上为列表解释器，与集合推导存在差异，注意区分
+</code></pre>
+
+<ul>
+<li>利用错误的方式初始化一个集合</li>
+</ul>
+
+<pre><code class="language-python">  {}
+  type({})
+  dict
+  ### 以上操作为声明空字典，而非空集合操作
+
+  set ()
+  type(set())
+  set
+  ### 以上操作为声明空集合，注意区分
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>Dict（字典）</p>
+</blockquote>
+
+<h4 id="12-1-dict-字典-介绍">12.1 Dict（字典）介绍</h4>
+
+<ul>
+<li><code>字典</code>  是另外一种可变容器模型，且可存储任意类型对象。</li>
+<li><code>字典</code>  由键（key）和对应值（value）成对组成。<code>字典</code>  也称做关联数组或哈希表。</li>
+</ul>
+
+<h4 id="12-2-dict-字典-特征">12.2 Dict（字典）特征</h4>
+
+<ul>
+<li>Dict（字典）中的key（键）必须独一无二，但是对应值（value）则不必。</li>
+<li>Dict（字典）不允许同一个键出现2次，创建时如果同一个键被赋值两次，后一个值会被记住。</li>
+<li>key需要可以被哈希化，因此不能是可变型对象。</li>
+<li>value可以是任何东西，但必须是不可变的，包括字符串、数、列表、元组或者字典等。</li>
+<li>空字典可以随意用赋值添加项，而列表不行。如 List = [],List[1]=&lsquo;Yes&rsquo;  将会出现报错，而D1 = {},D1{&lsquo;A&rsquo;}=100则正常。</li>
+</ul>
+
+<h4 id="12-3-dict-字典-实例">12.3 Dict（字典）实例</h4>
+
+<ul>
+<li>Dict（字典）初始化</li>
+</ul>
+
+<pre><code class="language-python">  ### 方法1
+  info = {'name':'Seacme'}
+
+  ### 方法2
+  info = dict(name = 'Seacme')
+
+  ### 方法3
+  info = dict(['name','Seacme'])
+
+  ### 方法4
+  info = {}.fromkeys(['name'],'Seacme')
+
+  ### 方法5
+  info = dict().fromkeys(['name'],'Seacme')
+</code></pre>
+
+<ul>
+<li>Dict（字典）基本操作</li>
+</ul>
+
+<pre><code class="language-python">  Info = {'name':'Seacme','address':'guangzhou','age':26}
+
+  ### Dict（字典）浅复制操作
+  New_Info = Info.copy()
+  {'address': 'guangzhou', 'age': 26, 'name': 'Seacme'}
+
+  ### Dict（字典）更新操作
+  Info['age'] = 27
+  {'address': 'guangzhou', 'age': 27, 'name': 'Seacme'}
+  或：
+  Info.update({'age'=27})
+  {'address': 'guangzhou', 'age': 27, 'name': 'Seacme'}
+  或：
+  Info.update('age'=27)
+
+  ### Dict（字典）添加操作
+  Info['sex'] = 'man'
+  {'address': 'guangzhou', 'age': 26, 'name': 'Seacme', 'sex': 'man'}
+  或：
+  Info.update({'sex':'man'})
+  {'address': 'guangzhou', 'age': 26, 'name': 'Seacme', 'sex': 'man'}
+  或：
+  Info.update('sex'='man')
+  {'address': 'guangzhou', 'age': 26, 'name': 'Seacme', 'sex': 'man'}
+
+  ### Dict（字典）删除操作
+  del Info['name']
+  {'address': 'guangzhou', 'age': 26, 'sex': 'man'}
+  或：
+  Info.pop('name')
+  {'address': 'guangzhou', 'age': 26, 'sex': 'man'}
+  ### 以上为Dict（字典）删除字典中某个元素
+
+  del Info
+  ### 删除整个Dict（字典）
+  Info.clear()
+  ### 清空词典中的所有元素
+</code></pre>
+
+<ul>
+<li>Dict（字典）其他操作</li>
+</ul>
+
+<pre><code class="language-python">  Info = {'name':'Seacme','address':'guangzhou','age':26}
+
+  ### 获取Dict（字典）指定键的值
+  Info.get('name','there no name')
+  Seacme
+  ### 若Dict（字典）中不存在name键，则返回&quot;there no name&quot;
+
+  ### 判断Dict（字典）是否存在某个键
+  Info.has_key('name')
+  True
+
+  ### 获取Dict（字典）所有键（key）值
+  Info.keys()
+  ['age', 'name', 'address']
+
+  ### 获取Dict（字典）所有对应值（value）值
+  Info.values()
+  [26, 'Seacme', 'guangzhou']
+
+  ### 以列表返回可遍历的（键，值）元组数组
+  Info.items()
+  [('age', 26), ('name', 'Seacme'), ('address', 'guangzhou')]
+</code></pre>
+
+<ul>
+<li>Dict（字典）遍历操作</li>
+</ul>
+
+<pre><code class="language-python">  Info = {'name':'Seacme','address':'guangzhou','age':26}
+
+  ### 方法1
+  for key in Info:
+      print key,Info[key]
+  ### 此种方法显得更加简洁快速
+        
+  ### 方法2
+  for key in Info.
+  keys():
+      print key,Info[key]
+        
+  ### 方法3
+  for k,v in Info.items():
+      print k,v
+        
+  ### 方法4
+  for k,v in Info.iteritems():
+      print k,v
+        
+  ### 方法5
+  for k,v in zip(Info.iterkeys(),Info.itervalues()):
+      print k,v
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>列表、元组、字典间互换</p>
+</blockquote>
+
+<ul>
+<li>列表 &lt; &mdash;&mdash; &gt; 元组互换</li>
+</ul>
+
+<pre><code class="language-python">  ### 列表 ---&gt; 元组
+  L1 = [1, 2, 3, 4, 5]
+  T1 = tuple(L1)
+  (1,2,3,4,5)
+
+  ### 元组 ---&gt; 列表
+  T1 = (1,2,3,4,5)
+  L1 = list(T1)
+  [1,2,3,4,5]
+</code></pre>
+
+<ul>
+<li>列表 &lt; &mdash;&mdash; &gt; 字典互换</li>
+</ul>
+
+<pre><code class="language-python">  ### 列表不可以转为字典
+  ### 字典 ---&gt; 列表
+  Info = {'Name':'Seacme','Age':27}
+  L1 = Info.values()
+</code></pre>
+
+<ul>
+<li>元组 &lt; &mdash;&mdash; &gt; 字典互换</li>
+</ul>
+
+<pre><code class="language-python">  ### 元组不可以转为字典
+  ### 字典 ---&gt; 元组
+  Info = {'Name':'Seacme','Age':27}
+  T1 = tuple(Info)
+  ('Age', 'Name')
+</code></pre>
+
+<pre><code>​
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%e8%af%ad%e6%b3%95%e6%8a%80%e5%b7%a7&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fpythonbase%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fpythonbase%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fpythonbase%2f&amp;description=Python%e8%af%ad%e6%b3%95%e6%8a%80%e5%b7%a7"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f16%2fpythonbase%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/17/mysqlbackup/">
+          <section class="post">
+              <h2>MySQL备份还原</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/16/shellstr/">
+          <section class="post">
+              <h2>Shell字符串处理</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

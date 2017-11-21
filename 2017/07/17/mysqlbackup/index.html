@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="MySQL备份还原"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="MySQL备份还原 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/17/mysqlbackup/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-17T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Database" />
+    
+    
+
+    <title>MySQL备份还原 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;阐述多种备份还原手段，如cp、mysqldump、mysqlhotcopy、mysqlimport、xtrabackup等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/17/mysqlbackup/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "MySQL备份还原",
+    "name": "MySQL备份还原",
+    "wordCount":  1190 ,
+    "timeRequired": "PT6M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/17/mysqlbackup/",
+    "datePublished": "2017-07-17T00:00Z",
+    "dateModified": "2017-07-17T00:00Z",
+    
+    "keywords": "Database",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/17/mysqlbackup/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">MySQL备份还原</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-17T00:00:00Z">
+            Jul 17, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/database/">#Database</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>阐述多种备份还原手段，如cp、mysqldump、mysqlhotcopy、mysqlimport、xtrabackup等</font></left> </p>
+
+<blockquote>
+<p>一、MySQL备份还原介绍</p>
+</blockquote>
+
+<h4 id="1-1-备份与还原需求">1.1 备份与还原需求</h4>
+
+<ul>
+<li><p>确认要备份的表的存储引擎是事务的还是非事务的。</p>
+
+<ul>
+<li>两种不同的引擎备份的方式在处理数据一致性方面是不一样的。</li>
+</ul></li>
+
+<li><p>确定是要做增量备份还是完全备份。</p>
+
+<ul>
+<li><code>增量备份</code>只是备份每天增加的日志，<code>优点</code>是备份时间短，对负载压力也小。<code>缺点</code>是恢复的时候需要全备加上增量备份的所有日志，恢复的时间比较长。</li>
+<li><code>完全备份</code>优点是备份保持最新的备份，恢复的时候需要的时间也相对比较小，<code>缺点</code>是如果数据量比较大，则备份将花费很多时间，对系统造成很大的压力。</li>
+</ul></li>
+
+<li><p>备份必须确定MySQL是否开启了log-bin选项。</p>
+
+<ul>
+<li>只有了bin-log，MySQL才可以在必要的时候做出完整的恢复，或者基于时间点的恢复，或者基于位置的恢复。</li>
+</ul></li>
+</ul>
+
+<h4 id="1-2-数据备份类型">1.2 数据备份类型</h4>
+
+<ul>
+<li><code>完全备份</code>：备份整个数据集（即整个数据库）</li>
+<li><code>部分备份</code>：备份部分数据集
+
+<ul>
+<li><code>增量备份</code>：备份<code>自上一次备份以来（增量或完全）以来变化的数据</code></li>
+<li><code>差异备份</code>：备份<code>自上一次完全备份以来变化的数据</code>
+<br /></li>
+</ul></li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/480CABA0B4A0FFD685C4DB77D15B2F73.png" alt="Snip20170310_188.png" /></p>
+
+<h4 id="1-3-数据备份的方式">1.3 数据备份的方式</h4>
+
+<ul>
+<li><code>hot backup（热备）</code>：包含物理备份，在数据库运行中直接进行备份，对正在运行的数据库没有任何影响</li>
+<li><code>cold backup（冷备）</code>：包含物理备份，在数据库停止的时候进行，拷贝对应的物理文件即可。</li>
+<li><code>warm backup（温备）</code>：同样在数据库运行的时候进行，但是会对当前数据库操作有所影响，例如加一个全局读锁以保证备份数据的一致性。</li>
+</ul>
+
+<h4 id="1-4-存储引擎支持备份方式">1.4 存储引擎支持备份方式</h4>
+
+<ul>
+<li><p><code>MyISAM</code>：</p>
+
+<ul>
+<li>热备：<strong>不支持</strong></li>
+<li>温备：支持</li>
+<li>冷备：支持
+<br /></li>
+</ul></li>
+
+<li><p><code>InnoDB</code>：</p>
+
+<ul>
+<li>热备：支持</li>
+<li>温备：支持</li>
+<li>冷备：支持</li>
+</ul></li>
+</ul>
+
+<h4 id="1-5-备份与还原方法">1.5 备份与还原方法</h4>
+
+<ul>
+<li><code>直接cp/tar复制数据库文件方法</code>：物理备份工具，适合所有的存储引擎，冷备、完全备份、部分备份</li>
+<li><code>into outfile 和 load data infile导入导出方法</code>：逻辑备份工具，可自定义规定格式</li>
+<li><code>mysqldump 和 mysqlimort导入导出方法</code>：逻辑备份工具，适用于所有的存储引擎，支持温备、完全备份、部分备份、对于InnoDB存储引擎支持热备</li>
+<li><code>mysqlhotcopy 备份还原法</code>：名不副实的工具，几乎冷备，仅支持MyISAM存储引擎</li>
+<li><code>xtrabackup 备份还原法</code>：一款非常强大的InnoDB/XtrDB热备工具，支持完全备份、增量备份，由percona提供</li>
+<li><code>lvm2 snapshot 磁盘快照方法</code>：几乎热备，借助文件系统管理工具进行备份</li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/23DF975EDD30166D87A00DD6BEA32BDA.png" alt="Snip20170314_43.png" /></p>
+
+<hr />
+
+<blockquote>
+<p>二、直接cp/tar复制数据库文件</p>
+</blockquote>
+
+<h4 id="2-1-适用场景">2.1 适用场景</h4>
+
+<ul>
+<li>数据量较小，直接复制数据库文件，较快捷。</li>
+</ul>
+
+<h4 id="2-2-frm-myd-myi-opt解释">2.2 frm、myd、myi、opt解释</h4>
+
+<ul>
+<li><code>.frm</code>：保存的是描述了表的结构</li>
+<li><code>.MYD</code>：保存的是表的数据记录</li>
+<li><code>.MYI</code>：保存的是表的索引</li>
+<li><code>.opt</code>：保存的是数据库的字符集</li>
+</ul>
+
+<h4 id="2-3-备份数据库">2.3 备份数据库</h4>
+
+<ul>
+<li>采用tar打包或者cp复制</li>
+</ul>
+
+<pre><code class="language-shell"># 若备份数据库：test
+tar -zcvf /data/backup/test.tar.gz  /data/database/mysql/test 
+# 采用cp备份
+cp /data/database/mysql/test /data/backup/test
+</code></pre>
+
+<h4 id="2-4-还原数据库">2.4 还原数据库</h4>
+
+<ul>
+<li>采用tar解压或者mv还原</li>
+</ul>
+
+<pre><code class="language-shell"># 若还原数据库：test
+tar -zxvf /data/backup/test.tar.gz -C /data/database/mysql/
+# 采用mv还原
+mv -v /data/backup/test /data/database/mysql/
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、into outfile和load data infile备份还原</p>
+</blockquote>
+
+<h4 id="3-1-适用场景">3.1 适用场景</h4>
+
+<ul>
+<li>导出表中的部分字段或者部分符合条件的记录</li>
+</ul>
+
+<h4 id="3-2-select-into-outfile备份数据库">3.2 select into outfile备份数据库</h4>
+
+<pre><code class="language-shell"># 把select的mytable表中的数据导出到/data/backup/db_bak_20170310
+select * from where statu !=0 and name !='' into outfile '/data/backup/db_bak_20170310';
+</code></pre>
+
+<h4 id="3-3-load-data-infile还原数据库">3.3 load data infile还原数据库</h4>
+
+<pre><code class="language-shell">load data infile '/data/backup/db_bak_20170310' into table mytable_bak;
+</code></pre>
+
+<p><font color=red><strong>好处</strong></font>：</p>
+
+<ul>
+<li>导出的数据可以自己规定格式，并且导出的是纯数据，不存在建表信息。可以直接导入另一个同数据库的不同表中。</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>四、mysqlhotcopy备份还原</p>
+</blockquote>
+
+<ul>
+<li><code>mysqlhotcopy</code>是一个随MySQL一起发布的数据备份工具，在不停止mysqld进程的情况下，对采用MyISAM引擎存储的数据进行备份</li>
+<li><code>mysqlhotcopy</code>使用LOCK TABLES、FLUSH TABLES和cp或scp来快速备份数据库。</li>
+</ul>
+
+<h4 id="4-1-适用场景">4.1 适用场景</h4>
+
+<ul>
+<li>业务数据采用MyISAM存储引擎进行存储</li>
+<li>对数据的一致性需求不强烈</li>
+</ul>
+
+<h4 id="4-2-mysqlhotcopy与mysqldump比较">4.2 mysqlhotcopy与mysqldump比较</h4>
+
+<ul>
+<li><code>mysqlhotcopy</code>是一个快速文件意义上的COPY，<code>mysqldump</code>是一个数据库端的SQL语句集合。</li>
+<li><code>mysqlhotcopy</code>只能运行在数据库目录所在的机器上，<code>mysqldump</code>可以用在远程端，不过备份文件的还是存储在本地。</li>
+<li>相同的地方都是在线执行<code>LOCK TABLES</code>以及<code>UNLOCK TABLES</code></li>
+<li><code>mysqlhotcopy</code>恢复只需要COPY备份文件到源目录覆盖即可，<code>mysqldump</code>需要导入SQL文件到原库中。</li>
+<li><code>mysqlhotcopy</code>只适用于MYISAM引擎，而<code>mysqldump</code>则可同时使用MYISAM引擎和INNODB引擎。</li>
+<li><code>mysqlhotcopy</code>使用前必须安装perl-DBD-mysql包，而<code>mysqldump</code>不需要。</li>
+</ul>
+
+<p><font color=red><strong>总结</strong></font>：</p>
+
+<ul>
+<li><code>mysqldump</code>是采用SQL级别的备份机制，它将数据表导成SQL脚本文件，数据库大时，占用系统资源较多，支持常用的MyISAM，INNODB</li>
+<li><code>mysqlhotcopy</code>只是简单的缓存写入和文件复制的过程，占用资源和备份速度比<code>mysqldump</code>快很多很多。特别适合大的数据库，但是需要注意的是：<code>mysqlhotcopy</code>只支持MYISAM存储引擎。</li>
+</ul>
+
+<h4 id="4-3-安装perl-dbi和dbd-mysql插件">4.3 安装perl-DBI和DBD-MYSQL插件</h4>
+
+<pre><code class="language-shell"># perl-DBI安装
+yum -y install perl-DBI
+# DBD-mysql安装
+wget http://www.cpan.org/modules/by-module/DBD/DBD-mysql-4.023.tar.gz
+cd /data/backup/tmp
+tar -zxf DBD-mysql-4.023.tar.gz
+cd DBD-mysql-4.023
+perl Makefile.PL --mysql_config=/usr/local/mysql/bin/mysql_config
+make &amp;&amp; make install
+</code></pre>
+
+<h4 id="4-4-mysqlhotcopy备份">4.4 mysqlhotcopy备份</h4>
+
+<pre><code class="language-shell"># 建立用于备份数据库的用户
+grant select,reload,lock tables on *.* to 'hotcopyer'@'localhost' identified by 'xxxx';
+flush privileges;
+# mysqlhotcopy 原数据库名 新数据库名
+mysqlhotcopy --user=xxxx --password=xxxx test test1
+# mysqlhotcopy 原数据库名 备份的目录
+mysqlhotcopy --user=xxxx --password=xxxx test /data/backup/test
+# 对单个表支持正则表达式（备份test库中以local_1开头的表）
+mysqlhotcopy --user=xxx --password=xxx test./^local_1/ /data/backup/test/
+# 对多个表支持正则表达式（备份test库中以user_1、user_2、user_3开头的表）
+mysqlhotcopy --user=xxxx --password=xxxx test./^\(user_[0-9]\)/ /data/backup/test/
+# 支持增量备份
+mysqlhotcopy --user=xxxx --password=xxxx test./^local_1/ --addtodest test1
+</code></pre>
+
+<h4 id="4-5-mysqlhotcopy还原">4.5 mysqlhotcopy还原</h4>
+
+<ol>
+<li>停止mysql数据库</li>
+<li>复制备份的数据库目录到mysql数据目录下</li>
+<li>更改目录所有者为mysql服务器运行的用户（mysql）</li>
+<li>启动mysql服务器</li>
+</ol>
+
+<h4 id="4-6-mysqlhotcopy常用参数">4.6 mysqlhotcopy常用参数</h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-addowold</td>
+<td>如果目标存在不放弃（加上一个_old后缀重新命名它）</td>
+</tr>
+
+<tr>
+<td>-addtodest</td>
+<td>增量备份，新的备份自动覆盖掉原来的数据，相当于allowold</td>
+</tr>
+
+<tr>
+<td>-checkpoint=db_name.tbl_name</td>
+<td>在指定的数据，表中插入检查</td>
+</tr>
+
+<tr>
+<td>-debug</td>
+<td>启动调试模式</td>
+</tr>
+
+<tr>
+<td>-dryrun</td>
+<td>-n报告动作而不执行它们</td>
+</tr>
+
+<tr>
+<td>-flushlog</td>
+<td>所有表锁定后刷新日志</td>
+</tr>
+
+<tr>
+<td>-keepold</td>
+<td>完成后不删除以前的目标</td>
+</tr>
+
+<tr>
+<td>-method=command</td>
+<td>复制方法（cp或则scp）</td>
+</tr>
+
+<tr>
+<td>-noindices</td>
+<td>备份中不包括全部索引文件。这样使备份更小，更快。</td>
+</tr>
+
+<tr>
+<td>-user=usrname</td>
+<td>当连接服务器时使用MySQL用户名</td>
+</tr>
+
+<tr>
+<td>-password=password</td>
+<td>当连接服务器时使用的密码</td>
+</tr>
+
+<tr>
+<td>-port=port_num</td>
+<td>当连接本地服务器时使用的TCP/IP端口号</td>
+</tr>
+
+<tr>
+<td>-quiet</td>
+<td>除了出现错误时保持沉默</td>
+</tr>
+
+<tr>
+<td>-regexp=expr</td>
+<td>复制所有数据库名匹配给出的正则表达式的数据库</td>
+</tr>
+
+<tr>
+<td>-socket=path</td>
+<td>用于连接的Unix套接字文件</td>
+</tr>
+
+<tr>
+<td>-suffix=str</td>
+<td>所复制的数据库名的后缀</td>
+</tr>
+
+<tr>
+<td>-tmpdir=path</td>
+<td>临时目录（代替/tmp）</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>五、 mysqldump 备份介绍</p>
+</blockquote>
+
+<ul>
+<li><code>mysqldump</code>是采用SQL级别的备份机制，它将数据表导成SQL脚本文件</li>
+<li><code>mysqldump</code>是一个客户端的逻辑备份工具，可以生成一个重现创建原始数据库和表的SQL语句，可以支持所有的存储引擎，对于INNODB支持热备</li>
+</ul>
+
+<h4 id="5-1-适用场景">5.1 适用场景</h4>
+
+<ul>
+<li>在不同的MySQL版本之间升级时相对比较合适，这也是最常用的备份方法。</li>
+</ul>
+
+<h4 id="5-2-基本语法">5.2 基本语法</h4>
+
+<ul>
+<li><p>备份单个数据库或者单个数据库中的指定表</p>
+
+<pre><code class="language-shell">mysqldump [options] database [tb1] [tb2]
+</code></pre></li>
+
+<li><p>备份多个数据库</p>
+
+<pre><code class="language-shell">mysqldump [options] --databases [options] DB1 [DB2...DB3]
+</code></pre></li>
+
+<li><p>备份所有数据库</p>
+
+<pre><code class="language-shell">mysqldump [options] --all-databases [options]
+</code></pre></li>
+</ul>
+
+<h4 id="5-3-mysqldump备份">5.3 mysqldump备份</h4>
+
+<ul>
+<li><p>备份mysql数据库</p>
+
+<pre><code class="language-shell">mysqldump -hlocalhost -uusername -ppassword databasename &gt; backupfile.sql
+</code></pre></li>
+
+<li><p>备份mysql数据库为带删除表的格式(参数：-add-drop-table)
+（备份mysql数据库为带删除表的格式，能够让该备份覆盖已有数据库而不需要手动删除原有数据库）</p>
+
+<pre><code>mysqldump -add-drop-table -uusername -ppassword databasename &gt; backupfile.sql
+</code></pre></li>
+
+<li><p>直接将MySQL数据库压缩备份</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword databbasename | gzip &gt; backupfile.sql.gz
+</code></pre></li>
+
+<li><p>备份mysql数据某个（些）表</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword databasename specific_table1 specific_table2 &gt; backupfile.sql
+</code></pre></li>
+
+<li><p>同时备份多个mysql数据库</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword -databases databasename1 databasename2 ... &gt; multibackupfile.sql
+</code></pre></li>
+
+<li><p>仅仅备份数据库结构</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword -no-data -databases databasename1 databasename2 &gt; structurrebackupfile.sql
+</code></pre></li>
+
+<li><p>导出结构不导出结构</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword --opt &gt; backupfile.sql
+</code></pre></li>
+
+<li><p>导出数据不导出结构</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword -t &gt; backupfile.txt
+</code></pre></li>
+
+<li><p>导出特定表的结构</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppasssword -B datanasename --table tablename &gt; backupfile.sql
+</code></pre></li>
+
+<li><p>备份服务器上所有数据库</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword -all-databases &gt; allbackupfile.sql
+</code></pre></li>
+
+<li><p>将数据库转移到新服务器</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassword databasename | mysql -host=xxx.xxx.xxx.xxx -C dataname
+</code></pre></li>
+
+<li><p>备份数据库将表结构与数据拆分</p>
+
+<pre><code>mysqldump -hlocalhost -uusername -ppassowrd  -T /data/backup/tmp/test_mysqldump txsj_white
+</code></pre></li>
+</ul>
+
+<h4 id="5-4-mysqldump-还原">5.4 mysqldump 还原</h4>
+
+<ul>
+<li><p>直接用mysql客户端</p>
+
+<pre><code class="language-shell">mysql -hlocalhost -uusername -ppassword dbname &lt; db_name.sql
+</code></pre></li>
+
+<li><p>用source语法</p>
+
+<pre><code class="language-shell">mysql -hlocalhost -uusername -ppassword -e 'source /data/backup/db_name.sql'
+</code></pre></li>
+</ul>
+
+<h4 id="5-5-mysqldump主要参数">5.5 mysqldump主要参数</h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&ndash;compatible=name</td>
+<td>导出的数据将和哪种数据库或哪个旧版本的MySQL服务器相兼容</td>
+</tr>
+
+<tr>
+<td>&ndash;complete-insert</td>
+<td>导出的数据采用包含字段名的完整INSERT方式</td>
+</tr>
+
+<tr>
+<td>&ndash;default-character-set=charset</td>
+<td>指定导出数据时采用何种字符集</td>
+</tr>
+
+<tr>
+<td>&ndash;disable-keys</td>
+<td>告诉mysqldump在insert语句的开头和结尾语句；这能大大提高语句的插入的语句</td>
+</tr>
+
+<tr>
+<td>&ndash;extended-insert</td>
+<td>默认情况下，myqsldump开启—complete-insert模式</td>
+</tr>
+
+<tr>
+<td>&ndash;hex-blob</td>
+<td>使用十六进制格式导出二进制字符串字段</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;lock-all-tables,-x </font></td>
+<td>在开始导出之前，提前请求锁定所有数据库中的所有表，以保证数据的一致性</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;lock-tables </font></td>
+<td>锁定当前导出的数据表，而不是一下子锁定全部库下的表，本选项只适合MyISAM表</td>
+</tr>
+
+<tr>
+<td>&ndash;no-create-info，-t</td>
+<td>只导出数据，而不添加CREATE TABLE语句</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;no-data，-d </font></td>
+<td>不导出任何数据，只导出数据库表结构</td>
+</tr>
+
+<tr>
+<td>&ndash;opt</td>
+<td>本选项能让msqldump很快的导出数据，并且导出的数据能很快导入</td>
+</tr>
+
+<tr>
+<td>&ndash;quick，-q</td>
+<td>导出大表时很有用，强制mysqldump从服务器查询取得记录直接输出而不是取得所有记录后将它们缓存到内存中</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;single-transaction </font></td>
+<td>该选项在导出数据之前提交一个BEGIN SQL语句，BEGIN不会阻塞任何程序且能保存导出数据库的一致性状态，只适用于事务表（INNODB）</td>
+</tr>
+
+<tr>
+<td>&ndash;triggers</td>
+<td>同时导出触发器，默认启用</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;tables</font></td>
+<td>指定需要导出的表名</td>
+</tr>
+
+<tr>
+<td>&ndash;no-create-db，-n</td>
+<td>只导出数据，而不添加CREATE DATABASE语句</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;master-data </font></td>
+<td>该选项将binlog的位置和文件名追加到输出文件中,&ndash;master-data=2 表示在备份文件中记录当前二进制日志的位置，并且标注为注释，1是不注释掉在主从复制中才有意义</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;ingore-table </font></td>
+<td>不导出指定表，指定忽略多个表时，需要重复多次，每次一个表</td>
+</tr>
+
+<tr>
+<td><font color=red>&ndash;tab，-T </font></td>
+<td>为每个表在给定路径创建tab分割的文本文件</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="5-6-使用mysqldump-复制binary-log备份">5.6 使用mysqldump+复制BINARY LOG备份</h4>
+
+<ol>
+<li><p>查看当前二进制文件的状态，记录position数字</p>
+
+<pre><code class="language-shell">mysql -hlocalhost -uusername -ppaswword -e 'show master status;'
+# 获取File、Position值
+</code></pre></li>
+
+<li><p>备份数据库到backup.sql</p>
+
+<pre><code class="language-shell">mysqldump -hlocalhost -uusername -ppassword --lock-all-tables &gt; backup.sql
+</code></pre></li>
+
+<li><p>创建数据库</p>
+
+<pre><code class="language-shell">mysql -hlocalhost -uusername -ppassword -e 'create database test'
+# 创建名为test的数据库
+</code></pre></li>
+
+<li><p>查看当前二进制文件的状态，记录position数字</p>
+
+<pre><code class="language-shell">mysql -hlocalhost -uusername -ppassword -e 'show master status;'
+# 获取File、Position值
+</code></pre></li>
+
+<li><p>备份二进制文件</p>
+
+<pre><code class="language-shell">cp /data/database/mysql/test/mysql-bin.xxxxx /data/backup/
+</code></pre></li>
+
+<li><p>模拟删除/破坏操作</p>
+
+<pre><code class="language-shell">/bin/rm -rf /data/database/mysql/test
+</code></pre></li>
+
+<li><p>恢复操作</p>
+
+<pre><code class="language-shell"># 进入mysql终端
+mysql -hlocalhost -uusername -ppassword 
+# 关闭二进制日志
+set sql_log_bin=off
+# 恢复数据
+source backup.sql
+# 检查发现丢失了新创建的test库，通过二进制文件恢复
+mysqlbinlog --start-position=xxx --stop-positon=xxx /data/backup/mysql-bin.xxxx
+# 检查发现test库恢复
+show databases;
+</code></pre></li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>六、 mysqlimport 导入介绍</p>
+</blockquote>
+
+<ul>
+<li><code>mysqlimport</code>位于mysql/bin目录中，是mysql的一个载入（或者说导入）数据的一个非常有效的工具。</li>
+<li>这个工具把一个文本（text file）导入到你指定的数据库和表中。</li>
+</ul>
+
+<h4 id="6-1-基本语法">6.1 基本语法</h4>
+
+<pre><code class="language-shell">mysqlimport -hlocalhost -uusername -ppassword database table.txt
+</code></pre>
+
+<p><font color=red><strong>注意</strong></font>：</p>
+
+<ol>
+<li>table.txt是我们要导入数据的文本文件</li>
+<li>database是我们需要操作的数据库，数据库中的表名是table</li>
+<li>这里文本文件的数据格式必须与Table表中的记录格式一致，否则mysqlimport命令将会出错</li>
+</ol>
+
+<h4 id="6-2-mysqlimport还原">6.2 mysqlimport还原</h4>
+
+<pre><code class="language-shell"># 导入test库test_ckeck表数据
+mysqlimport -hlocalhost -uusername -ppassword test test_check.txt
+</code></pre>
+
+<h4 id="6-3-mysqlimport主要参数">6.3 mysqlimport主要参数</h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&ndash;columns</td>
+<td>定义被导入文件中的每一列对应的数据库列名</td>
+</tr>
+
+<tr>
+<td>&ndash;fields-terminated-by</td>
+<td>数据域以什么结束，参数为字符串，默认为\t</td>
+</tr>
+
+<tr>
+<td>&ndash;fields-enclosed-by</td>
+<td>数据域用什么符号括起来，默认为空，一般可以是双引号、括号等</td>
+</tr>
+
+<tr>
+<td>&ndash;fields-optionally-enclosed-by</td>
+<td>数据域可以用什么符号括起来，选项类</td>
+</tr>
+
+<tr>
+<td>&ndash;fields-escaped-by</td>
+<td>转义字符，参数为字符，默认为</td>
+</tr>
+
+<tr>
+<td>&ndash;lines-terminated-by</td>
+<td>数据行以什么结束，参数为字符串，windows默认为\r\n</td>
+</tr>
+
+<tr>
+<td>&ndash;ignore-lines=n</td>
+<td>忽略数据文件的前n行，因为很多数据文件前面有表头</td>
+</tr>
+
+<tr>
+<td>&ndash;delete，-d</td>
+<td>在把文件中的数据插入前删除表中原先的数据</td>
+</tr>
+
+<tr>
+<td>&ndash;local，-L</td>
+<td>指定从客户端电脑读入数据文件，否则从服务器电脑读取</td>
+</tr>
+
+<tr>
+<td>&ndash;local-tables，-l</td>
+<td>处理文本文件前锁定所有表以便写入，确保所有表在服务器上保持同步</td>
+</tr>
+
+<tr>
+<td>&ndash;force，-f</td>
+<td>忽视错误</td>
+</tr>
+
+<tr>
+<td>-i</td>
+<td>跳过或忽略相同唯一关键字的行，即重复记录不导入</td>
+</tr>
+
+<tr>
+<td>-r</td>
+<td>用于替代表中有唯一关键字的记录</td>
+</tr>
+
+<tr>
+<td>&ndash;silent，-s</td>
+<td>沉默模式，只有出现错误的时候才发出</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>七、lvm磁盘快照备份还原</p>
+</blockquote>
+
+<ul>
+<li><code>lvm快照</code>简单来说就是将所有快照源分区一个时间点所有文件的元数据进行保存。</li>
+<li>如果源文件没有改变，那么访问快照卷的相应文件则直接指向源分区的源文件。</li>
+<li>如果源文件发生改变，则快照卷中与之对应的文件，则快照卷中与之对应的文件不会发生改变。</li>
+<li><code>快照卷</code>主要用于辅助备份文件。</li>
+</ul>
+
+<h4 id="7-1-lvm备份">7.1 lvm备份</h4>
+
+<ol>
+<li><p>建立lvm卷组，挂载到/data/database/mysql</p>
+
+<pre><code class="language-shell"># 创建逻辑卷
+pvcreate /dev/sdb1
+# 创建虚拟组
+vgcreate myvh /dev/sdb1
+# 划分虚拟分区
+lvcreate -n mydata -L 50G myvg
+# 格式化
+mkfs.ext4 /dev/mapper/myvg-mydata
+# 创建挂载目录
+mkdir /data/datase/mysql
+# 挂载操作
+mount /dev/mapper/myvg-mydata /data/database/mysql
+</code></pre></li>
+
+<li><p>修改mysql配置</p>
+
+<pre><code class="language-shell">vim /etc/my.cnf
+datadir=/data/database/mysql
+# 重启mysql
+/etc/init.d/mysqld restart
+</code></pre></li>
+
+<li><p>创建快照卷并备份</p>
+
+<pre><code class="language-shell"># 锁定所有表
+flush tables with read lock;
+# 创建快照卷
+lvcreate -L 1G -n mydata-snap -p -r -s /dev/mapper/myvg-mydata 
+# 解锁所有表
+unlock tables;
+# 创建挂载文件并挂载
+mkdir /lvm_snap
+mount /dev/myvg/mydata-snap /lvm-snap/
+# 检查快照卷数据
+ls /lvm-snap
+# 对快照卷执行打包并保存
+tar -zcf lvm-snap.tar.gz lvn-snap
+cp -a lvm-snap.tar.gz /data/backup/
+# 卸载快照卷，并删除快照卷
+unount /lvm-snap
+lvremove myvg mydata-snap
+</code></pre></li>
+
+<li><p>恢复备份</p>
+
+<pre><code class="language-shell"># 模拟删除所有数据
+rm -rf /data/database/mysql/*
+# 拷贝并解压备份恢复
+cp -a /data/backup/lvm-snap.tar.gz /data/database/mysql/
+cd /data/database/mysql/
+tar -zxf lvm-snap.tar.gz
+# 检查数据库数据是否已经恢复
+</code></pre></li>
+</ol>
+
+<p><font color=red><strong>注意</strong></font>：</p>
+
+<ul>
+<li>用<code>lvm</code>快照得方式来备份是非常快的，而且几乎热备，恢复也很快速，操作也简单。完整恢复后再将相应二进制恢复即可。</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>八、xtrabackup备份还原</p>
+</blockquote>
+
+<ul>
+<li>大数据量备份与还原，始终是个难点。当MYSQL超过10G，用mysqldump来导出就比较慢。</li>
+<li>推荐使用<code>xtrabackup</code>工具比mysqldump要快很多。</li>
+</ul>
+
+<h4 id="8-1-xtrabackup介绍">8.1 xtrabackup介绍</h4>
+
+<ol>
+<li><p>Xtrabackup是什么</p>
+
+<ul>
+<li><p><code>Xtrabackup</code>是一个队Innodb做数据备份的工具，支持在线热备（备份时不影响数据读写），是商业备份工具InnoDB Hotbackup的一个很好的替代品。</p></li>
+
+<li><p><code>Xtrabackup</code>有两个主要工具：xtrabackup、innobackupex</p>
+
+<p>a. <code>xtrabackup</code>只能备份InnoDB和XtaDB两种数据表，而不能备份MyISAM数据表
+b. <code>innobackupex</code>是参考了InnoDB HotBackup的innobackup脚本修改而来的。innobackupex是一个perl脚本封装的，封装了xtrabackup。主要是为了方便的同事备份InnoDB和MyISAM引擎的表，但在处理myisam是需要加一个读锁，并且加入了一些使用的选项。</p></li>
+</ul></li>
+
+<li><p>Xtrabackup可以做什么</p>
+
+<ul>
+<li>在线（热）备整个库的InnoDB、XtraDB表</li>
+<li>在xtrabackup的上一次整库备份基础上做增量备份（innodb only）</li>
+<li>以流的形式产生备份，可以直接保存在远程机器上（本机硬盘不足的时候可以考虑使用）
+<br /></li>
+</ul></li>
+</ol>
+
+<h4 id="8-2-xtrabackup备份原理">8.2 xtrabackup备份原理</h4>
+
+<ul>
+<li><p>官方原理</p>
+
+<ol>
+<li>在InnoDB内部会维护一个repo日志文件，我们也可以叫做事务日志文件。</li>
+<li>事务日志会存储每一个InnoDB表数据修改的记录。</li>
+<li>当InnoDB启动时，InnoDB会检查数据文件和事务日志，并执行两个步骤：它应用（前滚）已经提交事务日志到数据文件，并将修改过但没有提交的数据进行回滚操作</li>
+</ol></li>
+
+<li><p>xtrabackup备份过程</p>
+
+<ol>
+<li><code>Xtrabackup</code>在启动时会记住log sequence number(LSN)日志序列号，即当前redo记录的位置，并且复制所有的数据文件。</li>
+<li>复制过程需要一些时间，所以这段时间如果数据文件LSN有改动，他会运行一个后台进程，用于监控事务日志，并不停的将事务日志中每个数据文件的修改都记录下来。</li>
+</ol></li>
+
+<li><p>xtrabackup恢复的准备过程</p>
+
+<ol>
+<li><code>准备（prepare）过程</code>，在这个过程供，<code>xtrabackup</code>使用之前记录事务日志，对每个数据数据文件执行灾难恢复</li>
+<li>它的应用（前滚）已经提交的事务日志数据文件，并将修改但没有提交的数据进行回滚操作。当这个过程结束后，数据库可以恢复还原了。</li>
+</ol></li>
+</ul>
+
+<p><font color=red><strong>总结</strong></font>：</p>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/78DB347AF733EA6F300FC9587702108F.png" alt="Snip20170313_12.png" /></p>
+
+<ul>
+<li>备份过程、恢复过程在<code>xtrabackup</code>的编译二进制程序中实现。工具<code>Innobackupex</code>备份MyISAM引擎的表和frm文件过程中会先启动<code>xtrabackup</code>，当<code>xtrabackup</code>复制数据文件完成后再执行FLUSH TABLES WITH READ LOCK来阻止新的写入并把MyISAM表数据刷到硬盘上，之后再复制数据文件，然后释放锁。</li>
+
+<li><p>备份过程中，MyISAM和InnoDB表最终会一致，MyISAM表在准备（prepare）过程结束后，InnoDB表数据已经前滚到整个备份结束的点，这个时间点会与FlUSH TABLES WITH READ LOCK的时间点相同。InnoDB的prepare过程称为恢复（recover），myisam的数据复制过程称为还原（restore）</p></li>
+
+<li><p>xtrabackup优势</p>
+
+<ol>
+<li>备份过程快速、可靠</li>
+<li>备份过程不会打断正在执行的事务</li>
+<li>能够基于压缩等功能节约磁盘空间和流量</li>
+<li>自动实现备份检验</li>
+<li>还原速度快</li>
+<li>备份MySQL时不会增大服务器负载</li>
+</ol></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>九、xtrabackup安装</p>
+</blockquote>
+
+<ul>
+<li>xtrabackup下载地址：<a href="http://www.percona.com/downloads/XtraBackup/">http://www.percona.com/downloads/XtraBackup/</a></li>
+</ul>
+
+<pre><code class="language-shell"># 安装依赖包
+yum -y install perl perl-devel libaio libaio-devel perl-Time-HiRes perl-DBD-MySQL
+# yum 安装
+cd /data/backup/tmp/
+wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.5/binary/redhat/6/x86_64/percona-xtrabackup-24-2.4.5-1.el6.x86_64.rpm
+# 以yum的方式安装会自动把依赖都一起安装
+yum -y install percona-xtrabackup-24-2.4.5-1.el6.x86_64.rpm
+</code></pre>
+
+<h4 id="9-1-xtrabackup完整备份">9.1 xtrabackup完整备份</h4>
+
+<ul>
+<li>全部数据库备份</li>
+</ul>
+
+<pre><code class="language-shell"># 将全部库备份到/data/backup/full下
+innobackupex --user=${user} --password=${password} /data/backup/full
+</code></pre>
+
+<p><font color=red><strong>注意</strong></font>：</p>
+
+<ol>
+<li>一般情况下，这个备份不能用于恢复，因为备份的数据中可能会包含未提交的事务或已经提交但尚未同步至数据文件中的事务，此时数据文件处于不一致的状态。</li>
+
+<li><p>因此，我们需要通过回滚未提交的事务及同步已经提交的事务至数据文件使得数据文件处于一致性状态。</p>
+
+<pre><code class="language-shell">innobackupex --user=${user} --password=${password} --defaults-file=/etc/my.cnf --apply-log /data/backup/full/2017-xx-xx_xx-xx-xx
+# --apply-log：开启恢复过程
+</code></pre></li>
+</ol>
+
+<h4 id="9-2-单数据库备份">9.2 单数据库备份</h4>
+
+<pre><code class="language-shell">innobackupex --user=${user} --password=${password} --database=database_name /data/backup/
+# 对数据库database_name单库执行备份操作
+</code></pre>
+
+<h4 id="9-3-多库备份">9.3 多库备份</h4>
+
+<pre><code class="language-shell">innobackupex --user=${user} --password=${password} --include='test.*|test2.*' /data/backup/
+# 对test库和test2库执行备份操作
+</code></pre>
+
+<h4 id="9-4-多表备份">9.4 多表备份</h4>
+
+<pre><code class="language-shell">innobackupex --user=${usr} --password=${password} --include='test.login|test2.login2' /data/backup
+# 对test库login表和test2库login2表执行备份操作
+</code></pre>
+
+<h4 id="9-5-数据备份并压缩">9.5 数据备份并压缩</h4>
+
+<pre><code class="language-shell">innobackupex --user=${user} --password=${password} --stream=tar /data/backup 2&gt;/data/backup/xxxx.log | gzip 1 &gt; /data/backup/xxx.tar.gz
+# 全库执行备份操作并压缩保存为xxx.tar.gz
+</code></pre>
+
+<h4 id="9-6-xtrabackup完整备份恢复">9.6 xtrabackup完整备份恢复</h4>
+
+<pre><code class="language-shell"># 模拟删除旧数据库
+/etc/init.d/mysqld stop
+mv /data/database/mysql /data/database/mysql_old &amp;&amp; mkdir /data/database/mysql
+# --apply-log：准备在一个备份上启动mysql服务
+innobackupex --defaults-file=/etc/my.cnf --user=${user} --password=${password} --apply-log /data/backup/full/20xx-xx-xx_xx-xx-xx
+# --copy-back：从备份目录拷贝数据、索引、日志到my.cnf文件里规定的初始位置
+innobackupex --defaults-file=/etc/my.cnf --user=${user} --password=${password} --copy-back /data/backup/full/20xx-xx-xx_xx-xx-xx
+# 改变文件属性
+chown mysql:mysql /data/database/mysql -R
+# 启动mysql数据库
+/etc/init.d/mysqld start
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>十、xtrabackup增量备份与还原</p>
+</blockquote>
+
+<h4 id="10-1-增量备份原理">10.1 增量备份原理</h4>
+
+<ol>
+<li>首先完成一个完整备份，并记录此时检查LSN</li>
+<li>然后增量备份时，比较表空间每个页的LSN是否大于上次备份的LSN，若是则备份该页记录当前检查点的LSN。</li>
+</ol>
+
+<p><strong>具体操作：</strong></p>
+
+<ol>
+<li>首先在logfile中找到最后一个<code>checkpoint（Last Checkpoint LSN）</code>然后从LSN的位置开始拷贝InnoDB的logfile到xtrabackup_logfile</li>
+<li>然后开始拷贝全部的数据文件&rdquo;.ibd&rdquo;；在拷贝全部数据文件结束之后，才停止拷贝logfile
+<br /></li>
+</ol>
+
+<p><font color=red><strong>注意</font>：</strong></p>
+
+<ul>
+<li>在<code>xtrabackup_logfile</code>文件在并发写入很大的时也会变得很大，占用很多空间，当我们使用<code>-stream=tar</code>或者远程备份<code>--remote-host</code>默认使用/tmp 但是最好先试参数-tpmdir指定，以免把/tmp目录占满影响其他正常业务。</li>
+<li>logfile里面全部记录数据的全部修改情况，即使在备份时候数据文件被修改了恢复时仍可以通过解析<code>xtrabackup_logfile</code>保持一致。</li>
+<li><code>Xtrabackup</code>的增量备份只能用于InnoDB，不能用于MyISAM表上。采用增量备份MySQL数据时，<code>xtrabackup</code>会依照上次全备或者增量备份目录对InnoDB进行增量备份，对MyISAM表进行全表复制。
+<br /></li>
+</ul>
+
+<h4 id="10-2-增量备份优点">10.2 增量备份优点</h4>
+
+<ul>
+<li>数据库太大没有足够的时间空间进行全备的，增量备份能有效的节约空间，并且效率高</li>
+<li>支持热备份，备份过程不锁表（InnoDB而言)不阻塞数据库的读写</li>
+<li>每日备份只产生少量的数据，也可以采用远程备份，介于本地空间</li>
+<li>备份恢复基于文件操作，降低直接数据库操作的风险</li>
+<li>备份效率更高，恢复效率更高</li>
+</ul>
+
+<h4 id="10-3-增量备份">10.3 增量备份</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/743A015E1421DDBF714BE69BFCA03035.png" alt="Snip20170314_44.png" /></p>
+
+<pre><code class="language-shell"># 1. 先进行完整备份
+innobackupex --defaults-file=/etc/my.cnf --user=${user} --password=${password} /data/backup/full
+# 2. 第一次增量备份
+innobackupex --defaults-file=/etc/my.cnf --user=${user} --password=${password} --incremental /data/backup/inc1 --incremental-basedir=/data/backup/full/20xx-xx-xx_xx-xx-xx
+# --incremental-basedir：指的是完全备份所在的目录
+# 此命令执行结束后，innobackupex命令会在/data/backup目录中创建一个新的以时间命名的目录以存放所有的增量备份数据。
+# 另外，在执行过增量备份之后再进行一次增量备份时，其--incremental-basedir应该指向上一次的增量备份所在的目录。
+# 3. 第二次增量备份
+innobackupex --defaults-file=/etc/my.cnf --user=${user} --password=${password} --incremental /data/backup/inc2 --incremental-basedir=/data/backup/inc1/20xx-xx-xx_xx-xx-xx
+</code></pre>
+
+<h4 id="10-4-增量备份还原">10.4 增量备份还原</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/660547CA8BF70565FFF3313D2E5700C6.png" alt="Snip20170314_45.png" /></p>
+
+<pre><code class="language-shell"># 1. 读入完全备份
+innobackupex --apply-log --redo-only /data/backup/full/20xx-xx-xx_xx-xx-xx
+# 2. 读入第一次增量备份
+innobackupex --apply-log --redo-only /data/backup/full/20xx-xx-xx_xx-xx-xx --incremental-dir=/data/backup/inc1/20xx-xx-xx_xx-xx-xx
+# 3. 读入第二次增量备份（如有多个增量备份，如此类推读入）
+innobackupex --apply-log --redo-only /data/backup/full/20xx-xx-xx_xx-xx-xx --incremental-dir=/data/backup/inc2/20xx-xx-xx_xx-xx-xx
+# 以上操作原因：
+## 一般情况，备份完成后，数据不能够用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或已经提交但尚未同步至数据文件的事务，因此，此时的数据文件仍不一致，所以我们需要&quot;准备&quot;一个完全备份
+# 4. 停服务
+/etc/init.d/mysql stop
+# 5. 将原有的数据目录进行备份
+mv /data/database/mysql /data/backup/mysql_bak_20xx-xx-xx
+# 6. 执行恢复操作
+innobackupex --defaults-files=/etc/my.cnf --user=${user} --password=${password} --copy-backup /data/backup/full/20xx-xx-xx_xx-xx-xx
+# 7. 修改恢复数据目录权限
+chown mysql:mysql /data/database/mysql
+# 8. 启动服务
+/etc/init.d/mysql start
+</code></pre>
+
+<h4 id="10-5-补充知识">10.5 补充知识</h4>
+
+<ul>
+<li><p>指定库来备份</p>
+
+<pre><code class="language-shell">innobackupex --default-file=/etc/my.cnf --user=${user} --password=${password} --databases='test' /data/backup/
+</code></pre></li>
+
+<li><p>指定表来备份</p>
+
+<pre><code class="language-shell">innobackupex --default-file=/etc/my.cnf --user=${user} --password=${password} --databases='test.login' /data/backup/
+</code></pre></li>
+
+<li><p>指定压缩包备份</p>
+
+<pre><code class="language-shell">innobackupex --default-file=/etc/my.cnf --user=${user} --password=${password} --stream=tar /data/backup/full | gzip &gt; /data/backup/full/backup_$(date +%F).tar.gz
+</code></pre></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>十一、Xtrabackup热备搭建slave数据库</p>
+</blockquote>
+
+<h4 id="11-1-操作流程">11.1 操作流程</h4>
+
+<pre><code class="language-shell"># 1. 配置ssh信任通道
+# 2. master机器完整备份并传输到slave机器
+innobackupex --default-file=/etc/my.cnf --user=${user} --password=${password} /data/backup/full    
+# 3. master机器准备备份
+innobackupex --apply-log --redo-only /data/backup/full/20xx-xx-xx_xx-xx-xx
+# 4. 将数据同步到从机器上
+rsync -avPe &quot;ssh -pxxxx&quot; /data/backup/full/20xx-xx-xx_xx-xx-xx root@xxx.xxx.xxx.xxx:/data/backup/
+# 5. 恢复备份
+innobackupex --copy-backup /data/backup/20xx-xx-xx_xx-xx-xx
+# 6. 修改数据目录权限
+chown mysql:mysql /data/database/mysql
+# 7. 启动slave数据库服务
+/etc/init.d/mysql start
+# 8. master库开启slave同步权限
+GRANT REPLICATION SLAVE ON *.* TO 'slave'@'xxx.xxx.xxx.xxx' IDENTIFIED BY 'slave';
+# 9. slave修改主信息
+CHANGE MASTER TO
+MASTER_HOST='&lt;master_host&gt;',
+MASTER_USER='&lt;slave_username&gt;',
+MASTER_PASSWORD='&lt;slave_password&gt;',
+MASTER_LOG_FILE='&lt;see xtrabackup_binlog_info&gt;',
+MASTER_LOG_POS=&lt;see xtrabackup_binlog_info&gt;;
+# 10. 开启主从同步，检查
+start slave;
+show slave status;
+</code></pre>
+
+<h4 id="11-2-xtrabackup常用参数">11.2 Xtrabackup常用参数</h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&ndash;user=USER</td>
+<td>指定备份用户，不指定的话为当前系统用户</td>
+</tr>
+
+<tr>
+<td>&ndash;password=PASSWD</td>
+<td>指定备份用户密码</td>
+</tr>
+
+<tr>
+<td>&ndash;port=PORT</td>
+<td>指定数据库端口</td>
+</tr>
+
+<tr>
+<td>&ndash;defaults-group=GROUP-NAME</td>
+<td>在多实例的时候使用</td>
+</tr>
+
+<tr>
+<td>&ndash;host=HOST</td>
+<td>指定备份的主机，可以为远程数据库服务器</td>
+</tr>
+
+<tr>
+<td>&ndash;apply-log</td>
+<td>回滚日志</td>
+</tr>
+
+<tr>
+<td>&ndash;database</td>
+<td>执行需要备份的数据库，多个数据库之间以空格分开</td>
+</tr>
+
+<tr>
+<td>&ndash;defaults-file</td>
+<td>指定mysql的配置文件</td>
+</tr>
+
+<tr>
+<td>&ndash;copy-back</td>
+<td>将备份数据复制回原始</td>
+</tr>
+
+<tr>
+<td>&ndash;incremental</td>
+<td>增量备份，后面跟要备份的路径</td>
+</tr>
+
+<tr>
+<td>&ndash;incremental-basedir=DIRECTORY</td>
+<td>增量备份时使用指向上一次的增量备份所在目录</td>
+</tr>
+
+<tr>
+<td>&ndash;incremental-dir=DIRECTORY</td>
+<td>增量备份还原的时候用来合并增量备份到全量，用来指定全备路径</td>
+</tr>
+
+<tr>
+<td>&ndash;redo-only</td>
+<td>对增量备份进行合并</td>
+</tr>
+
+<tr>
+<td>&ndash;rsync</td>
+<td>加快本地文件传输，适用于non-InnoDB数据库引擎。不与&ndash;stream</td>
+</tr>
+
+<tr>
+<td>&ndash;safe-slave-backup</td>
+<td>从机备份</td>
+</tr>
+
+<tr>
+<td>&ndash;no-timestamp</td>
+<td>生成的备份文件不以时间戳为目录</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p>十二、备份方案选择</p>
+</blockquote>
+
+<ul>
+<li><p>完整备份+差异备份</p>
+
+<ul>
+<li>以每周数据备份计划为例，我们可以在周一进行完整备份，在周二至周日进行差异备份。如果在周日数据被破坏了，则你只需要还原周一的完整备份和周六的差异备份。这种策略备份数据需要时间较多，但还原数据使用时间较少。
+<br /></li>
+</ul></li>
+
+<li><p>完整备份+增量备份</p>
+
+<ul>
+<li>以每周数据备份计划为例，我们在周一进行完整备份，在周二至周日进行增量备份。如果在周日数据被破坏了，则需要还原周一的完整备份和从周二至周六的所有增量备份。这种策略备份数据需要时间较少，但还原数据使用时间较多。且周二至周六任何一个备份数据损坏，所有备份不可用。</li>
+</ul></li>
+
+<li><p>完整备份、增量备份和差异备份结合</p>
+
+<ul>
+<li>以每周数据备份计划为例，在周一进行完整备份，在周二至周日进行差异备份，并且每天针对当天的差异备份每隔一段时间（比如半小时）进行增量备份。如果周日某个时间点数据被破坏了，则你需要还原周一的完整备份和周六的差异备份，然后在还原周日所做的增量备份。这种策略操作最复杂，但是数据库最多损失半小时的数据。</li>
+</ul></li>
+</ul>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=MySQL%e5%a4%87%e4%bb%bd%e8%bf%98%e5%8e%9f&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f17%2fmysqlbackup%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f17%2fmysqlbackup%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f17%2fmysqlbackup%2f&amp;description=MySQL%e5%a4%87%e4%bb%bd%e8%bf%98%e5%8e%9f"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f17%2fmysqlbackup%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/17/babun/">
+          <section class="post">
+              <h2>Babun介绍</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/16/pythonbase/">
+          <section class="post">
+              <h2>Python语法技巧</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

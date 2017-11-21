@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python PYH模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python PYH模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/20/pythonpyh/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-20T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python PYH模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python生成HTML代码，制作HTML表格&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/20/pythonpyh/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python PYH模块",
+    "name": "Python PYH模块",
+    "wordCount":  474 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/20/pythonpyh/",
+    "datePublished": "2017-07-20T00:00Z",
+    "dateModified": "2017-07-20T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/20/pythonpyh/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python PYH模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-20T00:00:00Z">
+            Jul 20, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Python生成HTML代码，制作HTML表格</font></left> </p>
+
+<blockquote>
+<p>一、pyh模块介绍</p>
+</blockquote>
+
+<h4 id="1-1-介绍">1.1 介绍</h4>
+
+<ul>
+<li><code>pyh</code>是一个强大且简约的python模块，你可以使用它在python程序中生成HTML内容。</li>
+<li><code>pyh</code>为了这一切提供了非常不错的解决方案。它让你像编写GUI一样，编写网页</li>
+</ul>
+
+<h4 id="1-2-日常使用html确定">1.2 日常使用HTML确定</h4>
+
+<ul>
+<li>在python代码中手写HTML代码非常乏味并且使代码可读性变得非常槽糕。</li>
+<li>当你尝试要去看一下HTML源码的时候，可读性同样很差。</li>
+</ul>
+
+<h4 id="1-3-功能特性">1.3 功能特性</h4>
+
+<ul>
+<li>自动格式化HTML标签</li>
+<li>高度可定制</li>
+<li>完全识别CSS和Javascript</li>
+<li>自动闭合标签</li>
+<li>面向对象的HTML编写方式</li>
+</ul>
+
+<h4 id="1-4-安装pyh">1.4 安装pyh</h4>
+
+<pre><code class="language-shell">wget https://sourceforge.net/projects/pyh/files/latest/download/PyH-0.11.tar.gz
+tar -zxf PyH-0.1.1.tar.gz
+cd PyH-0.1.1
+python setup.py install
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>二、基本使用</p>
+</blockquote>
+
+<h4 id="2-1-代码例子">2.1 代码例子</h4>
+
+<pre><code class="language-python">from pyh import *
+# 定义网页的title
+page = PyH('My wonderful PyH page')
+# 定义网页需加载的CSS
+page.addCSS('myStylesheet1.css', 'myStylesheet2.css')
+# 定义网页需加载的JS
+page.addJS('myJavascript1.js', 'myJavascript2.js')
+# 定义内容一级大标题，class属性为居中（center）
+page &lt;&lt; h1('My big title', cl='center')
+# 定义一个div容器，class加载myCSSClass1，myCSSClass2，容器里定义个标签
+page &lt;&lt; div(cl='myCSSclass1 myCSSclass2', id='myDiv1') &lt;&lt; p('I love PyH!', id='myP1')
+# 定义div容器，加入一个二级标题和一个标签
+mydiv2 = page &lt;&lt; div(id='myDiv2')
+mydiv2 &lt;&lt; h2('A smaller title') + p('Followed by a paragraph.')
+# 定义div容器，
+page &lt;&lt; div(id='myDiv3')
+page.myDiv3.attributes['cl'] = 'myCSSclass3'
+page.myDiv3 &lt;&lt; p('Another paragraph')
+page.printOut()
+</code></pre>
+
+<h4 id="2-2-实现效果">2.2 实现效果</h4>
+
+<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;My wonderful PyH page&lt;/title&gt;
+&lt;link href=&quot;myStylesheet1.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;myStylesheet2.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;script src=&quot;myJavascript1.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;myJavascript2.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 class=&quot;center&quot;&gt;My big title&lt;/h1&gt;
+&lt;div id=&quot;myDiv1&quot; class=&quot;myCSSclass1 myCSSclass2&quot;&gt;
+&lt;p id=&quot;myP1&quot;&gt;I love PyH!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;myDiv2&quot;&gt;
+&lt;h2&gt;A smaller title&lt;/h2&gt;
+&lt;p&gt;Followed by a paragraph.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;myDiv3&quot; class=&quot;myCSSclass3&quot;&gt;
+&lt;p&gt;Another paragraph&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、基础手册</p>
+</blockquote>
+
+<ul>
+<li><p><strong>生成对象</strong></p>
+
+<ul>
+<li><code>HTML</code>标签可以通过调用同名函数来生成。</li>
+<li><code>HTML</code>标签<tag>可以通过tag()来生成。</li>
+</ul>
+
+<pre><code class="language-shell"># 生成一个div容器
+page = div()
+page.render()
+'&lt;div&gt;&lt;/div&gt;\n'
+</code></pre></li>
+
+<li><p><strong>对象中标签传入内容</strong></p></li>
+</ul>
+
+<pre><code class="language-shell">page = div(p('My paragraph'),cl='myCSSClass1 myCSSclass2', id='myCSSid1')
+page.render()
+'&lt;div id=&quot;myCSSid1&quot; class=&quot;myCSSClass1 myCSSclass2&quot;&gt;&lt;p&gt;My paragraph&lt;/p&gt;\n&lt;/div&gt;\n'
+</code></pre>
+
+<ul>
+<li><strong>对象中标签修改属性</strong></li>
+</ul>
+
+<pre><code class="language-shell">page = div(cl='myCSSClass1',id='myCSSid1')
+page.attributes['id'] = 'myCSSid'
+page.render()
+'&lt;div id=&quot;myCSSID&quot; class=&quot;myClass1&quot;&gt;&lt;/div&gt;\n'
+</code></pre>
+
+<ul>
+<li><strong>对象中标签间连接</strong></li>
+</ul>
+
+<pre><code class="language-shell">page = div() + div()
+page.render()
+'&lt;div&gt;&lt;/div&gt;\n&lt;div&gt;&lt;/div&gt;\n\n'
+</code></pre>
+
+<ul>
+<li><strong>标签间包含</strong></li>
+</ul>
+
+<pre><code class="language-shell">page = div(id='myTopLevelDiv')
+myPar = page &lt;&lt; div(id='myInnerDiv') &lt;&lt; p(id='myPar')
+myPar &lt;&lt; span('My first span') + span('My second span')
+page.render()
+'&lt;div id=&quot;myTopLevelDiv&quot;&gt;&lt;div id=&quot;myInnerDiv&quot;&gt;&lt;p id=&quot;myPar&quot;&gt;&lt;span&gt;My first span&lt;/span&gt;\n&lt;span&gt;My second span&lt;/span&gt;\n&lt;/p&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n'
+</code></pre>
+
+<ul>
+<li><p><strong>标签间访问</strong></p>
+
+<ul>
+<li>当一个标签被包含进另一个标签之后，可以把它作为上级标签成员来进行访问，它的名字就是其id属性的值</li>
+<li>如果没有指定该值，则tag_001就是该类第一个标签的名字</li>
+</ul>
+
+<pre><code class="language-shell">page = div()
+page &lt;&lt; span(id='myspan')
+page.myspan &lt;&lt; 'centen1'
+page &lt;&lt; span()
+page.span &lt;&lt; 'centent2'
+page &lt;&lt; span()
+page.span_001 &lt;&lt; 'content3'
+page.render()
+'&lt;div&gt;&lt;span id=&quot;myspan&quot;&gt;centen1&lt;/span&gt;\n&lt;span&gt;centent2&lt;/span&gt;\n&lt;span&gt;content3&lt;/span&gt;\n&lt;/div&gt;\n'
+</code></pre></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>四、创建网页</p>
+</blockquote>
+
+<ol>
+<li><p>最高层的对象，是<code>pyh</code>对象。它创建一个包含CSS和javascript元素的HTML页面</p>
+
+<pre><code class="language-shell">from pyh import *
+page = pyh('xxxxxx')
+</code></pre></li>
+
+<li><p>添加CSS表盒和javascript文件</p>
+
+<pre><code class="language-shell">page.addCSS('XXXX.css','XXXX2.css')
+page.addJS('xxxxx.js','xxxxx2.js')
+</code></pre></li>
+
+<li><p>创建页面</p>
+
+<pre><code class="language-python">page &lt;&lt; h1('My big title!', cl='myCSSclass')
+page &lt;&lt; div(id='mySubtitleDiv') &lt;&lt; h2('My sub-title')
+maindiv = page &lt;&lt; div(id='myMainDiv')
+maindiv &lt;&lt; h3('A smaller title') + p('followed by a small paragraph')
+maindiv &lt;&lt; p('Main paragraph ', style='color:red;') &lt;&lt; a('a link', href='http://alink')
+maindiv &lt;&lt; span('hehe', onclick='myJavaScriptFcn(); return false;')
+maindiv &lt;&lt; br()
+maindiv &lt;&lt; img(src='mypicture.jpg')
+page &lt;&lt; div(id='myFooter') &lt;&lt; span('My footer')
+</code></pre></li>
+
+<li><p>可以把HTML页面输出到文件或者输出到浏览器</p>
+
+<pre><code>page.printOut()
+</code></pre>
+
+<hr /></li>
+</ol>
+
+<blockquote>
+<p>五、创建表格</p>
+</blockquote>
+
+<ul>
+<li><p><strong>创建一个4乘4的表格</strong></p>
+
+<pre><code class="language-python">page = PyH('My wonderful PyH page')
+page &lt;&lt; h2('Most compact way to build a 4 by 4 table')
+page &lt;&lt; table() &lt;&lt; tr(td('1') + td('2')) + tr(td('3') + td('4'))
+page &lt;&lt; h2('Another way to build a 4 by 4 table')
+mytab = page &lt;&lt; table()
+tr1 = mytab &lt;&lt; tr()
+tr1 &lt;&lt; td('1') + td('2')
+tr2 = mytab &lt;&lt; tr()
+tr2 &lt;&lt; td('3') + td('4')
+page.printOut()
+</code></pre></li>
+
+<li><p><strong>创建自定义表格</strong></p>
+
+<pre><code class="language-python">list=[['OA','192.168.8.58','common_dir-data-web-oa_192.168.8.58','/data/web/oa','2017-02-10 17:00:00','86400','异常'],['PM','192.168.8.77','common_dir-data-web-pm_192.168.8.77','/data/web/pm','2017-02-11 10:00:00','172800','成功'],['Nagios','192.168.8.111','common_dir-data-web-nagios_192.168.8.111','/usr/local/nagios','2017-02-22 11:00:00','86400','成功']]
+page = PyH('Test')
+page&lt;&lt; div(style=&quot;text-align:center&quot;) &lt;&lt; h2(title)
+mytab = page &lt;&lt; table(border=&quot;1&quot;,cellpadding=&quot;3&quot;,cellspacing=&quot;0&quot;,style=&quot;margin:auto&quot;)
+tr1 = mytab &lt;&lt; tr(bgcolor=&quot;lightgrey&quot;,align='center')
+tr1 &lt;&lt; th('应用') + th('IP') + th('备份文件名') + th('检查点') + th('修改时间') + th('定义的间隔时间') + th('结果')
+for i in range(len(list)):
+    tr2 = mytab &lt;&lt; tr(align='center')
+    for j in range(7):
+        tr2 &lt;&lt; td(list[i][j])
+        if list[i][j]=='异常':
+            tr2[6].attributes['style'] = 'color:red'
+page.printOut('test.html')
+
+with open('test.html','r') as f:
+    html = f.read()
+</code></pre></li>
+
+<li><p><strong>效果图</strong></p></li>
+</ul>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/8D9A04D3A9847B3DB7C5F508F32A203C.png" alt="Snip20170223_132.png" /></p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20PYH%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f20%2fpythonpyh%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f20%2fpythonpyh%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f20%2fpythonpyh%2f&amp;description=Python%20PYH%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f20%2fpythonpyh%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/20/sendmail/">
+          <section class="post">
+              <h2>Linux 发送邮件</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/20/socat/">
+          <section class="post">
+              <h2>Socat Command</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

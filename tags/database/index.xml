@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/database/</link>
+    <description>Recent content in Database on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Mon, 17 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySQL备份还原</title>
+      <link>http://huang901111.github.io/2017/07/17/mysqlbackup/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/17/mysqlbackup/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;阐述多种备份还原手段，如cp、mysqldump、mysqlhotcopy、mysqlimport、xtrabackup等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Percona XtraDB Cluster</title>
+      <link>http://huang901111.github.io/2017/07/04/pxc/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/pxc/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;MySQL 集群高可用方案之一&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

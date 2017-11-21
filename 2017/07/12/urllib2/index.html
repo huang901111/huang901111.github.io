@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python Urllib模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python Urllib模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/12/urllib2/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-12T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="python" />
+    
+    
+
+    <title>Python Urllib模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器二之Urllib/Urllib2库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/12/urllib2/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python Urllib模块",
+    "name": "Python Urllib模块",
+    "wordCount":  361 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/12/urllib2/",
+    "datePublished": "2017-07-12T00:00Z",
+    "dateModified": "2017-07-12T00:00Z",
+    
+    "keywords": "python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/12/urllib2/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python Urllib模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-12T00:00:00Z">
+            Jul 12, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Python爬虫利器二之Urllib/Urllib2库</font></left> </p>
+
+<blockquote>
+<p>一、urllib与urllib2认识</p>
+</blockquote>
+
+<p>Python的urllib和urllib2模块都做与请求url相关的操作，但他们提供不同的功能。</p>
+
+<ul>
+<li><font color=green>urllib2</font>可以接受一个Request对象，并以此可以设置一个URL的headers，但是urllib只接受一个URL。这意味着，不能伪装你的用户代理字符串等。</li>
+<li><font color=green>urllib</font>模块可以提供进行urlencode的方法，该方法用于GET查询字符串的生成，urllib2的不具有这样的功能，这就是urllib与urllib2经常一起使用的原因。</li>
+<li>可以说urllib2是对urllib的增强。</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、urllib 方法介绍</p>
+</blockquote>
+
+<h4 id="2-1-urlopen">2.1 urlopen</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>创建一个表示远程url的类文件对象，然后像本地文件一样操作这个类文件对象来获取远程数据。</li>
+</ul></li>
+
+<li><p>用法</p>
+
+<pre><code class="language-python">urllib.urlopen(url[, data[, proxies]])
+</code></pre></li>
+
+<li><p>参数说明</p>
+
+<ul>
+<li>url 表示远程数据的路径，一般是网址</li>
+<li>data 表示以post/get方式提交到url的数据</li>
+<li>proxies 用于设置代理</li>
+</ul></li>
+
+<li><p>返回</p>
+
+<ul>
+<li>read()、readlines()、fileno()、close()，这些方法的使用法与文件对象完全一样</li>
+<li>info() 返回一个httplib.HTTPMessage对象，表示远程服务器返回的头信息</li>
+<li>getcode() 返回http状态码</li>
+<li>geturl() 返回请求的url</li>
+</ul></li>
+</ul>
+
+<h4 id="2-2-urlretireve">2.2 urlretireve</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>直接在远程数据下载到本地，该方法返回一个包含两个元素的元祖（filename,headers）</li>
+<li>filename 表示保存到本地的路径</li>
+<li>header 表示服务器的响应头</li>
+</ul></li>
+
+<li><p>用法</p></li>
+</ul>
+
+<pre><code class="language-python">  urllib.urlretrieve(url[,filename[,reporthook[,data]]])
+</code></pre>
+
+<ul>
+<li><p>参数说明</p>
+
+<ul>
+<li>url 外部或者本地url</li>
+<li>filename 指定了保存到本地的路径</li>
+<li>reporthook 是一个回调函数，当连接上服务器，以及相应的数据块传输完毕的时候会触发该回调，可以利用这个回调函数来显示当前的下载进度。</li>
+<li>data 指post/get到服务器的数据。</li>
+</ul></li>
+</ul>
+
+<h4 id="2-3-urlcleanup">2.3 urlcleanup</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>清除由于urllib.urlretrieve()所产生的缓存</li>
+</ul></li>
+</ul>
+
+<h4 id="2-4-quote-quote-plus">2.4 quote、quote_plus</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>将url数据获取之后，并将其编码，从而适用与URL字符串中，使其能被打印和被web服务器接受。</li>
+</ul></li>
+
+<li><p>两者差异</p>
+
+<ul>
+<li>quote_plus()方法与quote()方法类似，但quote_plus方法是用&rdquo;+&ldquo;来替换&rdquo; &ldquo;</li>
+</ul></li>
+</ul>
+
+<h4 id="2-5-unquote-unquote-plus">2.5 unquote、unquote_plus</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>对字符串进行解码</li>
+</ul></li>
+</ul>
+
+<h4 id="2-6-urlencode">2.6 urlencode</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>将dict或者包含两个元素的元祖列表转换成url参数。</li>
+<li>例如：dict{&lsquo;name&rsquo;:&lsquo;dark-bull&rsquo;,&lsquo;age&rsquo;:&lsquo;20&rsquo;} 将被转换为name=dark-bull&amp;age=20</li>
+</ul></li>
+</ul>
+
+<h4 id="2-7-pathname2url">2.7 pathname2url</h4>
+
+<ul>
+<li><p>介绍</p>
+
+<ul>
+<li>将本地路径转换成url路径</li>
+</ul></li>
+</ul>
+
+<h4 id="2-8-实用例子">2.8 实用例子</h4>
+
+<pre><code class="language-python">  #!/usr/bin/env python
+  # -*- coding:utf-8 -*-
+
+  import urllib
+
+  s = urllib.quote('This is Python') # 编码
+  print 'quote:\t' + s
+  s_un = urllib.unquote(s)
+  print 'unquote:\t' + s_un
+  s_plus = urllib.quote_plus('This is Python') # 编码
+  print 'quote_plus:\t' + s_plus
+  s_unplus = urllib.unquote_plus(s_plus)
+  print 'unquote_plus:\t' + s_unplus
+
+  # 编码字典转换为url参数
+  s_dict = {'name':'tq','pass':'1234'}
+  s_encode = urllib.urlencode(s_dict)
+  print 's_encode:\t' + s_encode
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、urllib2 方法介绍</p>
+</blockquote>
+
+<h4 id="3-1-urlopen">3.1 urlopen</h4>
+
+<p>用法与urllib里的urlopen方法类似，区别urllib2.urlopen()可以打开一个Request对象，可选参数timeout，阻塞操作以秒为单位</p>
+
+<ul>
+<li>最简单用法</li>
+</ul>
+
+<pre><code class="language-python">  import urllib2
+
+  url = urllib.urlopen(url)
+  response = urllib2.urlopen(url)
+  page = response.read()
+</code></pre>
+
+<ul>
+<li><p>日常用法</p>
+
+<ul>
+<li>urliopen通过建立一个Request对象来明确指明想要获取的url，调用urlopen函数对请求的url返回一个response对象，这个response类似于一个file对象，所有用.read()函数可以操作这个response对象</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-python">  import urllib2
+
+  url = 'http://www.baidu.com'
+
+  request = urllib2.Request(url)
+  response = urllib2.urlopen(request)
+  page = response.read()
+</code></pre>
+
+<ul>
+<li>Requests 类是一个抽象的URL请求（传参用法）</li>
+</ul>
+
+<pre><code class="language-python">  import urllib2
+  import urllib
+
+  url = 'http://www.xxxx.com/cgi-bin/register.cgi'
+  values = {
+    'name':'xxxxx',
+    'location':'xxxxx',
+    'language':'xxxxx'
+  }
+  data = urllibe.urlencode(values)
+  req = urllib2.Request(url,data) # send post
+  response = urllib2.urlopen(req)
+  page = response.read()
+</code></pre>
+
+<ul>
+<li><p>设置请求超时</p>
+
+<ul>
+<li>好多时候各种原因，有可能导致你的请求各种等待。</li>
+
+<li><p>这个时候可通过设置urlopen中的超时去掉那些无法容忍的响应请求</p></li>
+
+<li><p>使用timeout的时候要注意一点，如果没有data数据，那么这时一定要显示的传递参数</p></li>
+</ul></li>
+</ul>
+
+<pre><code>  import urllib2
+  urllib2.urlopen('http://www.baidu.com',data,10)
+  urllib2.urlopen('http://www.baidu.com',timeout=10)
+</code></pre>
+
+<ul>
+<li><p>headers(设置HTTP请求头)</p>
+
+<ul>
+<li>有一些网站不希望被某些程序浏览或者针对不同的浏览器返回不同的版本。</li>
+<li>通过headers参数去尝试一下修改http请求头的一些信息。</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-python">  import urllib
+  import urllib2
+
+  url = 'http://www.xxxxx.com'
+  user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+  values = {
+    'name':'xxxx'.
+    'location':'xxxxx',
+    'language':'xxxxx'
+  }
+  headers = {'User-Agent':user_agent}
+  date = urllib.urlencode(values)
+  requests = urllib2.Request(url,data,headers)
+  response = urllib2.urlopen(request)
+  page = response.read()
+</code></pre>
+
+<ul>
+<li><p>install_opener、build_opener</p>
+
+<ul>
+<li>install_opener和build_opener这两个方法通常都是一起用，也有时候build_opener单独使用来得到OpenerDirector对象。</li>
+<li>install_opener 实例化会得到OpenerDirector对象用来赋予全局变量opener。</li>
+<li>build_opener实例化也会得到OpenerDirector对象，其中参数handlers可以被BaseHandler或它的子类实例化。</li>
+<li>子类可以通过以下实例化：ProxyHandler（代理使用）、UnknownHnadler、HTTPHandler、HTTPDefaultErrorHandler, HTTPRedirectHandler, FTPHandler, FileHandler, HTTPErrorProcessor。</li>
+</ul></li>
+
+<li><p>设置代理</p></li>
+</ul>
+
+<pre><code class="language-python">  import urllib2 
+  proxy_handler = urllib2.ProxyHandler({&quot;http&quot;:'http://11.11.11.11:8080'})
+  opener = urllib2.build_opener(proxy_handler)
+  urllib2.install_opener(opener)
+</code></pre>
+
+<ul>
+<li>设置http和https的Debug log功能</li>
+</ul>
+
+<pre><code class="language-python">  import urllib2
+  httpHandler = urllib2.HTTPHandler('debuglevel=1')
+  httpsHandler = urllib2.HTTPSHandler('debuglevel=1')
+  opener = urllib2.build_opener(httpHandler, httpsHandler)
+  urllib2.install_opener(opener)
+  response = urllib2.urlopen('http://www.baidu.com')
+</code></pre>
+
+<ul>
+<li>结合cookielib处理cookie信息</li>
+</ul>
+
+<pre><code class="language-python">  import urllib2
+  import cookielib
+
+  cookie = cookielib.CookieJar()
+  cookieHandler = urllib2.HTTPCookieProcessor(cookie)
+  opener = urllib2.build_opener(cookieHandler)
+  urllib2.install_opener(opener)
+  response = urllib2.urlopen('http://www.baidu.com')
+  for item in cookie:
+      print 'CookieName = '+item.name
+      print 'CookieValue = '+item.value
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、urllib异常处理</p>
+</blockquote>
+
+<pre><code class="language-python">  from urllib2 import Request, urlopen, URLError  
+  req = Request(someurl)  
+  try:  
+    response = urlopen(req)  
+  except URLError, e:  
+    if hasattr(e, 'reason'):  
+      print 'We failed to reach a server.'  
+      print 'Reason: ', e.reason  
+    elif hasattr(e, 'code'):  
+      print 'The server couldn/'t fulfill the request.'  
+      print 'Error code: ', e.code  
+    else:
+      pass
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20Urllib%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f12%2furllib2%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f12%2furllib2%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f12%2furllib2%2f&amp;description=Python%20Urllib%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f12%2furllib2%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/14/cdncheck/">
+          <section class="post">
+              <h2>判断CDN文件与源文件是否一致</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/11/requests/">
+          <section class="post">
+              <h2>Python Requests模块</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

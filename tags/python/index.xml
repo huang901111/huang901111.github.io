@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Seacme Huang</title>
+    <link>http://huang901111.github.io/tags/python/</link>
+    <description>Recent content in Python on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python SH模块</title>
+      <link>http://huang901111.github.io/2017/11/21/pythonsh/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/11/21/pythonsh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个在Python脚本中方便处理bash命令的模块&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Time与Datetime模块</title>
+      <link>http://huang901111.github.io/2017/08/08/pythontime/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/08/08/pythontime/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python HTTP代理</title>
+      <link>http://huang901111.github.io/2017/08/03/pythonhttp/</link>
+      <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/08/03/pythonhttp/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;介绍几种通过urllib/requests模块使用HTTP代理方法&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Re模块</title>
+      <link>http://huang901111.github.io/2017/07/31/pythonre/</link>
+      <pubDate>Mon, 31 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/31/pythonre/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Re模块实现正则匹配操作，实现对复杂字符串截取有用信息。&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Glob模块</title>
+      <link>http://huang901111.github.io/2017/07/28/pythonglob/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/28/pythonglob/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Glob模块可用于根据特定规则遍历搜索文件路径名&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Selenium&#43;Plantomjs模块</title>
+      <link>http://huang901111.github.io/2017/07/28/pythonselenium/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/28/pythonselenium/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器三之Selenium+Plantomjs库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python YAML语言</title>
+      <link>http://huang901111.github.io/2017/07/27/pythonyaml/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/pythonyaml/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;以数据为中心的配置文件语言，非常简洁和强大。&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 异常处理</title>
+      <link>http://huang901111.github.io/2017/07/27/pythontry/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/pythontry/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python错误异常捕捉，根据异常触发操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python PYH模块</title>
+      <link>http://huang901111.github.io/2017/07/20/pythonpyh/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/pythonpyh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python生成HTML代码，制作HTML表格&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python ConfigParser模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonconfigparser/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonconfigparser/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Configparser用于读取配置文件&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python FileInput模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonfileinput/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonfileinput/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;FileInput模块实现对一个或多个文件内容遍历操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python JSON模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonjson/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonjson/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个处理轻量级的数据交换格式JSON模块&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python OS模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonos/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonos/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;OS模块是Python内置标准库，提供了一种可移植的方法使用操作系统的功能
+&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python语法技巧</title>
+      <link>http://huang901111.github.io/2017/07/16/pythonbase/</link>
+      <pubDate>Sun, 16 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/16/pythonbase/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;列举Python列表、元组、集合、字典相关操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Urllib模块</title>
+      <link>http://huang901111.github.io/2017/07/12/urllib2/</link>
+      <pubDate>Wed, 12 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/12/urllib2/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器二之Urllib/Urllib2库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Requests模块</title>
+      <link>http://huang901111.github.io/2017/07/11/requests/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/11/requests/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器一之Requests库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Hashlib模块</title>
+      <link>http://huang901111.github.io/2017/07/04/hashlib/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/hashlib/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Hashlib模块提供了常见的摘要算法，如MD5，SHA1等等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

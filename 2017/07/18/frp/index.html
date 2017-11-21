@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="FRP 工具"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="FRP 工具 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/18/frp/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-18T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Network" />
+    
+    
+
+    <title>FRP 工具 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款内网穿透高兴能反向代理&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/18/frp/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "FRP 工具",
+    "name": "FRP 工具",
+    "wordCount":  281 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/18/frp/",
+    "datePublished": "2017-07-18T00:00Z",
+    "dateModified": "2017-07-18T00:00Z",
+    
+    "keywords": "Network",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/18/frp/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">FRP 工具</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-18T00:00:00Z">
+            Jul 18, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/network/">#Network</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一款内网穿透高兴能反向代理</font></left> </p>
+
+<blockquote>
+<p>一、内网穿透原理</p>
+</blockquote>
+
+<p>简单地说，内网穿透依赖于NAT原理，根据NAT设备不同大数可以分为以下4大类（前3种NAT类型可统称为cone类型）</p>
+
+<ol>
+<li><code>全克隆（Full Cone）</code>：NAT把所有来自相同内部IP地址和端口的请求映射到相同的外部IP地址和端口上，任何一个外部主机均可通过该映射反向发送IP包到该内部主机</li>
+<li><code>限制性克隆（Restricted Code）</code>：NAT把所有来自相同内容IP地址和端口的请求映射到相同的外部IP地址和端口；但是，只有当内部主动先给IP地址为X的外部主机发送IP包时，该外部主机才能向该内部主机发送IP包</li>
+<li><code>端口限制性克隆（Port Restricted Code）</code>：端口限制性克隆与限制性克隆类似，只是多了端口号的限制，即只有内部主机先向IP地址为X，端口为P的外部主机发送1个IP包，该外部主机才能够把源端口号为P的IP包发送给该内部主机</li>
+<li><code>对称式NAT(Symmetric NAT)</code>：这种类型的NAT与上述3种类型的不同，在于当同一个内部主机使用相同的端口与不同地址的外部主机进行通信时，NAT对该内部主机的映射会有所不同；对称式NAT不保证所有会话中的私有地址和公开IP之间绑定的一致性；相反，它为每个新的会话分配一个新的端口号；导致此种NAT根本无法穿透</li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>二、认识frp</p>
+</blockquote>
+
+<ul>
+<li>frp是一个可用于内网穿透的高性能的反向代理应用，支持tcp、udp、http、https协议</li>
+</ul>
+
+<h4 id="2-1-frp作用">2.1 frp作用</h4>
+
+<ol>
+<li>利用处于内网或防火墙后的机器，对外网环境提供http或者https服务</li>
+<li>对于http、https服务基于域名的虚拟主机，支持自定义域名绑定，使用多个域名可以共用一个80端口</li>
+<li>利用处于内网或防火墙后的机器，对外网环境提供tcp和udp服务</li>
+</ol>
+
+<h4 id="2-2-frp架构">2.2 frp架构</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/FDCBBB7CE4F413D2017DFCC5D0934D4F.png" alt="Snip20170604_110.png" /></p>
+
+<hr />
+
+<blockquote>
+<p>三、frp部署</p>
+</blockquote>
+
+<h4 id="3-1-服务器端部署">3.1 服务器端部署</h4>
+
+<ul>
+<li>下载源码包</li>
+</ul>
+
+<pre><code class="language-shell">wget https://github.com/fatedier/frp/releases/download/v0.11.0/frp_0.11.0_linux_amd64.tar.gz
+</code></pre>
+
+<ul>
+<li>部署服务端</li>
+</ul>
+
+<pre><code class="language-shell">cd /data/backup/tmp
+# 解压源码包
+tar -zxf frp_0.11.0_linux_amd64.tar.gz -C /usr/loca/frp
+# 服务端配置
+cd /usr/loca/frp
+vim frps.ini
+[common]
+## frp 监听地址
+bind_addr = 0.0.0.0
+bind_port = 7000
+## 代理http服务
+vhost_http_port = 80
+## frp 控制面板
+dashboard_port = 7500
+dashboard_user = xxxxxx
+dashboard_pwd = xxxxxxxxxxx
+## 默认日志输出位置(这里输出到标准输出)
+log_file = /var/log/frp_server.log
+## 日志级别，支持: debug, info, warn, error
+log_level = info
+log_max_days = 3
+## 开启tcp多路复用
+tcp_mux = true
+## 后端连接池最大连接数
+max_pool_count = 100
+## 自定义二级域名
+subdomain_host = xxxx.cn
+## own test machine
+[ssh-214]
+type = tcp
+auth_token = xxxxxxxxxxxx
+bind_addr = 0.0.0.0
+listen_port = 6168
+## own test service
+[web-owncloud]
+type = http
+auth_token = xxxxxxxxxxxx
+</code></pre>
+
+<ul>
+<li>利用supervisor管理frp</li>
+</ul>
+
+<pre><code class="language-shell">## supervisor配置
+cd /etc/supervisor/conf.d
+vim frp_server.conf
+[program:frp_server]
+user=root
+directory=/usr/local/frp
+command=/usr/local/frp/frps -c &quot;/usr/local/frp/frps.ini&quot;
+process_name=%(program_name)s
+autostart=true
+redirect_stderr=true
+stdout_logfile=/var/log/frp_server.log
+## 启动frp server
+/etc/init.d/supervisord restart
+Stopping supervisord:                                      [确定]
+启动 supervisord：                                         [确定]
+frp_server                       STARTING
+kcptun                           STARTING
+net-speeder                      STARTING
+</code></pre>
+
+<hr />
+
+<h4 id="3-2-客户端配置">3.2 客户端配置</h4>
+
+<ul>
+<li>下载源码包</li>
+</ul>
+
+<pre><code class="language-shell">wget https://github.com/fatedier/frp/releases/download/v0.11.0/frp_0.11.0_linux_amd64.tar.gz
+</code></pre>
+
+<ul>
+<li>部署客户端</li>
+</ul>
+
+<pre><code class="language-shell">cd /data/backup/tmp
+## 解压源码包
+tar -zxf frp_0.11.0_linux_amd64.tar.gz -C /usr/local/frp
+## 客户端配置
+cd /usr/local/frp
+vim frpc.ini
+[common]
+server_addr = xxx.xxx.xxx.xxx
+server_port = xxxx
+log_file = /var/log/frp_client.log
+log_level = info
+log_max_days = 3
+[ssh-123]
+type = tcp
+local_ip = 127.0.0.1
+local_port = xxxx
+remote_port = 6169
+auth_token = W7gbxsB9HtYm4zwVwb
+use_encryption = true
+use_compression = true
+[web-owncloud]
+type = http
+local_port = 80
+auth_token = te9cuL5QnGxh4hnmVT
+subdomain = owncloud
+</code></pre>
+
+<ul>
+<li>启动客户端</li>
+</ul>
+
+<pre><code class="language-shell">cd /usr/local/frp
+./frpc -c frpc.ini &amp;
+# 检查frp服务
+ps aux | grep frp
+root     42464  0.4  0.1  11824  4312 ?        Sl   18:01   0:00 ./frpc -c frpc.ini
+# 检查frp服务端口
+netstat -tunlap | grep 7000
+tcp        0     16 192.168.1.123:41985         xxx.xxx.xxx.xxx:7000            ESTABLISHED 42464/./frpc
+</code></pre>
+
+<hr />
+
+<h2 id="3-3-frp管理页面">3.3 frp管理页面</h2>
+
+<blockquote>
+<p>总体连接状况</p>
+</blockquote>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/5C40DB96DC39263477CEE07B28AA9874.png" alt="Snip20170607_5.png" /></p>
+
+<blockquote>
+<p>TCP/HTTP连接状态</p>
+</blockquote>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/1E59510D66598A7F79333714F47E6E2E.png" alt="Snip20170607_6.png" />
+<img src="http://oskduq7mi.bkt.clouddn.com/068EBA23D3282516936D61E4EE30886F.png" alt="Snip20170607_7.png" /></p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=FRP%20%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f18%2ffrp%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f18%2ffrp%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f18%2ffrp%2f&amp;description=FRP%20%e5%b7%a5%e5%85%b7"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f18%2ffrp%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/19/pythonos/">
+          <section class="post">
+              <h2>Python OS模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/17/babun/">
+          <section class="post">
+              <h2>Babun介绍</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

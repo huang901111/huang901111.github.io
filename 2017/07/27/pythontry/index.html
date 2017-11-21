@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python 异常处理"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python 异常处理 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/27/pythontry/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-27T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python 异常处理 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python错误异常捕捉，根据异常触发操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/27/pythontry/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python 异常处理",
+    "name": "Python 异常处理",
+    "wordCount":  349 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/27/pythontry/",
+    "datePublished": "2017-07-27T00:00Z",
+    "dateModified": "2017-07-27T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/27/pythontry/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python 异常处理</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-27T00:00:00Z">
+            Jul 27, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Python错误异常捕捉，根据异常触发操作</font></left> </p>
+
+<blockquote>
+<p>一、Python 异常处理</p>
+</blockquote>
+
+<ul>
+<li><p>异常处理无外乎几件事：<code>断言（assert）</code>和<code>抛错（raise）</code>，<code>检查（try）</code>，<code>捕获（except）</code>，<code>处理（except，else，finally）</code></p>
+
+<ul>
+<li><p>异常即是一个<code>事件</code>，该事件会在程序执行过程中发生，影响了程序的正常执行。一般情况下，在Python无法正常处理程序时就会发生一个异常。当Python脚本发生异常时，我们需要捕获处理它，否则程序会终止执行。</p></li>
+
+<li><p>异常是Python<code>对象</code>，表示一个错误，异常可以作为类被定义，也可以人为引发异常</p></li>
+
+<li><p>异常可以作为<code>控制流</code>，通过异常情况或人为引发异常，可以执行代码流控制，实现比较高级的goto效果，例如for循环内引发错误，可以跳到外面几层的某个try&hellip;except内。</p></li>
+
+<li><p>try/except 语句用来检测try语句块中的错误，从而让except语句捕获异常信息并处理，如果你不想在异常发生时结束</p></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、try工作原理</p>
+</blockquote>
+
+<ul>
+<li><p>当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常</p>
+
+<ul>
+<li><p>如果当try后的语句执行发生异常，python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常。）</p></li>
+
+<li><p>如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者在程序的最上层（这样将结束程序，并打印缺省的出错信息）</p></li>
+
+<li><p>如果在try子句执行时没有发生异常，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句</p></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>三、相关语句</p>
+</blockquote>
+
+<h4 id="3-1-异常语句框架">3.1 异常语句框架</h4>
+
+<pre><code class="language-python">try:
+  &lt;statement&gt; 
+  # 运行别的代码
+except:
+  &lt;statement&gt; 
+  # 捕获任何在try中引发的异常
+except &lt;name&gt;:
+  &lt;statement&gt; 
+  # 如果在try部分引发了'name'异常
+except &lt;name&gt;,&lt;data&gt;:
+  &lt;statement&gt; 
+  # 如果引发了'name'异常，获得附加的数据
+excpet (&lt;name1&gt;,&lt;name2&gt;...):
+  &lt;statement&gt; 
+  # 捕获任何列出的错误
+else:
+  &lt;statement&gt; 
+  # 如果没有异常发生
+finally:
+  &lt;statement&gt; 
+  # 退出try时总会执行
+raise 
+# 人为引发错误
+assert &lt;judgement&gt; 
+# 断言，判断一定要返回True否则会引发AssertionError
+</code></pre>
+
+<h4 id="3-1-使用except而不带任何异常类型">3.1 使用except而不带任何异常类型</h4>
+
+<pre><code class="language-python">try:
+  You do your operations here;
+  ......
+except:
+  If there is any exception,then execute this block.
+  ......
+else:
+  If there is no exception,then execute this block.
+# 以上方式try-except语句捕获所有发生的异常
+</code></pre>
+
+<h4 id="3-2-try-finally语句">3.2 try-finally语句</h4>
+
+<p><font color=red><strong>注意：</strong></font>可以使用excpet语句或者finally语句，但是两者不能同时使用。else语句也不能与finally语句同时使用。</p>
+
+<pre><code class="language-python">try:
+  fh = open('testfile','w')
+  try:
+    fh.write(&quot;This is my test file for exception handling!!&quot;)
+  finally:
+    print &quot;Going to close the file&quot;
+    fh.close()
+except IOError:
+  print &quot;Error:can't find file or read data&quot;
+# 当在try块中抛出一个异常，立即执行finally块代码
+# finally块中的所有语句执行后，异常被再次提出，并执行except块代码
+</code></pre>
+
+<h4 id="3-3-异常的参数">3.3 异常的参数</h4>
+
+<p><strong>一个异常可以带上参数，可作为输出的异常信息参数</strong></p>
+
+<pre><code class="language-python">def temp_convert(var):
+  try:
+    return int(var)
+  except ValueError,Argument:
+    print &quot;The argument does not contain numbers\n&quot;,Argument
+
+temp_convert(&quot;xyz&quot;)
+
+The argument does not contain numbers
+invalid literal for int() with base 10: 'xyz'
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、常用异常类</p>
+</blockquote>
+
+<ol>
+<li><code>NameError</code>：尝试访问一个没有申明的变量</li>
+<li><code>ZeroDivisionError</code>：除数为0</li>
+<li><code>SyntaxError</code>：语法错误</li>
+<li><code>IndexError</code>：索引超出序列范围</li>
+<li><code>KeyError</code>：请求一个不存在的字典关键字</li>
+<li><code>IOError</code>：输入输出错误（比如你要读的文件不存在）</li>
+<li><code>AtrributeError</code>：尝试访问未知的对象属性</li>
+<li><code>ValueError</code>：传给函数的参数类型不正确，比如给int()函数传入字符串行</li>
+</ol>
+
+<hr />
+
+<blockquote>
+<p>五、raise语句</p>
+</blockquote>
+
+<ul>
+<li><p><code>raise</code>语句可以很好地用于抛出某个异常从而被try捕获，更常用于结合if等进行条件检查</p></li>
+
+<li><p><code>raise</code>一般是raise exception，args，args一般采用一个值，来初始化异常类的args属性，也可以直接使用元祖来初始化args</p></li>
+</ul>
+
+<h4 id="5-1-相关语句">5.1 相关语句</h4>
+
+<pre><code class="language-python">raise &lt;name&gt;
+# 手工地引发异常
+raise &lt;name&gt;,&lt;data&gt; 
+# 传递一个附加的数据（一个值或者一个元祖），要是不指定参数，则为None
+raise Exception（data） 
+# 和上面等效
+try：
+    if(i&gt;10):
+      raise TypeError(i)
+    elif(i&lt;0):
+      raise ValueError,i
+except TypeError,e:
+    print str(e)+&quot;for i is larger than 10!&quot;
+except ValueError,e:
+    print str(e)+&quot;for i is lesser than 0!&quot;
+else:
+    print &quot;i is between 0 and 10&quot;
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>六、assert语句</p>
+</blockquote>
+
+<ul>
+<li>Python的<code>assert</code>是用来检查一个条件，如果它为真，就不做任何事情。如果它为假，则会抛出<code>AssertError</code>并且包含错误信息。</li>
+</ul>
+
+<h4 id="6-2-基本语法">6.2 基本语法</h4>
+
+<pre><code class="language-python">assert expression[,reason]
+# assert是断言的关键字。
+</code></pre>
+
+<h4 id="6-1-相关案列">6.1 相关案列</h4>
+
+<pre><code class="language-python">assert len('love') == len('like')
+assert 1 == 2,&quot;1 is not equal 2&quot;
+
+try:
+  assert 1 == 2,&quot;1 is not equal 2&quot;
+except AssertException,reason:
+  print &quot;%s:%s&quot; %(reason.__class__.__name__,reason)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>七、Python捕获所有异常</p>
+</blockquote>
+
+<ul>
+<li>利用except：statement来捕获所有异常，但是你不知道是什么异常</li>
+</ul>
+
+<h4 id="7-1-利用traceback模块">7.1 利用traceback模块</h4>
+
+<ul>
+<li><strong>回溯模块可以回溯运行记录，traceback.print_exc()可以打印最后的异常情况</strong></li>
+</ul>
+
+<pre><code class="language-python">import traceback
+try:
+	print b[1]
+except:
+	traceback.print_exc()
+print &quot;hello world&quot;
+raw_input()
+# 输出:
+# Traceback (most recent call last):
+#  File &quot;C:\Users\Hom\Desktop\test.py&quot;, line 17, in &lt;module&gt;
+#    print b[1];
+# NameError: name 'b' is not defined
+# hello world
+</code></pre>
+
+<ul>
+<li><strong>使用文件保存异常信息用于日后分析</strong></li>
+</ul>
+
+<pre><code class="language-python">import traceback
+try:
+	print b[1]
+except:
+	ferr=open(&quot;errorlog.txt&quot;,'a')
+	traceback.print_exc(file=ferr)
+    #实名指定参数
+	f.flush()
+    #刷新
+	f.close()
+raw_input()
+</code></pre>
+
+<h4 id="7-2-使用sys模块">7.2 使用sys模块</h4>
+
+<pre><code class="language-python">import sys
+try:
+	print b[1]
+except:
+	print sys.exc_info()
+print &quot;hello world&quot;
+raw_input()
+# 输出:
+# (&lt;type 'exceptions.NameError'&gt;, NameError(&quot;name 'b' is not defined&quot;,), &lt;traceback object at 0x02582288&gt;)
+# hello world
+</code></pre>
+
+<h4 id="7-3-使用基类">7.3 使用基类</h4>
+
+<pre><code class="language-python">try:
+	statement
+except Exception,ex:
+	print Exception,&quot;:&quot;,ex	
+# 这里使用了基类Exception来捕获错误
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2fpythontry%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2fpythontry%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2fpythontry%2f&amp;description=Python%20%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f27%2fpythontry%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/27/pythonyaml/">
+          <section class="post">
+              <h2>Python YAML语言</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/27/rsync/">
+          <section class="post">
+              <h2>Rsync Service</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python Time与Datetime模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python Time与Datetime模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/08/08/pythontime/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-08-08T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Python" />
+    
+    
+
+    <title>Python Time与Datetime模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/08/08/pythontime/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python Time与Datetime模块",
+    "name": "Python Time与Datetime模块",
+    "wordCount":  1067 ,
+    "timeRequired": "PT6M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/08/08/pythontime/",
+    "datePublished": "2017-08-08T00:00Z",
+    "dateModified": "2017-08-08T00:00Z",
+    
+    "keywords": "Python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/08/08/pythontime/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python Time与Datetime模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-08-08T00:00:00Z">
+            Aug 8, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#Python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Python程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能</font></left> </p>
+
+<blockquote>
+<p>一、Python Time 模块</p>
+</blockquote>
+
+<h4 id="1-1-介绍">1.1 介绍</h4>
+
+<ul>
+<li><code>time</code> 模块主要提供了一些用于管理时间和日期的方法。</li>
+<li><code>time</code> 模块中时间的表现形式有三种：
+
+<ul>
+<li><strong>format_string</strong>：格式化的字符串</li>
+<li><strong>struct_time</strong>：结构化时间</li>
+<li><strong>timestamp</strong>：时间戳</li>
+</ul></li>
+</ul>
+
+<h4 id="1-2-关系图">1.2 关系图</h4>
+
+<p><img src="http://oskduq7mi.bkt.clouddn.com/yAc0lN62Ha-20170803-204356.png" alt="Snip20170414_30.png" /></p>
+
+<h4 id="1-3-简单实例">1.3 简单实例</h4>
+
+<ul>
+<li><p><strong>获取当前时间的时间戳</strong></p>
+
+<ul>
+<li>主要涉及 <code>time</code> 方法</li>
+</ul>
+
+<pre><code># time.time() 返回当前时间的时间戳
+print time.time()
+1467430777.71
+</code></pre></li>
+
+<li><p><strong>获取结构化的当前时间</strong></p>
+
+<ul>
+<li>主要涉及 <code>localtime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python"># 从返回浮点数的时间戳方式转换为时间元组，只要将时间戳传递给localtime之类的函数
+import time
+localtime = time.localtime(time.time())
+print '本地时间为：',localtime
+## 输出结果
+本地时间为： time.struct_time(tm_year=2017, tm_mon=8, tm_mday=3, tm_hour=21, tm_min=1, tm_sec=24, tm_wday=3, tm_yday=215, tm_isdst=1)
+</code></pre></li>
+
+<li><p><strong>从结构化时间获取格式化的当前时间</strong></p>
+
+<ul>
+<li>主要涉及 <code>asctime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python"># time.time 获取当前时间戳
+# time.localtime 获取当前结构化时间
+import time
+localtime = time.asctime(time.localtime(time.time()))
+print '本地时间为：',localtime
+## 输出结果
+本地时间为: Fri Aug  4 10:30:59 2017
+</code></pre></li>
+
+<li><p><strong>从时间戳时间获取格式化的当前时间</strong></p>
+
+<ul>
+<li>主要涉及 <code>ctime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python"># time.time 获取当前时间戳
+import time
+localtime = time.ctime(time.time())
+print '本地时间为:',localtime
+本地时间为: Sat Aug  5 06:01:21 2017
+</code></pre></li>
+</ul>
+
+<h4 id="1-4-三种表现形式之间转换">1.4 三种表现形式之间转换</h4>
+
+<ul>
+<li><p><strong>Struct_time &ndash;转换&ndash;&gt; Format_string</strong></p>
+
+<ul>
+<li>主要涉及 <code>strftime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python">import time
+# Struct_time --转换--&gt; Format_string
+## 生成Struct_time
+StructTime = time.localtime(time.time())
+print 'Struct_Time为：',StructTime
+### 输出
+Struct_Time为： time.struct_time(tm_year=2017, tm_mon=8, tm_mday=4, tm_hour=10, tm_min=42, tm_sec=35, tm_wday=4, tm_yday=216, tm_isdst=1)
+## 执行转换操作
+Format_Time = time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, StructTime)
+print 'Formart_Time为：',Format_Time
+### 输出
+Formart_Time为： 2017-08-04 10:42:35
+</code></pre></li>
+
+<li><p><strong>Format_string &ndash;转换&ndash;&gt; Struct_time</strong></p>
+
+<ul>
+<li>主要涉及 <code>strptime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python">import time
+# Format_string --转换--&gt; Struct_time
+## 生成Format_string
+Format_Time = '2017-08-04 10:42:35'
+## 执行转换操作
+StructTime = time.strptime(Format_Time,'%Y-%m-%d %H:%M:%S')
+print 'Struct_Time为:',StructTime
+### 输出
+Struct_Time为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=4, tm_hour=10, tm_min=42, tm_sec=35, tm_wday=4, tm_yday=216, tm_isdst=-1)
+</code></pre></li>
+
+<li><p><strong>Struct_time &ndash;转换&ndash;&gt; Timestamp</strong></p>
+
+<ul>
+<li>主要涉及 <code>mktime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python">import time
+# Struct_time --转换--&gt; Timestamp
+## 生成Struct_time
+StructTime = time.localtime(time.time())
+print 'Struct_Time为：',StructTime
+### 输出
+Struct_Time为： time.struct_time(tm_year=2017, tm_mon=8, tm_mday=4, tm_hour=10, tm_min=42, tm_sec=35, tm_wday=4, tm_yday=216, tm_isdst=1)
+## 执行转换操作
+TimeStamp = time.mktime(StructTime)
+print 'Timestamp为:',TimeStamp
+### 输出
+Timestamp为: 1501861355.0
+</code></pre></li>
+
+<li><p><strong>Timestamp &ndash;转换&ndash;&gt; Struct_time</strong></p>
+
+<ul>
+<li>主要涉及 <code>localtime</code> 和 <code>gmtime</code> 方法</li>
+</ul>
+
+<pre><code class="language-python">import time
+# TimeStamp --转换--&gt; Struct_time
+## 生成TimeStamp
+TimeStamp = time.time()
+print 'TimeStamp为:',TimeStamp
+### 输出
+TimeStamp为: 1501928500.52
+## 第一种方法：执行转换操作
+Struct_Time = time.localtime(TimeStamp)
+print 'Struct_Time为:',Struct_Time
+### 输出
+Struct_Time为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=5, tm_hour=5, tm_min=21, tm_sec=40, tm_wday=5, tm_yday=217, tm_isdst=1)
+## 第二种方法：执行转换操作
+Struct_Time = time.gmtime(TimeStamp)
+print 'Struct_Time为:',Struct_Time
+### 输出
+Struct_Time为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=5, tm_hour=10, tm_min=21, tm_sec=40, tm_wday=5, tm_yday=217, tm_isdst=0)
+</code></pre></li>
+
+<li><p><strong>Timestamp &ndash;转换&ndash;&gt; Format_string</strong></p>
+
+<ul>
+<li>主要思路：<code>Timestamp</code>  先使用 <code>localtime/gmtime</code> 方法转换为 <code>Struct_time</code> 再使用 <code>strftime</code>方法转换为 <code>Format_string</code></li>
+</ul>
+
+<pre><code class="language-python">import time 
+# TimeStamp --转换--&gt; Format_string
+## 生成TimeStamp
+TimeStamp = time.time()
+print 'TimeStamp为:',TimeStramp
+### 输出
+TimeStamp为: 1501928500.52
+## 执行转换操作
+### 1. 先转换为Struct_time
+Struct_Time = time.localtime(TimeStamp)
+### 2. 再转换为Format_string
+Format_Time = time.strftime('%Y-%m-%d %H:%M:%S',Struct_Time)
+print 'Formart_Time为:',Format_Time
+### 输出
+Formart_Time为: 2017-08-05 05:34:10
+</code></pre></li>
+
+<li><p><strong>Format_string &ndash;转换&ndash;&gt; Timestamp</strong></p>
+
+<ul>
+<li>主要思路：<code>Format_string</code> 先使用 <code>strptime</code> 方法转换为 <code>Struct_Time</code> 再使用 <code>mktime</code> 方法转换为 <code>Timestamp</code></li>
+</ul>
+
+<pre><code class="language-python">import time
+# Format_string --转换--&gt; Timestamp
+## 生成Format_string
+Format_Time = '2017-08-05 05:34:10'
+## 执行转换操作
+### 1. 先转换为Struct_time
+Struct_Time = time.strptime(Format_Time,'%Y-%m-%d %H:%M:%S')
+### 2. 再转换为Timestamp
+TimeStamp = time.mktime(Struct_Time)
+print 'TimeStamp为:',TimeStamp
+### 输出
+TimeStamp为: 1501929250.0
+</code></pre></li>
+</ul>
+
+<h4 id="1-5-其他操作">1.5 其他操作</h4>
+
+<ul>
+<li><strong>线程延迟</strong></li>
+</ul>
+
+<pre><code># 线程推迟指定的时间运行。单位为秒
+time.sleep(seconds)
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>二、Python Datetime 模块</p>
+</blockquote>
+
+<h4 id="2-1-介绍">2.1 介绍</h4>
+
+<p>python中的 <code>datetime</code>模块提供了操作日期和时间功能，该模块提供了五种核心对象：<code>datetime(时间日期类型)</code>、<code>date(日期类型)</code>、<code>time(时间类型)</code>、<code>tzinfo(时区类型)</code>、<code>timedelta(时间差类型)</code></p>
+
+<h4 id="2-2-date类">2.2 date类</h4>
+
+<ul>
+<li><p><strong>介绍</strong></p>
+
+<ul>
+<li><code>date</code> 类表示一个日期（由年、月、日）组成</li>
+</ul></li>
+
+<li><p><strong>常用方法与类属性</strong></p></li>
+</ul>
+
+<pre><code class="language-python">from datetime import date
+import time
+# 打印date对象的最大日期
+print '最大日期:',date.max
+最大日期: 9999-12-31
+# 打印date对象的最小日期
+print '最小日期:',date.min
+最小日期: 0001-01-01
+# 打印日期的最小单位
+print '日期最小单位:',date.resolution
+日期最小单位: 1 day, 0:00:00
+# 打印表示当前日期的date对象
+print '当前时间:',date.today()
+print '输出格式:',type(date.today())
+## 输出
+当前时间: 2017-08-05
+输出格式: &lt;type 'datetime.date'&gt;
+# 打印时间戳的date对象
+print '当前时间:',date.fromtimestamp(time.time())
+当前时间: 2017-08-05
+</code></pre>
+
+<ul>
+<li><strong>其他方法与属性</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import date
+# 打印表示当前日期的date对象
+print '当前时间:',date.today()
+当前时间: 2017-08-07
+# 获取年、月、日
+print '年:',date.year()
+print '月',date.month()
+print '日',date.day()
+# 生成一个新的日期对象，用参数指定的年、月、日代替原有对象中的属性
+tomorrow = date.today.replace(day=08)
+print '明天日期:',tomorrow
+# 返回日期对应struct_time对象
+Tomorrow_StructTime = tomorrow.timetuple()
+print 'StructTime为:',Tomorrow_StructTime
+StructTime为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=8, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=1, tm_yday=220, tm_isdst=-1)
+# 返回weekday，如果是星期一，返回0
+print '明天是星期几:',tomorrow.weekday()
+明天是星期几: 1
+# 返回格式如（year,month,day）元组
+print tomorrow.isocalendar()
+# 返回格式如'YYYY-MM-DD'的字符串
+print tomorrow.isoformat()
+# 自定义格式化字符串
+print tomorrow.strftime('%y-%m-%d')
+</code></pre>
+
+<ul>
+<li><p><strong>date重载了简单运算符</strong></p>
+
+<ul>
+<li><code>date</code> 允许对日期进行加减和比较</li>
+</ul>
+
+<pre><code class="language-python">from datetime import date
+# 日期加上一个间隔，返回一个新的日期对象
+tomorrow = date.today() + date.resolution
+print '明天日期为:',tomorrow
+明天日期: 2017-08-08
+# 日期减去一个间隔，返回一个新的日期对象
+yesterday = date.today() - date.resolution
+print '昨天日期为:',yesterday
+昨天日期为: 2017-08-06
+# 两个日期相减，返回一个时间间隔对象
+print '时间间隔为:', date.today() - yesterday
+时间间隔为: 1 day, 0:00:00
+# 两个日期进行比较，返回布尔型数据
+print tomorrow &gt; date.today()
+True
+</code></pre></li>
+</ul>
+
+<h4 id="2-3-time类">2.3 time类</h4>
+
+<ul>
+<li><p><strong>介绍</strong></p>
+
+<ul>
+<li><code>time</code> 类表示时间(由时、分、秒以及微妙组成)</li>
+</ul></li>
+
+<li><p><strong>常用方法与类属性</strong></p></li>
+</ul>
+
+<pre><code class="language-python">from datetime import time
+# time类中所能表示的最小，最大时间
+print '最小时间:',time.min
+print '最大时间:',time.max
+# 表示时间的最小单位
+print '最小单位:',time.resolution
+最小单位: 0:00:00.000001    # 代表1微秒
+# 获取时间的时、分、秒
+# 定义时间
+tm = time(10,50,20)
+print '时为:',tm.hour()
+print '分为:',tm.minute()
+print '秒为:',tm.second()
+# 获取时区信息
+print '当前时区为:',tm.tzinfo
+# 返回如&quot;HH:MM:SS&quot;格式的字符串表示
+print tm.isoformat()
+# 返回自定义格式化字符串
+print tm.strftime(&quot;%H:%M:%S&quot;)
+# 注意：time类的对象只能进行比较，无法进行加减操作
+</code></pre>
+
+<h4 id="2-4-datetime类">2.4 datetime类</h4>
+
+<ul>
+<li><p><strong>介绍</strong></p>
+
+<ul>
+<li><code>datetime</code> 是 <code>date</code> 与 <code>time</code> 的结合体，包括 <code>date</code> 与 <code>time</code> 的所有信息</li>
+</ul></li>
+
+<li><p><strong>常用类属性与方法</strong></p></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime,date,time
+import time
+# datetime 中所能表示的最小，最大值
+print '最小值:',datetime.min
+print '最大值:',datetime.max
+# 返回一个表示当前时间的datetime对象
+print '当前本地时间:',datetime.today()
+当前本地时间: 2017-08-07 11:57:34.703792
+print '当前本地时间:',datetime.now()
+当前本地时间: 2017-08-07 11:58:20.566082
+# 根据时间戳返回datetime对象
+print '时间戳转换为datetime对象:',date.fromtimestamp(time.time())
+时间戳转换为datetime对象: 2017-08-07
+# 根据date和time创建一个datetime对象
+print '合并日期时间为:',datetime.combine(date(2017,8,10),time(20,50,30))
+合并日期时间为: 2017-08-10 20:50:30
+# 将格式化字符串转换为datetime对象
+print '字符串转换为dattime对象:',datetime.strptime('2017-08-08 01:00:05.234000',&quot;%Y-%m-%d %H:%M:%S.%f&quot;)
+字符串转换为dattime对象: 2017-08-08 01:00:05.234000
+</code></pre>
+
+<ul>
+<li><strong>常用实例方法与属性</strong></li>
+</ul>
+
+<pre><code class="language-python"># 获取date对象
+print 'date日期为:',datetime.date(datetime.now())
+# 获取time对象
+print 'time时间为:',datetime.time(datetime.now())
+time时间为: 12:10:55.231148
+# 返回struct time对象
+print 'Struct Time为:',date.timetuple(datetime.now())
+Struct Time为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=7, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=0, tm_yday=219, tm_isdst=-1)
+# 格式化输出
+print '格式化输出:',datetime.isoformat(datetime.now())
+格式化输出: 2017-08-07T12:17:34.426948
+# 返回一个日期时间的c格式字符串
+print 'c格式字符串:',datetime.ctime(datetime.now())
+c格式字符串: Mon Aug  7 12:19:09 2017
+# 自定义格式输出
+print '自定义格式输出:',datetime.strftime(datetime.now(),&quot;%Y-%m-%s %H:%M:%S&quot;)
+自定义格式输出: 2017-08-07 12:20:43
+# 注意：datetime对象同样可以进行比较，或者相减返回一个时间间隔对象，或者日期时间加上一个间隔返回一个新的日期时间对象。
+</code></pre>
+
+<h4 id="2-5-timedelta类">2.5 timedelta类</h4>
+
+<ul>
+<li><p><strong>介绍</strong></p>
+
+<ul>
+<li><code>timedelta</code> 对象代表两个时间之间的时间差，两个 <code>date</code> 或者 <code>datetime</code> 对象相减时可以返回一个 <code>timedelta</code> 对象。</li>
+</ul></li>
+
+<li><p><strong>常用类属性与方法</strong></p></li>
+</ul>
+
+<pre><code class="language-python">from datetime import timedelta
+from datetime import date
+# 表示时间间隔最小值、最大值
+print '最小值:',timedelta.min
+print '最大值:',timedelta.max
+# 时间间隔最小单位
+print '时间间隔最小单位:',timedelta.resolution
+# 计算明天日期
+now = date.today()
+aDay = timedelta(days=1)
+tomorrow = now + aDay
+print '明天日期为:',tomorrow
+明天日期为: 2017-08-08
+# 计算昨天的日期
+now = date.today()
+bDay = timedelta(days=-1)
+yesterday = now + bDay
+print '昨天日期为:',yesterday
+昨天日期为: 2017-08-06
+</code></pre>
+
+<h4 id="2-6-其他特殊操作补充">2.6 其他特殊操作补充</h4>
+
+<ul>
+<li><strong>获取当天开始和结束时间</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+from datetime import date
+from datetime import time
+start_time = datetime.combine(date.today(),time.min)
+print '当天开始时间为:',start_time
+当天开始时间为: 2017-08-07 00:00:00
+end_time = datetime.combine(date.today(),time.max)
+print '当天结束时间为;',end_time
+当天结束时间为; 2017-08-07 23:59:59.999999
+</code></pre>
+
+<ul>
+<li><strong>两个datetime的时间差</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+time_compare = (datetime(2017,8,8,12,10,10) - datetime.now()).total.seconds()
+print '时间差为:',time_compare
+时间差为: 84238.124873
+</code></pre>
+
+<ul>
+<li><strong>获取本周/本月/上月的最后一天</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime,timedelta
+# 本周最后一天
+today = datetime.now()
+sunday = today + timedelta(6 - today.weekday())
+print '周末日期为:',sunday
+周末日期为: 2017-08-13
+# 本月最后一天
+from datetime import date
+from datetime import datetime
+import calendar
+today = datetime.now()
+last_day_num = calendar.monthrange(today.year,today.month)[-1]
+last_day = date(today.year,today.month,last_day_num)
+print '本月最后一天为:',last_day
+本月最后一天为: 2017-08-31
+# 上月最后一天
+from datetime import date
+from datetime import datetime
+from datetime import timedelta
+today = datetime.now()
+first = date(day=1,year=today.year,month=today.month)
+lastMonth = first + timedelta(days=-1)
+print '上月最后一天为:',lastMonth
+上月最后一天为: 2017-07-31
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、 关系转换</p>
+</blockquote>
+
+<ul>
+<li><strong>datetime &ndash;转换&ndash;&gt; string</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+today = datetime.now()
+string = today.strftime('%Y-%m-%d %H:%M:%S')
+print 'datetime--转换--&gt;string:',string
+datetime--转换--&gt;string: 2017-08-07 00:00:00
+</code></pre>
+
+<ul>
+<li><strong>string &ndash;转换&ndash;&gt; datetime</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+today = '2017-08-07 01:00:20'
+datemode = datetime.strptime(today,'%Y-%m-%d %H:%M:%S')
+print 'string--转换--&gt;datetime:',datemode
+string--转换--&gt;datetime: 2017-08-07 01:00:20
+</code></pre>
+
+<ul>
+<li><strong>datetime &ndash;转换&ndash;&gt; timetuple</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+today = datetime.now()
+Struct_Time = today.timetuple()
+print 'timetuple为:',Srtuct_Time
+timestamp为: time.struct_time(tm_year=2017, tm_mon=8, tm_mday=7, tm_hour=20, tm_min=30, tm_sec=25, tm_wday=0, tm_yday=219, tm_isdst=-1)
+</code></pre>
+
+<ul>
+<li><strong>timetuple &ndash;转换&ndash;&gt;datetime</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+import time
+# 思路：timetuple --转换 --&gt; timestamp --转换--&gt; datetime
+Struct_Time = datetime.now().timetuple()
+TimeStamp = time.mktime(Struct_Time)
+DateTime = datetime.fromtimestamp(TimeStamp)
+print 'DateTime为:',DateTime
+DateTime为: 2017-08-07 20:43:38
+</code></pre>
+
+<ul>
+<li><strong>datetime &ndash;转换&ndash;&gt; date</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+today = datetime.now()
+print 'date日期为:',today.date()
+date日期为: 2017-08-07
+</code></pre>
+
+<ul>
+<li><strong>date &ndash;转换&ndash;&gt; datetime</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import date
+from datetime import datetime
+today = datetime.now().date()
+print 'datetime时间为:',datetime.combine(today,datetime.time())
+datetime时间为: 2017-08-07 20:58:37.985555
+</code></pre>
+
+<ul>
+<li><strong>datetime &ndash;转换&ndash;&gt; timestamp</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime
+now = datetime.now()
+TimeStamp = time.mktime(now.timetuple())
+print 'TimeStamp时间戳为:',TimeStamp
+TimeStamp时间戳为: 1502157815.0
+</code></pre>
+
+<ul>
+<li><strong>timestamp &ndash;转换&ndash;&gt; datetime</strong></li>
+</ul>
+
+<pre><code class="language-python">from datetime import datetime 
+TimeStamp = '1502157815.0'
+DateTime = datetime.fromtimstamp(TimeStamp)
+print 'DateTime为:',DateTime
+DateTime为: 2017-08-07 21:03:35
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20Time%e4%b8%8eDatetime%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f08%2fpythontime%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f08%2fpythontime%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f08%2fpythontime%2f&amp;description=Python%20Time%e4%b8%8eDatetime%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f08%2f08%2fpythontime%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/11/21/pythonsh/">
+          <section class="post">
+              <h2>Python SH模块</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/08/03/pythonhttp/">
+          <section class="post">
+              <h2>Python HTTP代理</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

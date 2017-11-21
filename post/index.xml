@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post on Seacme Huang</title>
+    <link>http://huang901111.github.io/post/</link>
+    <description>Recent content in Post on Seacme Huang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright> @ 2017</copyright>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://huang901111.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python SH模块</title>
+      <link>http://huang901111.github.io/2017/11/21/pythonsh/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/11/21/pythonsh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个在Python脚本中方便处理bash命令的模块&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Time与Datetime模块</title>
+      <link>http://huang901111.github.io/2017/08/08/pythontime/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/08/08/pythontime/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python HTTP代理</title>
+      <link>http://huang901111.github.io/2017/08/03/pythonhttp/</link>
+      <pubDate>Thu, 03 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/08/03/pythonhttp/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;介绍几种通过urllib/requests模块使用HTTP代理方法&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Re模块</title>
+      <link>http://huang901111.github.io/2017/07/31/pythonre/</link>
+      <pubDate>Mon, 31 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/31/pythonre/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Re模块实现正则匹配操作，实现对复杂字符串截取有用信息。&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Glob模块</title>
+      <link>http://huang901111.github.io/2017/07/28/pythonglob/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/28/pythonglob/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Glob模块可用于根据特定规则遍历搜索文件路径名&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Selenium&#43;Plantomjs模块</title>
+      <link>http://huang901111.github.io/2017/07/28/pythonselenium/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/28/pythonselenium/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器三之Selenium+Plantomjs库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python YAML语言</title>
+      <link>http://huang901111.github.io/2017/07/27/pythonyaml/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/pythonyaml/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;以数据为中心的配置文件语言，非常简洁和强大。&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 异常处理</title>
+      <link>http://huang901111.github.io/2017/07/27/pythontry/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/pythontry/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python错误异常捕捉，根据异常触发操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rsync Service</title>
+      <link>http://huang901111.github.io/2017/07/27/rsync/</link>
+      <pubDate>Thu, 27 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/27/rsync/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个用于远程数据同步，替代rcp、支持断点续传的传输工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Monit监控</title>
+      <link>http://huang901111.github.io/2017/07/26/monit/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/26/monit/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款跨平台轻量级监控，可全面、进程状态、文件系统监控与报警&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Netcat Command</title>
+      <link>http://huang901111.github.io/2017/07/26/netcat/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/26/netcat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;网络安全界『瑞士军刀』，透过使用TCP或者UDP协议去读写数据&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SmokePing 部署</title>
+      <link>http://huang901111.github.io/2017/07/25/smokeping/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/25/smokeping/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款用于监控IDC多线路网络质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Curl Command</title>
+      <link>http://huang901111.github.io/2017/07/24/curl/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/24/curl/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个利用URL规则在命令行下工作的文件传输工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell条件判断</title>
+      <link>http://huang901111.github.io/2017/07/24/shelljudge/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/24/shelljudge/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;日常条件判断倡导使用[[，支持字符串模式匹配与正则表达式&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GlusterFS概述</title>
+      <link>http://huang901111.github.io/2017/07/21/glusterfs/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/21/glusterfs/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个开源的支持PB级分布式高可用文件系统&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kcpTun网络加速</title>
+      <link>http://huang901111.github.io/2017/07/21/kcptun/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/21/kcptun/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款采用KCP协议提升30%~40%网络服务质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux 发送邮件</title>
+      <link>http://huang901111.github.io/2017/07/20/sendmail/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/sendmail/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;三种发送邮件方式，任君选择&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python PYH模块</title>
+      <link>http://huang901111.github.io/2017/07/20/pythonpyh/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/pythonpyh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python生成HTML代码，制作HTML表格&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Socat Command</title>
+      <link>http://huang901111.github.io/2017/07/20/socat/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/socat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个可以建立双向字节流并可以在其间传送数据的工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCPdump Command</title>
+      <link>http://huang901111.github.io/2017/07/20/tcpdump/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/20/tcpdump/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Linux版wireshark抓包功能工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python ConfigParser模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonconfigparser/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonconfigparser/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Configparser用于读取配置文件&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python FileInput模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonfileinput/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonfileinput/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;FileInput模块实现对一个或多个文件内容遍历操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python JSON模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonjson/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonjson/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个处理轻量级的数据交换格式JSON模块&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python OS模块</title>
+      <link>http://huang901111.github.io/2017/07/19/pythonos/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/19/pythonos/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;OS模块是Python内置标准库，提供了一种可移植的方法使用操作系统的功能
+&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FRP 工具</title>
+      <link>http://huang901111.github.io/2017/07/18/frp/</link>
+      <pubDate>Tue, 18 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/18/frp/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款内网穿透高兴能反向代理&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Babun介绍</title>
+      <link>http://huang901111.github.io/2017/07/17/babun/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/17/babun/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款即开即用的Windows Shell&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL备份还原</title>
+      <link>http://huang901111.github.io/2017/07/17/mysqlbackup/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/17/mysqlbackup/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;阐述多种备份还原手段，如cp、mysqldump、mysqlhotcopy、mysqlimport、xtrabackup等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python语法技巧</title>
+      <link>http://huang901111.github.io/2017/07/16/pythonbase/</link>
+      <pubDate>Sun, 16 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/16/pythonbase/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;列举Python列表、元组、集合、字典相关操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell字符串处理</title>
+      <link>http://huang901111.github.io/2017/07/16/shellstr/</link>
+      <pubDate>Sun, 16 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/16/shellstr/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;对字符串实现截取、查找、替换、遍历、懒惰与贪婪匹配等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NetHogs Trickle Command</title>
+      <link>http://huang901111.github.io/2017/07/15/nethogs/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/15/nethogs/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Linux 查看进程流量与限速工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>判断CDN文件与源文件是否一致</title>
+      <link>http://huang901111.github.io/2017/07/14/cdncheck/</link>
+      <pubDate>Fri, 14 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/14/cdncheck/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;curl请求确认资源推送CDN是否成功&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Urllib模块</title>
+      <link>http://huang901111.github.io/2017/07/12/urllib2/</link>
+      <pubDate>Wed, 12 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/12/urllib2/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器二之Urllib/Urllib2库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Requests模块</title>
+      <link>http://huang901111.github.io/2017/07/11/requests/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/11/requests/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Python爬虫利器一之Requests库&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git Command</title>
+      <link>http://huang901111.github.io/2017/07/10/gituse/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/10/gituse/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Git 一款分布式版本控制工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCP端口分配</title>
+      <link>http://huang901111.github.io/2017/07/07/tcpport/</link>
+      <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/07/tcpport/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;合理分配TCP端口，处理端口冲突&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2T 以上磁盘格式化</title>
+      <link>http://huang901111.github.io/2017/07/04/diskdeal/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/diskdeal/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;利用parted工具对磁盘格式化操作&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Centos6 挂载16T硬盘</title>
+      <link>http://huang901111.github.io/2017/07/04/sixdiskdeal/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/sixdiskdeal/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Parted工具分区与更改分区格式GPT&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FPM 命令</title>
+      <link>http://huang901111.github.io/2017/07/04/fpm-build/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/fpm-build/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;自动化部署必备技能-定制化RPM包&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Leanote开源笔记</title>
+      <link>http://huang901111.github.io/2017/07/04/leanote/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/leanote/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;蚂蚁笔记，有极客范的云笔记！&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PSSH 命令</title>
+      <link>http://huang901111.github.io/2017/07/04/pssh/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/pssh/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个Python编写批量执行工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Percona XtraDB Cluster</title>
+      <link>http://huang901111.github.io/2017/07/04/pxc/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/pxc/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;MySQL 集群高可用方案之一&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python Hashlib模块</title>
+      <link>http://huang901111.github.io/2017/07/04/hashlib/</link>
+      <pubDate>Tue, 04 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/04/hashlib/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Hashlib模块提供了常见的摘要算法，如MD5，SHA1等等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hardware Infomation Gather</title>
+      <link>http://huang901111.github.io/2017/07/02/hardcheck/</link>
+      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/02/hardcheck/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font size=5 color=#D3D3D3&gt;硬件信息收集&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Netstat Command</title>
+      <link>http://huang901111.github.io/2017/07/02/netstat/</link>
+      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://huang901111.github.io/2017/07/02/netstat/</guid>
+      <description>&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一个监控TCP/IP网络的非常有用的工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

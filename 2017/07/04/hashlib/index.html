@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Python Hashlib模块"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="Python Hashlib模块 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/04/hashlib/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-04T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="python" />
+    
+    
+
+    <title>Python Hashlib模块 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;Hashlib模块提供了常见的摘要算法，如MD5，SHA1等等&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/04/hashlib/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "Python Hashlib模块",
+    "name": "Python Hashlib模块",
+    "wordCount":  236 ,
+    "timeRequired": "PT2M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/04/hashlib/",
+    "datePublished": "2017-07-04T00:00Z",
+    "dateModified": "2017-07-04T00:00Z",
+    
+    "keywords": "python",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/04/hashlib/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Python Hashlib模块</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-04T00:00:00Z">
+            Jul 4, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/python/">#python</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>Hashlib模块提供了常见的摘要算法，如MD5，SHA1等等</font></left> </p>
+
+<h3 id="一-简介">一、简介</h3>
+
+<ul>
+<li>Python中的hashlib模块是用来进行hash或者md5加密。</li>
+<li>这里的加密，其实并非我们通常所说的加密，简单的说就是这种加密一般是不可逆的。这种加密算法实际上是被称为『<font color>摘要算法</font>』。</li>
+<li><font color=green>摘要函数</font>，又称为<font color=green>哈希算法、散列算法</font>，它通过一个函数，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。</li>
+<li><font color=green>摘要函数</font>可以用来检验数据是否发生改变。</li>
+</ul>
+
+<p><font color=blue>总结：</font>hashlib是个专门提供hash算法的库，里面包含md5、sha1、sha224、sha256、sha384、sha512。</p>
+
+<hr />
+
+<h3 id="二-快速入门">二、快速入门</h3>
+
+<h4 id="2-1-hashlib对象常用方法">2.1 hashlib对象常用方法</h4>
+
+<ul>
+<li>update(arg)：使用string arg更新hash对象，多次调用update和使用串联的参数一次调用update是等价的。
+
+<ul>
+<li>m.update(a);m.update(b) 等效于 m.update(a+b)</li>
+</ul></li>
+<li>digest()：返回二进制字符串。</li>
+<li>hexdigest()：返回十六进制字符串。</li>
+<li>copy()：返回hash对象的一个克隆，这可用于高效的计算共享一个相同初始字符串的digests字符串。</li>
+<li>hashlib.algorithms：返回保证这个模块可以支持的算法tuple</li>
+<li>hashlib.algorithms_guaranteed：返回保证这个模块可以在所有平台都支持的算法的set</li>
+<li>hashlib.algorithms_available：返回当前环境支持的算法名</li>
+<li>hash.name：使用算法的名称</li>
+</ul>
+
+<h4 id="2-2-基本例子">2.2 基本例子</h4>
+
+<pre><code class="language-python">import hashlib
+
+word = &quot;GuangZhou Beijing&quot;
+method = hashlib.md5()  # 创建hash对象
+method.update(word) # 更新哈希对象以字符串参数
+print method.digest() # 返回摘要，作为二进制数据字符串值
+print method.hexdigest()  # 返回十六进制数字字符串
+print method.digest_size  # 返回产生的散列的字节大小
+print method.block_size # 返回产生的散列的块大小
+</code></pre>
+
+<hr />
+
+<h3 id="三-计算字符串摘要的三种方法">三、计算字符串摘要的三种方法</h3>
+
+<blockquote>
+<p>方法一</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+words = &quot;I am a boy&quot;
+m = hashlib.md5()
+m.update(words)
+print m.hexdigest()
+9901dc4f248dc9ee15f9951221d766a5
+</code></pre>
+
+<blockquote>
+<p>方法二</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+words = &quot;I am a boy&quot;
+print hashlib.new(&quot;md5&quot;,words).hexdigest()
+9901dc4f248dc9ee15f9951221d766a5
+</code></pre>
+
+<blockquote>
+<p>方法三</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+words = &quot;I am a boy&quot;
+print hashlib.md5(words).hexdigest()
+9901dc4f248dc9ee15f9951221d766a5
+</code></pre>
+
+<hr />
+
+<h3 id="四-计算文件的摘要">四、计算文件的摘要</h3>
+
+<blockquote>
+<p>小文件的简单MD5校验</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+def md5sum(filename):
+
+  fp = open(filename,'rb')
+  content = fp.read()
+  fp.close()
+  m = hashlib.md5(content)
+  file_md5 = m.hexdigest()
+  return file_md5
+  
+if __name__ == &quot;__main__&quot;:
+  print md5sum(&quot;xxxx.jpg&quot;)
+
+</code></pre>
+
+<p><font color=green>缺点：</font>由于是要检验文件里面的内容，所以每次是把文件读到内存的，如果文件很大，可能程序直接卡死。</p>
+
+<blockquote>
+<p>字符串的改进MD5检验</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+def md5hex(word):
+
+  if isinstance(word,unicode):
+    word = word.encode('utf-8')
+  elif not isinstance(word,str):
+    word = str(word)
+  
+  m = hashlib.md5()
+  m = update(word)
+  return m.hexdigest()
+</code></pre>
+
+<blockquote>
+<p>大文件的简单MD5校验</p>
+</blockquote>
+
+<pre><code>import hashlib
+
+BLOCKSIZE = 4096
+m = hashlib.md5()
+with open(filename,'rb') as fp:
+  buf = fp.read(BLOCKSIZE)
+  while len(buf) &gt; 0:
+    m.update(buf)
+    buf = fp.read(BLOCKSIZE)
+return m.hexdigest()
+</code></pre>
+
+<blockquote>
+<p>大文件的复杂MD5校验</p>
+</blockquote>
+
+<pre><code class="language-python">import hashlib
+
+def md5sum(filename):
+
+  def read_chunk(fp):
+    fp.seek(0)
+    chunk = fp.read(8 * 1024)
+    while chunk:
+      yield chunk
+      chunk = fp.read(8 * 1024)
+    else:
+      fp.seek(0)
+      
+# 每次返回读取的文件的8k内容，下次从上次读取的地方继续读取，如果读完了，就把游标重新放到文件开头。
+
+  m = hashlib.md5()
+  if isinstance(filename,basestring) and os.path.exists(filename):
+  
+# isinstance(filename,basestring) 这个是判断文件名是不是一个basestring类型，可用于判断一个对象是不是字符串
+
+    with open(filename,'rb') as fp
+      for chunk in read_chunk(fp):
+        m.update(chunk)
+  elif filename.__class__.name__ in [&quot;StringIO&quot;,&quot;cStringIO&quot;] or isinstance(filename,file):
+  
+# StringIO和cStringIO与file对象非常像，指的是内存里的文件，如上传的文件缓存或者已经打开的文件流，可以直接读
+    for chunk in read_chunk(filename):
+      m.update(chunk)
+  else:
+    return &quot;&quot;
+    
+  returun m.hexdigest()
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Python%20Hashlib%e6%a8%a1%e5%9d%97&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fhashlib%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fhashlib%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fhashlib%2f&amp;description=Python%20Hashlib%e6%a8%a1%e5%9d%97"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f04%2fhashlib%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/04/pxc/">
+          <section class="post">
+              <h2>Percona XtraDB Cluster</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/02/hardcheck/">
+          <section class="post">
+              <h2>Hardware Infomation Gather</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="SmokePing 部署"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="SmokePing 部署 &middot; Seacme Huang" />
+  	<meta property="og:site_name" content="Seacme Huang" />
+  	<meta property="og:url" content="http://huang901111.github.io/2017/07/25/smokeping/" />
+
+    
+        
+            <meta property="og:image" content="http://oskduq7mi.bkt.clouddn.com/cover_polenord.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-07-25T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="Network" />
+    
+    
+
+    <title>SmokePing 部署 &middot; Seacme Huang</title>
+
+    
+    <meta name="description" content="&lt;p&gt;&lt;left&gt;&lt;font color=#D3D3D3 size=5&gt;一款用于监控IDC多线路网络质量工具&lt;/font&gt;&lt;/left&gt; &lt;/p&gt;" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+
+    
+
+    
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Seacme Huang" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.24.1" />
+
+    <link rel="canonical" href="http://huang901111.github.io/2017/07/25/smokeping/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "",
+        "logo": "http://huang901111.github.io/images/touxiang.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "",
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://huang901111.github.io/images/touxiang.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://sa.seacme.cn",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Lifelong learning is the best investment for ourself life."
+        
+    },
+    "headline": "SmokePing 部署",
+    "name": "SmokePing 部署",
+    "wordCount":  483 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://huang901111.github.io/2017/07/25/smokeping/",
+    "datePublished": "2017-07-25T00:00Z",
+    "dateModified": "2017-07-25T00:00Z",
+    
+    "keywords": "Network",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://huang901111.github.io/2017/07/25/smokeping/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/linux">Linux</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/database">Database</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/python">Python</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/network">Network</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/storage">Storage</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/windows">Windows</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/monitoring">Monitoring</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/tags/interest">Interest</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://huang901111.github.io/"><img src="/images/touxiang.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">SmokePing 部署</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-07-25T00:00:00Z">
+            Jul 25, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://huang901111.github.io/tags/network/">#Network</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p><left><font color=#D3D3D3 size=5>一款用于监控IDC多线路网络质量工具</font></left> </p>
+
+<blockquote>
+<p>一、SmokePing 简介</p>
+</blockquote>
+
+<ul>
+<li><code>smokeping</code>是rrdtool的作者Tobi Oetiker的作品，所以它在图形显示方面有很大优势，也是一个很有特点的opensource工具;</li>
+<li>多种探测方式，包括fping、echoping、dig、curl等；</li>
+<li>易用可扩展的插件；</li>
+<li>master/slave的工作方式，可以在多个节点收集同一个监测点的数据；很有特色的alert设置，不只是简单的设置一个阀值；</li>
+</ul>
+
+<hr />
+
+<blockquote>
+<p>二、SmokePing 安装部署</p>
+</blockquote>
+
+<h4 id="2-1-环境准备">2.1 环境准备</h4>
+
+<pre><code class="language-shell">### 安装epel源
+rpm -Uvh http://apt.sw.be/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+### 安装服务、依赖包
+yum install -y httpd httpd-devel  rrdtool-perl popt-devel libidn-devel perl-ExtUtils-Embed 
+</code></pre>
+
+<h4 id="2-2-软件源码包下载">2.2 软件源码包下载</h4>
+
+<pre><code class="language-shell">### fping源码包
+wget http://www.fping.org/dist/fping-3.10.tar.gz
+### echoping源码包
+wget http://nchc.dl.sourceforge.net/project/echoping/echoping/6.0.2/echoping-6.0.2.tar.gz
+### smokeping源码包
+wget http://oss.oetiker.ch/smokeping/pub/smokeping-2.6.8.tar.gz&lt;/pre&gt;
+</code></pre>
+
+<h4 id="2-3-fping-源码部署">2.3 Fping 源码部署</h4>
+
+<pre><code class="language-shell">tar -zxvf fping-3.10.tar.gz
+cd fping-3.10
+./configure &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<h4 id="2-4-echoping-源码部署">2.4 Echoping 源码部署</h4>
+
+<pre><code class="language-shell">tar -zxvf echoping-6.0.2.tar.gz
+cd echoping-6.0.2
+./configure &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<h4 id="2-5-smokeping-源码部署">2.5 SmokePing 源码部署</h4>
+
+<pre><code class="language-shell">tar -zxvf smokeping-2.6.8.tar.gz 
+cd smokeping-2.6.8
+./setup/build-perl-modules.sh  /usr/local/smokeping/thirdparty
+### 由于smokeping默认使用很多perl扩展包，推荐以上方式一次性安装
+./configure  --prefix=/usr/local/smokeping
+/usr/bin/gmake install
+</code></pre>
+
+<h4 id="2-6-建立-smokeping-工作目录-并赋权">2.6 建立 SmokePing 工作目录，并赋权</h4>
+
+<pre><code class="language-shell">mkdir /usr/local/smokeping/{data,cache,var,logs}
+chown -R apache.apache /usr/local/smokeping
+chmod 600 /usr/local/smokeping/etc/smokeping_secrets.dist
+chmod 755 -R /usr/local/smokeping/{data,var,cache,logs}
+</code></pre>
+
+<h4 id="2-7-初始化并配置-smokeping-相关文件">2.7 初始化并配置 SmokePing 相关文件</h4>
+
+<pre><code class="language-shell">mv /usr/local/smokeping/htdocs/smokeping.fcgi.dist /usr/local/smokeping/htdocs/smokeping.fcgi
+cp /usr/local/smokeping/etc/config.dist /usr/local/smokeping/etc/config
+vim /usr/local/smokeping/etc/config
+imgcache = /usr/local/smokeping/cache
+datadir  = /usr/local/smokeping/data
+piddir  = /usr/local/smokeping/var
+cgiurl   = http://192.168.50.150/smokeping.cgi
+binary = /usr/local/sbin/fping
+### 确定以上配置的正确
+touch /usr/local/smokeping/logs/smokeping.log
+</code></pre>
+
+<h4 id="2-8-修改httpd-conf加入-smokeping-虚拟主机目录">2.8 修改httpd.conf加入 SmokePing 虚拟主机目录</h4>
+
+<pre><code class="language-shell">vim /etc/httpd/conf/httpd.conf
+Alias /smokeping  &quot;/usr/local/smokeping/htdocs&quot;
+Alias /cache  &quot;/usr/local/smokeping/cache&quot;
+Alias /cropper  &quot;/usr/local/smokeping/htdocs/cropper&quot;
+
+&lt;Directory &quot;/usr/local/smokeping/htdocs&quot;&gt;
+     AllowOverride None
+     AddHandler cgi-script .fcgi .cgi
+     Options ExecCGI
+     &lt;IfModule dir_module&gt;
+          DirectoryIndex smokeping.fcgi
+     &lt;/IfModule&gt;
+     Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>三、启动 SmokePing 服务</p>
+</blockquote>
+
+<h4 id="3-1-smokeping-启动脚本">3.1 SmokePing 启动脚本</h4>
+
+<pre><code class="language-shell">#!/bin/bash
+. /etc/init.d/functions
+# Start the service Smokeping
+start() {
+echo -n &quot;Starting Smokeping: &quot;
+/usr/local/smokeping/bin/smokeping --logfile=/usr/local/smokeping/logs/smokeping.log &gt;
+ /dev/null 2&gt;&amp;1
+### Create the lock file ###
+touch /usr/local/smokeping/smokeping.pid
+success $&quot;Smokeping startup&quot;
+echo
+}
+
+# Restart the service Smokeping
+stop() {
+echo -n &quot;Stoping Smokeping: &quot;
+kill -9 `ps ax | grep &quot;/usr/local/smokeping/bin/smokeping&quot; | grep -v grep | awk '{ pri
+nt $1 }'` &gt; /dev/null 2&gt;&amp;1
+### Now, delete the lock file ###
+rm -f /usr/local/smokeping/smokeping.pid
+success $&quot;Smokeping shutdown&quot;
+echo
+}
+
+### main logic ###
+case &quot;$1&quot; in
+start)
+start
+;;
+stop)
+stop
+;;
+status)
+status Smokeping
+;;
+restart|reload|condrestart)
+stop
+start
+;;
+*)
+echo $&quot;Usage: $0 {start|stop|restart|reload|status}&quot;
+exit 1
+esac
+exit 0
+</code></pre>
+
+<h4 id="3-2-设置-smokeping-启动脚本">3.2 设置 SmokePing 启动脚本</h4>
+
+<pre><code class="language-shell">chmod +x /etc/rc.d/init.d/smokeping
+chkconfig --add smokeping
+chkconfig smokeping on
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>四、设置 SmokePing 登录验证</p>
+</blockquote>
+
+<pre><code class="language-shell">### 生成登录验证密码
+htpasswd -c /usr/local/smokeping/htdocs/htpasswd admin
+### 修改httpd配置
+vim /etc/httpd/conf/httpd.conf
+&lt;Directory &quot;/usr/local/smokeping/htdocs&quot;&gt;
+.....
+AuthName ``&quot;Smokeping&quot;`
+AuthType Basic`
+AuthUserFile /usr/local/smokeping/htdocs/htpasswd`
+Require valid-user`
+.....
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>五、SmokePing 设置监控IP</p>
+</blockquote>
+
+<pre><code class="language-shell">vim /usr/local/smokeping/etc/config
+.....
+## + Local_Ping
+menu = 本地测试
+title = 本地对外测试列表
+
+++ localhost
+menu = Local_Ping
+title = 本地网卡测试
+alerts = someloss
+#slaves = boomer slave2
+host = xxx.xxx.xxx.xxx
+
+++ baidu
+menu = baidu
+title = 百度测试
+alerts = someloss
+host = 123.125.114.144
+
+++ google
+menu = google
+title = 谷歌测试
+alerts = someloss
+host = 74.125.204.199
+.....
+### 保存配置，重启SmokePing就可以
+### 新增的监控信息会保存在对应的文件夹内，以上配置会默认保存在/usr/local/smokeping/data/Local_Ping/文件夹内
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>六、部署间奇葩问题集</p>
+</blockquote>
+
+<h4 id="6-1-smokeping-页面中文出现乱码">6.1 SmokePing 页面中文出现乱码</h4>
+
+<pre><code class="language-shell">vim /usr/local/smokeping/etc/config
+.....
+## *** Presentation ***
+charset = utf-8 
+### 添加以上1行解决问题
+</code></pre>
+
+<h4 id="6-2-smokeping-页面图标出现乱码">6.2 <em>SmokePing</em> 页面图标出现乱码</h4>
+
+<pre><code class="language-shell">### 安装中文字库
+yum -y install wqy-zenhei-fonts.noarch 
+### 修改SmokePing图表配置文件
+vim /usr/local/smokeping/lib/Smokeping/Graphs.pm
+.....
+if ($mode =~ /[anc]/){
+        my $val = 0;
+        for my $host (@hosts){
+            my ($graphret,$xs,$ys) = RRDs::graph
+            (&quot;dummy&quot;,
+            '--start', $tasks[0][1],
+            '--end', $tasks[0][2],
+            '--font TITLE:20:&amp;quot;WenQuanYi Zen Hei Mono&amp;quot;',
+            '### 加入以上一行解决问题'
+            &quot;DEF:maxping=$cfg-&gt;{General}{datadir}${host}.rrd:median:AVERAGE&quot;,
+            'PRINT:maxping:MAX:%le' );
+            my $ERROR = RRDs::error();
+            return &quot;&lt;div&gt;RRDtool did not understand your input: $ERROR.&lt;/div&gt;&quot; if $ERROR;
+            $val = $graphret-&gt;[0] if $val &lt; $graphret-&gt;[0];
+        }
+.....
+</code></pre>
+
+<h4 id="6-3-smokeping-页面访问出现500错误">6.3 SmokePing 页面访问出现500错误</h4>
+
+<pre><code class="language-shell">### 关闭selinux
+vim /etc/selinux/conf
+SELINUX=disabled
+</code></pre>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://huang901111.github.io/" style="background-image: url(/images/touxiang.png)"><span class="hidden">Seacme Huang's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://huang901111.github.io/">Seacme Huang</a></h4>
+  
+  <p>Lifelong learning is the best investment for ourself life.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">GuangZhou, China</span>
+    <span class="author-link icon-link"><a href="http://sa.seacme.cn">http://sa.seacme.cn</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=SmokePing%20%e9%83%a8%e7%bd%b2&nbsp;-&nbsp;Seacme%20Huang&amp;url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f25%2fsmokeping%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f25%2fsmokeping%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f25%2fsmokeping%2f&amp;description=SmokePing%20%e9%83%a8%e7%bd%b2"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fhuang901111.github.io%2f2017%2f07%2f25%2fsmokeping%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="/2017/07/26/netcat/">
+          <section class="post">
+              <h2>Netcat Command</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="/2017/07/24/curl/">
+          <section class="post">
+              <h2>Curl Command</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Seacme Huang</a>  @ 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+
